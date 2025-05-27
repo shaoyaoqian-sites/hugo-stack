@@ -31,18 +31,18 @@ url = "mailto:499908174@qq.com"
 [social.params]
 icon = "mail"
 
-[[social]]
-identifier = "zhihu"
-name = "Zhihu"
-url = "mailto:499908174@qq.com"
+# [[social]]
+# identifier = "zhihu"
+# name = "Zhihu"
+# url = "mailto:499908174@qq.com"
 
-[social.params]
-icon = "zhihu"
+# [social.params]
+# icon = "zhihu"
 
-[[social]]
-identifier = "weibo"
-name = "Weibo"
-url = "mailto:499908174@qq.com"
+# [[social]]
+# identifier = "weibo"
+# name = "Weibo"
+# url = "mailto:499908174@qq.com"
 
-[social.params]
-icon = "weibo"
+# [social.params]
+# icon = "weibo"

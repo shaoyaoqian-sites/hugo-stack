@@ -2,12 +2,13 @@
 [en]
 languageName = "English"
 languagedirection = "ltr"
-title = "site name"
+title = ""
 weight = 1
 
 
 [zh-cn]
 languageName = "简体中文"
 languagedirection = "ltr"
-title = "卮言日出,和以天倪"
+title = ""
+# title = "卮言日出,和以天倪"
 weight = 1
