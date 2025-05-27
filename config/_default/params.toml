@@ -10,7 +10,7 @@ since = 2020
 customText = """
 Supported by <a href="">Hugo</a> & <a href="">Theme Stack</a>. 
 Accelerated by
-<a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral"><img class="lazy entered loaded" src="https://img.skyreeves.com/sites/又拍云.svg" data-src="https://img.skyreeves.com/sites/又拍云.svg" width="5.5%" align="absmiddle" data-ll-status="loaded"></a>.<br>
+<a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral"><img class="lazy entered loaded" src="https://img.skyreeves.com/sites/又拍云.svg" data-src="https://img.skyreeves.com/sites/又拍云.svg" height="13px" align="absmiddle" data-ll-status="loaded"></a>.<br>
 <a href=\"https://beian.miit.gov.cn\">浙ICP备2022032946号-1</a>
 """
 [dateFormat]
