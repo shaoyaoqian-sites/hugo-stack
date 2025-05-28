@@ -2,5 +2,6 @@ public
 resources
 .hugo_build.lock
 assets/jsconfig.json
-static/.DS_Store
 static/config/ssh_config
+
+*.DS_Store
