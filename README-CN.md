@@ -1,3 +1,4 @@
+# GitHub Pages
 只要两步就能让网站运行:
 
 1. Click *Use this template*, and create your repository as `<username>.github.io` on GitHub.
@@ -6,3 +7,12 @@
 2. Open Settings -> Pages. Change the build branch from `master` to `gh-pages`.
 ![Build](https://github.com/namanh11611/hugo-theme-stack-starter/assets/16586200/12c763cd-bead-4923-b610-8788f388fcb5)
 
+
+# 本地运行
+
+```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+scoop install hugo-extended
+hugo server
+```
