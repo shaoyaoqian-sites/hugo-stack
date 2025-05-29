@@ -15,10 +15,9 @@ disqusShortname = "hugo-theme-stack"
 
 theme='hugo-theme-stack'
 
+timeout = 300  # 5 minutes in seconds
 
 [pagination]
 pagerSize = 5
 
 
-[build]
-  timeout = 300  # 5 minutes in seconds
