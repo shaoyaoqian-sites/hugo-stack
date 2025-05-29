@@ -18,3 +18,7 @@ theme='hugo-theme-stack'
 
 [pagination]
 pagerSize = 5
+
+
+[build]
+  timeout = 300  # 5 minutes in seconds
