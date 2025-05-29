@@ -2,7 +2,7 @@
 title: "Windkessel模型"
 description: 
 slug: windkessel
-date: 2025-05-27 17:29:35
+date: 2025-05-28T17:29:35+08:00
 image: 
 math: true
 license: 
@@ -13,6 +13,7 @@ comments: true
 主要参考：关德宝、王英杰的博士毕业论文。
 
 ## 左心室
+
 ### 开环系统
 
 主要参考关德宝、王英杰的博士毕业论文，构建左心室动态收缩的数值模型。根据高老师的建议，初步采用三元素Windkessel模型与左心室进行耦合建模，形成一个开环系统。
@@ -50,12 +51,6 @@ comments: true
 | 压强     | $P_{LV}$  | 左心室压力   |
 |          | $P_{AO}$  | 主动脉压力   |
 |          | $P_{LA}$  | 左心房压力   |
-
-1. 文献中采用的Windkessel等效电路模型参数不能直接移植使用。
-
-
-
-
 
 
 六个方程分别为：
@@ -104,3 +99,9 @@ $$
 \frac{dV_{LV}}{dt} = Q_{MV} - Q_{AV}
 $$
 
+#### 主要困难
+1. 文献中采用的Windkessel等效电路模型参数不能直接移植使用。
+
+
+## 双心室
+![image-20250528194543669](https://githubimages.pengfeima.cn/images/202505281945887.png)
