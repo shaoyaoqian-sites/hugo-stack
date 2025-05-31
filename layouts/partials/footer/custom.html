@@ -2,20 +2,28 @@
 <script src="https://cdn.staticfile.net/aplayer/1.10.1/APlayer.min.js"></script>
 
 <script>
+  const aplayerEl = document.getElementById('aplayer');
+  
+  if (aplayerEl) {  // 如果找到 #aplayer 元素
     const ap = new APlayer({
-        container: document.getElementById('aplayer'),
-        audio: [{
-            name: 'Lullaby',
-            artist: 'Enzalla',
-            url: '/music/enzalla-lullaby-compressed.mp3',
-            cover: '/music/enzalla-lullaby.jpg'
-        }]
+      container: aplayerEl,
+      audio: [{
+        name: 'Lullaby',
+        artist: 'Enzalla',
+        url: '/music/enzalla-lullaby-compressed.mp3',
+        cover: '/music/enzalla-lullaby.jpg'
+      }]
     });
+  } else {
+    console.warn('APlayer 容器 #aplayer 未找到，播放器未初始化。');
+  }
 </script>
 
 <script src='{{ $.Site.Params.comments.artalk.js }}'></script>
 
 <script>
+  const CommentsEl = document.getElementById('Comments');
+  if (CommentsEl) {
   const artalk = Artalk.init({
     el: '#Comments',
     pageKey: '{{ .Permalink }}',
@@ -24,7 +32,10 @@
     site: '{{ $.Site.Params.comments.artalk.site }}',
     darkMode: 'auto', 
     // ...你的其他配置
-  })
+  });
+  } else {
+    console.warn('Comments 容器 #Comments 未找到，不渲染评论。');
+  }
   // artalk.setDarkMode(true)
 
 </script>
@@ -183,6 +194,6 @@ tryCreateChart(ctx, config_1);
 </script>
 
 
-<script defer src="https://umami.pengfeima.cn/script.js" data-website-id="e112ffab-67c1-40bb-88a2-fe345fb22081"></script>
+<!-- <script defer src="https://umami.pengfeima.cn/script.js" data-website-id="e112ffab-67c1-40bb-88a2-fe345fb22081"></script> -->
 
 
