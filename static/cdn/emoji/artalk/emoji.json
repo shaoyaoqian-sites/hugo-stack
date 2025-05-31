@@ -81,14 +81,6 @@
       { "key": "", "val": "🚀" }
     ]
   },
-    {
-        "name": "blobcat",
-        "type": "image",
-        "items": [
-            { "key": "blobcat", "val": "https://cdn.jsdelivr.net/gh/qwqcode/huaji/%E8%BF%98%E6%98%AF%E7%AE%97%E4%BA%86.png" },
-            { "key": "blobcat2", "val": "https://cdn.jsdelivr.net/gh/qwqcode/huaji/%E8%BF%98%E6%98%AF%E7%AE%97%E4%BA%86.png" },
-            { "key": "blobcat3", "val": "https://cdn.jsdelivr.net/gh/qwqcode/huaji/%E8%BF%98%E6%98%AF%E7%AE%97%E4%BA%86.png" }
-        ]
-    },
+  "https://www.pengfeima.cn/cdn/emoji/blobcat/blobcat_data.json",
   "https://cdn.jsdelivr.net/gh/qwqcode/huaji/huaji.json"
 ]
