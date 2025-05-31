@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "关于我"
 slug: "about"
 readingTime: false
 toc: false
@@ -12,9 +12,8 @@ menu:
 ---
 
 
-## 说说
 
-<iframe src="https://wangxuan.mapengfei.cn/memory" width="100%" height="800" frameborder="0"></iframe>
+<!-- <iframe src="https://wangxuan.mapengfei.cn/memory" width="100%" height="800" frameborder="0"></iframe> -->
 
 [赠人玫瑰，手留余香](/p/pay-for-help/)
 

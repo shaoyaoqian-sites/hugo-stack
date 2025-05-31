@@ -2,7 +2,7 @@
 title: Example Eategory
 slug: example-eategory
 description: ----------------
-image:
+image: 2153815980856311808.jpeg
 
 # Badge style
 style:

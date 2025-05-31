@@ -1,7 +1,7 @@
 ---
 title: Example Category
 description: A description of this category 1
-image:
+image: 2153815980856311808.jpeg
 
 # Badge style
 style:
