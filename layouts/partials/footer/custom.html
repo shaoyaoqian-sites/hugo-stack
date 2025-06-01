@@ -57,8 +57,11 @@
   }
 </script>
 
+<script src="https://cdn.staticfile.net/KaTeX/0.16.9/katex.min.js"></script>
 <script src='{{ $.Site.Params.comments.artalk.js }}'></script>
+<script src="https://unpkg.com/@artalk/plugin-katex/dist/artalk-plugin-katex.js"></script>
 
+<!-- 3. 引入 Artalk Katex 插件 -->
 <script>
   const CommentsEl = document.getElementById('Comments');
   if (CommentsEl) {
@@ -233,5 +236,4 @@ tryCreateChart(ctx, config_1);
 
 
 <!-- <script defer src="https://umami.pengfeima.cn/script.js" data-website-id="e112ffab-67c1-40bb-88a2-fe345fb22081"></script> -->
-
 
