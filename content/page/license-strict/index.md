@@ -10,7 +10,7 @@ comments: true
 readingTime: true
 image:
 categories:
-tags:
+tags: [LICENSE]
 toc: true
 ---
 

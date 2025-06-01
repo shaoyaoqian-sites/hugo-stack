@@ -1,3 +1,41 @@
+<script>
+  function decryptAndRemoveInput(button) {
+    // 获取当前按钮所在的输入区域
+    const inputArea = button.closest('.input-area');
+    // 获取对应的密码输入框
+    const passwordInput = inputArea.querySelector('.passwordInput');
+    const password = passwordInput.value;
+    // 获取最近的加密容器
+    const container = button.closest('.encrypted-container');
+    // 获取对应的加密div
+    const encryptedDiv = container.querySelector('[id^="encrypted"]');
+    
+    if (password === "secret123") { // 示例密码
+      // 1. 解密内容
+      const decrypted = decodeURIComponent(escape(atob(encryptedDiv.dataset.content)));
+      encryptedDiv.innerHTML = decrypted;
+      // 2. 删除输入区域（包括input和button）
+      inputArea.remove();
+        // 2. 重新渲染 KaTeX（如果存在）
+  if (typeof renderMathInElement === "function") {
+    renderMathInElement(container, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false },
+        { left: '\\[', right: '\\]', display: true }
+      ],
+      ignoredClasses: ["gist"]
+    });
+  }
+      // 3. 可选：删除加密数据（防止恢复）
+      encryptedDiv.removeAttribute('data-content');
+    } else {
+      alert("密码错误！");
+    }
+  }
+</script>
+
 
 <script src="https://cdn.staticfile.net/aplayer/1.10.1/APlayer.min.js"></script>
 

@@ -16,3 +16,6 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 scoop install hugo-extended
 hugo server
 ```
+
+
+加密解密插件是最弱最弱的加密，只能骗骗不懂的人，请不要依赖它！

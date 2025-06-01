@@ -1,0 +1,11 @@
+{{- $renderedInner := .Inner | .Page.RenderString -}}
+{{- $content := $renderedInner | base64Encode -}}
+{{- $id := printf "encrypted%d" (delimit (shuffle (seq 1 9)) "") -}}
+
+<div class="encrypted-container">
+  <div id="{{ $id }}" data-content="{{ $content }}"></div>
+  <div class="input-area">
+    <input type="password" class="passwordInput" placeholder="输入密码">
+    <button onclick="decryptAndRemoveInput(this, '{{ $id }}')">解密</button>
+  </div>
+</div>
