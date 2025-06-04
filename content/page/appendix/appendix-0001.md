@@ -1,5 +1,5 @@
 ---
-title: "R0001"
+title: "附录0001"
 description: 
 slug: appendix-0001
 date: 2025-06-02T23:00:59+08:00
@@ -11,6 +11,7 @@ hidden: false
 comments: true
 ---
 
+本文是 [《windkessel 模型》](/p/windkessel/)的附录。
 ## 王英洁
 
 下面两张图来自王英洁论文[^1] ，其中主动脉压强、左心室压强、心肌内压强可作为参考。
@@ -38,7 +39,9 @@ windkessel电路图和abqus 中使用的等效模型为[^1][^2]：
 
 ![image-20250602225012216](https://githubimages.pengfeima.cn/images/202506022250248.png)
 
-王英杰使用的双心室模型[^2][^5]:![image-20250602225043928](https://githubimages.pengfeima.cn/images/202506022250969.png)
+王英杰使用的双心室模型[^2][^5]:
+
+![image-20250602225043928](https://githubimages.pengfeima.cn/images/202506022250969.png)
 
 
 
@@ -71,10 +74,9 @@ aaa
 
 [^1]: Modelling coronary flow and myocardial perfusion by integrating a structured-tree coronary flow model and a hyperelastic left ventricle model  Yingjie Wang ∗, Xueqing Yin
 
-[^3]:Avanzolini et al., 1988
-[^4]:Duanmu et al., 2019
+[^3]: Avanzolini et al., 1988
+[^4]: Duanmu et al., 2019
 [^2]: Wang, Yingjie (2023) Mathematical modelling of myocardial perfusion: coronary flow and myocardial mechanics. PhD thesis.
-
 [^5]: Effect of pulmonary regurgitation on cardiac functions based on a human bi-ventricle model
 [^6]: Debao Guan; Constrained mixture models of growth and remodelling in an infarct left ventricle: A modelling study
 [^7]: Effects of dispersed fibres in myocardial mechanics, Part II: active response

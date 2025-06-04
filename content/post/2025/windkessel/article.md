@@ -13,7 +13,7 @@ comments: true
 
 主要参考：关德宝、王英杰的博士毕业论文。详见:[appendix-0001](/appendix-0001)
 
-
+要看 windkessel 模型更详细的实现过程, 详见:[appendix-0002](/appendix-0002/)
 
 ## 左心室
 
