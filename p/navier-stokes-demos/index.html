@@ -1,0 +1,136 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="一些 Navier Stokes 算例"><title>Navier Stokes 算例</title><link rel=canonical href=https://hugo.pengfeima.cn/p/navier-stokes-demos/><link rel=stylesheet href=/scss/style.min.1929b107cadc44a4dc2249e75bce7c3e553d1bfbacf836e29ced76d1d863b30f.css><meta property='og:title' content="Navier Stokes 算例"><meta property='og:description' content="一些 Navier Stokes 算例"><meta property='og:url' content='https://hugo.pengfeima.cn/p/navier-stokes-demos/'><meta property='og:site_name' content><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:published_time' content='2024-09-28T22:42:25+00:00'><meta property='article:modified_time' content='2024-09-29T22:42:25+00:00'><meta name=twitter:title content="Navier Stokes 算例"><meta name=twitter:description content="一些 Navier Stokes 算例"><link rel="shortcut icon" href=/favicon.png><link rel=stylesheet href=https://cdn.staticfile.net/lxgw-wenkai-webfont/1.7.0/lxgwwenkai-light.css media=all></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/portrait_hu_ee423bc85f81d21b.jpg width=300 height=300 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/></a></h1><h2 class=site-description></h2></div></header><ol class=menu-social><li><a href=mailto:499908174@qq.com target=_blank title=Email rel=me><svg class="icon icon-tabler icon-tabler-mail" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M3 7l9 6 9-6"/></svg></a></li><li><a href=https://github.com/shaoyaoqian target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://twitter.com/PengfeiMa657387 target=_blank title=Twitter rel=me><svg class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/%E9%93%BE%E6%8E%A5/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>链接</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://hugo.pengfeima.cn/ selected>简体中文</option><option value=https://hugo.pengfeima.cn/en/>English</option></select></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#二维解析解>二维解析解</a></li><li><a href=#三维解析解>三维解析解</a></li><li><a href=#泊肃叶流wip>泊肃叶流(WIP)</a></li><li><a href=#方腔驱动流wip>方腔驱动流(WIP)</a></li><li><a href=#圆柱绕流wip>圆柱绕流(WIP)</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><div class=article-title-wrapper><h2 class=article-title><a href=/p/navier-stokes-demos/>Navier Stokes 算例</a></h2><h3 class=article-subtitle>一些 Navier Stokes 算例</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>2024年9月28日</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 2 分钟</time></div></footer></div></header><section class=article-content><h2 id=二维解析解>二维解析解</h2><ol><li></li></ol>$$
+\Omega=[ 0, 1 ] \times[ 0, 1 ], \, \mathrm{T}=0. 1 \mathrm{s},
+$$$$
+\left\{\begin{array} {l} {{{u_{1} ( x, y, t )=-\operatorname{e x p} ( t ) x^{2} ( x-1 )^{2} y ( y-1 ) ( 2 y-1 ) / 2 5 6}}} \\ {{{u_{2} ( x, y, t )=\operatorname{e x p} ( t ) x ( x-1 ) ( 2 x-1 ) y^{2} ( y-1 )^{2} / 2 5 6}}} \\ {{{p ( x, y, t )=\operatorname{e x p} ( t ) ( x^{3}-1 / 4 )}}} \\ \end{array} \right.
+$$<ol start=2><li></li></ol>$$
+\Omega=[0,1] \times[0,1], \mathrm{T}=0.1 \mathrm{~s},
+$$$$
+\begin{aligned}
+& \qquad\left\{\begin{array}{l}
+u_1(x, y, t)=\exp (t) \sin ^2(\pi x) \sin (2 \pi y) \\
+u_2(x, y, t)=-\exp (t) \sin (2 \pi x) \sin ^2(\pi y) \\
+p(x, y, t)=\exp (t)(\sin (\pi y)-2 / \pi)
+\end{array}\right.
+\end{aligned}
+$$<ol start=3><li></li></ol>$$
+\Omega=[0,1] \times[0,1], \mathrm{T}=0.1 \mathrm{~s}
+$$$$
+\begin{aligned}
+\qquad\left\{\begin{array}{l}
+u_1(x, y, t)=20 x^2(x-1)^2 y(y-1)(2 y-1) t \\
+u_2(x, y, t)=-20 x(x-1)(2 x-1) y^2(y-1)^2 t \\
+p(x, y, t)=10(2 x-1)(2 y-1)
+\end{array}\right.
+\end{aligned}
+$$<ol start=4><li></li></ol>$$
+\Omega=[0,1] \times[0,1], \mathrm{T}=0.1 \mathrm{~s}
+$$$$
+\begin{aligned}
+& \qquad\left\{\begin{array}{l}
+u_1(x, y, t)=20 x^2(x-1)^2 y(y-1)(2 y-1) t \\
+u_2(x, y, t)=-20 x(x-1)(2 x-1) y^2(y-1)^2 t \\
+p(x, y, t)=10(2 x-1)(2 y-1) t
+\end{array}\right.
+\end{aligned}
+$$<ol start=5><li></li></ol>$$
+\Omega=[0,1] \times[0,1], \mathrm{T}=0.1 \mathrm{~s}
+$$$$
+\begin{aligned}
+\qquad\left\{\begin{array}{l}
+u_1(x, y, t)=2 \pi \sin ^2(\pi x) \sin (\pi y) \cos (\pi y) \cos (t) \\
+u_2(x, y, t)=-2 \pi \sin (\pi x) \cos (\pi x) \sin ^2(\pi y) \cos (t) \\
+p(x, y, t)=\cos (\pi x) \cos (\pi y)
+\end{array}\right.
+\end{aligned}
+$$<ol start=7><li>[p. 389.] <sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup></li></ol>$$
+\begin{aligned}
+& u=\left[\begin{array}{c}
+\sin (4 \pi x) \cos (4 \pi y) \\
+-\cos (4 \pi x) \sin (4 \pi y)
+\end{array}\right] \\
+& p=\pi \cos (4 \pi x) \cos (4 \pi y)
+\end{aligned}
+$$<ol start=8><li>Taylor–Green vortex<sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>
+$$
+\Omega=[-1,1] \times[-1,1], \mathrm{T}=0.5, \nu=0.01
+$$</li></ol>$$
+\begin{aligned}
+& u(x, y, t)=\left(\cos (\pi x) \sin (\pi y) e^{-2 t v \pi^2}, \cos (\pi y) \sin (\pi x) e^{-2 t v \pi^2}\right) \\
+& p(x, y, t)=-0.25(\cos (2 \pi x)+\cos (2 \pi y)) e^{-4 t v \pi^2}
+\end{aligned}
+$$<ol start=8><li></li></ol>$$
+\Omega=[0,2] \times[-1,1], \mathrm{T}=0.1, \mu=0.01 .
+$$$$
+\begin{aligned}
+& \qquad\left\{\begin{array}{l}
+u=2 \cos (\pi y) \sin (\pi x) \sin t \\
+v=-2 \sin (\pi y) \cos (\pi x) \sin t \\
+p=2 \sin (\pi y) \sin (\pi x) \cos t
+\end{array}\right.
+\end{aligned}
+$$<ol start=9><li></li></ol>$$
+\Omega=[0,1] \times[-0.25,0], \mathrm{T}=0.1 \mathrm{~s}
+$$$$
+\begin{aligned}
+& \qquad\left\{\begin{array}{l}
+u_1=\left(x^2 y^2+e^{-y}\right) \cos (2 \pi t) \\
+u_2=\left[-\frac{2}{3} x y^3+2-\pi \sin (\pi x)\right] \cos (2 \pi t) \\
+p=-[2-\pi \sin (\pi x)] \cos (2 \pi y) \cos (2 \pi t)
+\end{array}\right.
+\end{aligned}
+$$<ol start=10><li></li></ol>$$
+\begin{aligned}
+&u_{1}=\left(x^{2} y^{2}+e^{-y}\right) \cos (2 \pi t) \\
+&u_{2}=\left[-\frac{2}{3} x y^{3}+2-\pi \sin (\pi x)\right] \cos (2 \pi t) \\
+&p=-[2-\pi \sin (\pi x)] \cos (2 \pi y) \cos (2 \pi t)
+\end{aligned}
+$$<ol start=11><li>Kovasznay flow <sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup>, 用于验证SAV方法的无条件能量稳定</li></ol>$$
+\left\{\begin{array}{l}
+u=1-e^{\lambda x} \cos (2 \pi y) \\
+v=\frac{\lambda}{2 \pi} e^{\lambda x} \sin (2 \pi y) \\
+p=\frac{1}{2}\left(1-e^{2 \lambda x}\right)
+\end{array}\right.
+$$<h2 id=三维解析解>三维解析解</h2><ol><li></li></ol>$$
+\begin{aligned}
+p(x) &=\cos \left(\pi x_{1}\right) \cos \left(\pi x_{2}\right) \cos \left(\pi x_{3}\right), \\
+u_{1}(x) &=\pi^{2}\left(\sin \left(\pi x_{1}\right)\right)^{2} \sin \left(2 \pi x_{2}\right) \sin \left(2 \pi x_{3}\right), \\
+u_{2}(x) &=-0.5 \pi^{2} \sin \left(2 \pi x_{1}\right)\left(\sin \left(2 \pi x_{2}\right)\right)^{2} \sin \left(\pi x_{3}\right), \\
+u_{3}(x) &=-0.5 \pi^{2} \sin \left(2 \pi x_{1}\right) \sin \left(2 \pi x_{2}\right)\left(\sin \left(\pi x_{3}\right)\right)^{2} .
+\end{aligned}
+$$<ol start=2><li></li></ol>$$
+\begin{aligned}
+&\left.\boldsymbol{u}=\left(y^{4}+z^{2}\right) e^{-t},\left(z^{4}+x^{2}\right) e^{-t},\left(x^{4}+y^{2}\right) e^{-t}\right) . \\
+&p=(2 x-1)(2 y-1)(2 z-1) e^{-t},
+\end{aligned}
+$$<ol start=3><li>Beltrami flow<sup id=fnref:4><a href=#fn:4 class=footnote-ref role=doc-noteref>4</a></sup>，由 Ethier 和 Steinmann 于1994年提出，计算区域为 [-1,1]x[-1,1]x[-1,1] ，它速度和压强的精确解为</li></ol>$$
+\begin{aligned}
+&u(x, y, z, t)=-a\left[e^{a x} \sin (a y+d z)+e^{a z} \cos (a x+d y)\right] e^{-d^{2} t} \\
+&v(x, y, z, t)=-a\left[e^{a y} \sin (a z+d x)+e^{a x} \cos (a y+d z)\right] e^{-d^{2} t} \\
+&w(x, y, z, t)=-a\left[e^{a z} \sin (a x+d y)+e^{a y} \cos (a z+d x)\right] e^{-d^{2} t}
+\end{aligned}
+$$$$
+\begin{aligned}
+p(x, y, z, t)=-a^{2} e^{-2 d^{2} t}\left(e^{2 a x}+e^{2 a y}+e^{2 a z}\right)(& \sin (a x+d y) \cos (a z+d x) e^{a(y+z)} \\
+&\left.+\sin (a y+d z) \cos (a x+d y) e^{a(x+z)}+\sin (a z+d x) \cos (a y+d z) e^{a(x+y)}\right)
+\end{aligned}
+$$<h2 id=泊肃叶流wip>泊肃叶流(WIP)</h2><h2 id=方腔驱动流wip>方腔驱动流(WIP)</h2><h2 id=圆柱绕流wip>圆柱绕流(WIP)</h2><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p>[Automated Solution of Differential Equations by the Finite Element Method. p. 389.]&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p>[Automated Solution of Differential Equations by the Finite Element Method. Chapter. 21.4.4]&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3><p>Numerical approximation of incompressible Navier-Stokes equations based on an auxiliary energy variable&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:4><p>[Automated Solution of Differential Equations by the Finite Element Method. Chapter. 21.4.6]&#160;<a href=#fnref:4 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></section><footer class=article-footer><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>版权所有，禁止转载</span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span>最后更新于 2024年9月29日</span></section></footer><link rel=stylesheet href=https://cdn.staticfile.net/KaTeX/0.16.9/katex.min.css integrity=sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV crossorigin=anonymous><script src=https://cdn.staticfile.net/KaTeX/0.16.9/katex.min.js integrity=sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8 crossorigin=anonymous defer></script><script src=https://cdn.staticfile.net/KaTeX/0.16.9/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector(".main-article");renderMathInElement(e,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}],ignoredClasses:["gist"]})})</script></article><link href=https://comments.pengfeima.cn/dist/Artalk.css rel=stylesheet><div id=Comments></div><div>访问次数 ：<span id=ArtalkPV>加载中...</span></div><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2025 by Ma Pengfei. All rights reserved.</section><section class=powerby>Supported by <a href>Hugo</a> & <a href>Theme Stack</a>.
+Accelerated by
+<a target=_blank rel=noopener href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral"><img class="lazy entered loaded" src=https://img.skyreeves.com/sites/又拍云.svg data-src=https://img.skyreeves.com/sites/又拍云.svg height=13px align=absmiddle data-ll-status=loaded></a>.<br><a href=https://beian.miit.gov.cn>浙ICP备2022032946号-1</a><br></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.staticfile.net/photoswipe/4.1.3/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.staticfile.net/photoswipe/4.1.3/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.staticfile.net/photoswipe/4.1.3/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.staticfile.net/photoswipe/4.1.3/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.staticfile.net/node-vibrant/3.1.6/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.b80972fdfd84b23a95ebb81f86843a9d762e2163e41f1fd4100c1d678fcf2473.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><script>function decryptAndRemoveInput(e){const n=e.closest(".input-area"),o=n.querySelector(".passwordInput"),i=o.value,s=e.closest(".encrypted-container"),t=s.querySelector('[id^="encrypted"]');if(i==="secret123"){const e=decodeURIComponent(escape(atob(t.dataset.content)));t.innerHTML=e,n.remove(),typeof renderMathInElement=="function"&&renderMathInElement(s,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}],ignoredClasses:["gist"]}),t.removeAttribute("data-content")}else alert("密码错误！")}</script><script src=https://cdn.staticfile.net/aplayer/1.10.1/APlayer.min.js></script><script>const aplayerEl=document.getElementById("aplayer");aplayerEl?new APlayer({container:aplayerEl,audio:[{name:"Lullaby",artist:"Enzalla",url:"/music/enzalla-lullaby-compressed.mp3",cover:"/music/enzalla-lullaby.jpg"}]}):console.warn("APlayer 容器 #aplayer 未找到，播放器未初始化。")</script><script src=https://cdn.staticfile.net/KaTeX/0.16.9/katex.min.js></script><script src=https://comments.pengfeima.cn/dist/Artalk.js></script><script src=https://unpkg.com/@artalk/plugin-katex/dist/artalk-plugin-katex.js></script><script>const CommentsEl=document.getElementById("Comments");CommentsEl?Artalk.init({el:"#Comments",pageKey:"https://hugo.pengfeima.cn/p/navier-stokes-demos/",pageTitle:"Navier Stokes 算例",server:"https://comments.pengfeima.cn",site:"Hugo",darkMode:"auto"}):console.warn("Comments 容器 #Comments 未找到，不渲染评论。")</script><script type=text/javascript src=https://cdn.staticfile.net/Chart.js/4.3.0/chart.umd.min.js defer></script><script>function tryCreateChart(e,t,n=5,s=1e3){if(typeof Chart!="undefined")Chart.defaults.font.family="LXGW WenKai",new Chart(e,t);else if(n>0)setTimeout(()=>{tryCreateChart(e,t,n-1,s)},s);else throw new Error("Failed to initialize Chart after multiple attempts.")}const ctx=document.getElementById("myChart");if(ctx){const e=["8月15日","8月18日","8月19日","8月20日","8月20日","8月15日","9月30日","10月14日","11月9日","11月11日","12月7日","12月14日","12月21日","2024年1月6日","1月18日","2月21日","2月25日","3月16日","4月18日","5月3日","5月6日","5月27日","9月24日","10月6日","10月17日","10月28日"];data_e_money=[121.72,127.49,129.17,140.4,241.17,241.17,241.17,241.17,361.17,370.99,383,433,533,533,533,533,533,640.5,640.5,640.5,644.3,851.3,851.3,1051.3,1051.3,1054.5],data_e_consume=[160.4,168.6,171.1,187.1,188.2,268.2,268.2,315.9,381.7,425.8,475.5,513.7,565.9,614.5,666.6,736.2,773.4,831.6,896.2,946,963.7,1016.5,1298.3,1337.3,1361,1398],data_oil_money=[200,200,200,200,200,200,200,200,200,200,200,200,300,300,300,400,400,400,400,400,400,400,400,500,500,500],data_oil_consume=[11.4,11.5,11.5,11.8,11.8,12.4,12.4,12.7,14.7,17.1,18.9,19.3,19.8,21.9,22.5,25.9,30.5,31,31.5,32.4,34.5,34.7,43.2,48,53.2,54.1],data_distance=[1115,1171,1183,1308,1316,1849,2013,2121,2583,2844,3159,3243,3425,3656,3863,4113,4346,4765,5202,5490,5775,6133,8142,8494,8866,9133],data_money=[],data_all_money=[];for(let e=0;e<data_e_money.length;e++)data_money.push((data_e_money[e]+data_oil_money[e])/data_distance[e]),data_all_money.push(data_e_money[e]+data_oil_money[e]);const t={labels:e,datasets:[{label:"总费用",data:data_all_money,cubicInterpolationMode:"monotone",spanGaps:!0,yAxisID:"y"},{label:"油费",data:data_oil_money,cubicInterpolationMode:"monotone",spanGaps:!0,yAxisID:"y"},{label:"电费",data:data_e_money,yAxisID:"y",cubicInterpolationMode:"monotone",spanGaps:!0},{label:"电量",data:data_e_consume,yAxisID:"y",cubicInterpolationMode:"monotone",spanGaps:!0},{label:"油量",data:data_oil_consume,yAxisID:"y",cubicInterpolationMode:"monotone",spanGaps:!0},{label:"平均",data:data_money,yAxisID:"y",cubicInterpolationMode:"monotone",spanGaps:!0},{label:"里程",data:data_distance,yAxisID:"y1",cubicInterpolationMode:"monotone",spanGaps:!0}]},n={type:"line",data:t,options:{responsive:!0,interaction:{mode:"index",intersect:!1},stacked:!1,plugins:{title:{display:!0,text:"2023年行车费用",font:{size:20,weight:"bold"},padding:{top:0,left:0,right:0,bottom:20}}},scales:{x:{display:!1,title:{display:!0,padding:{top:10,left:0,right:0,bottom:10}}},y:{type:"linear",display:!0,position:"left",title:{display:!0,text:"油/电费(元)"}},y1:{type:"linear",display:!0,position:"right",title:{display:!0,text:"里程(公里)"},grid:{drawOnChartArea:!1}}}}};tryCreateChart(ctx,n)}</script></body></html>

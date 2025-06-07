@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>所有文章 on</title><link>https://hugo.pengfeima.cn/page/appendix/</link><description>Recent content in 所有文章 on</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 03 Jun 2025 22:08:06 +0800</lastBuildDate><atom:link href="https://hugo.pengfeima.cn/page/appendix/index.xml" rel="self" type="application/rss+xml"/><item><title>附录0002</title><link>https://hugo.pengfeima.cn/appendix-0002/</link><pubDate>Tue, 03 Jun 2025 22:08:06 +0800</pubDate><guid>https://hugo.pengfeima.cn/appendix-0002/</guid><description>&lt;p>本文是 &lt;a class="link" href="https://hugo.pengfeima.cn/p/windkessel/" >《windkessel 模型》&lt;/a>的附录。&lt;/p>
+&lt;h2 id="设计开环系统">设计开环系统
+&lt;/h2>&lt;blockquote>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/202506051622227.svg" alt="" style="width: 60%;" />
+&lt;figcaption>收缩期的开环windkessel模型&lt;/figcaption>
+&lt;/div>
+&lt;/blockquote>
+&lt;p>本文提出的winkessel模型中，由于二极管的存在，只有在射血阶段左右两边的电路是联通的，其他情况下，两边的电路都是断开的。因此，在此模型中，假设了&lt;strong>截断&lt;/strong>的左心室模型和电容 $C_{LV}$ 中容纳的血液为左心室的总容积，它的变化可以通过流过$R_\text{AO}$的电流计算，在等容收缩期&lt;strong>截断&lt;/strong>的左心室模型的容积发生了变化，但是我们认为左心室的容积并没有发生变化，这是符合生理常识的。&lt;/p>
+&lt;h3 id="预加载阶段">预加载阶段
+&lt;/h3>&lt;p>在预加载阶段，左心室压力（$P_\text{LV}$）上升至 8 mmHg，达到舒张末期，无主动收缩模型，无windkessel模型。(0.3s)&lt;/p>
+&lt;h3 id="等容收缩期">等容收缩期
+&lt;/h3>&lt;p>在等容收缩期，此时左心室开始收缩，$P_\text{LV}$ 从 8 mmHg 逐渐升高，主动脉压力（$P_\text{AO}$）从 $80\text{mmHg}$ 逐渐降低，直至两者相等。因为二极管的作用，左右两边的电路是断开的。&lt;/p>
+&lt;p>&lt;strong>左心室压强&lt;/strong>：在更复杂的电路模型中，当其他条件保持不变时，左心室顺应性（$C_\text{LV}$） 是最关键的影响因素，其值越大，$P_\text{LV}$ 越低。相比之下，左心室阻力（$R_\text{LV}$） 的影响较弱，但其减小会导致更多电流从电容支路分流，从而进一步降低 $P_\text{LV}$。暂时考虑$R_C$为零，可能有潜在影响，暂时不考虑它。&lt;/p>
+&lt;blockquote>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/202506051622700.svg" alt="" style="width: 60%;" />
+&lt;figcaption>三元素windkessel模型&lt;/figcaption>
+&lt;/div>
+&lt;/blockquote>
+&lt;p>&lt;strong>主动脉压强&lt;/strong>：在此阶段，主动脉瓣处于关闭状态，主动脉依靠血管顺应性维持对全身的血流灌注。若采用简化电路模型（仅包含一个电容与系统血管阻力$R_\text{SYS}$串联），则主动脉压力（$P_\text{AO}$）随时间呈线性下降。&lt;/p>
+&lt;h3 id="射血期">射血期
+&lt;/h3>&lt;p>在射血期，左心室压强大于主动脉压强，左右两边电路连通。需要求解四个方程。&lt;/p>
+&lt;blockquote>
+&lt;p>(WIP)&lt;/p>&lt;/blockquote>
+&lt;h3 id="等容舒张期">等容舒张期
+&lt;/h3>&lt;p>左心室压强降低到主动脉压强以下，左右电路再次断开，左心室和主动脉压强各自求解，直到周期结束。此过程中，应防止左心室压强降低到0mmHg以下，因为实际情况中，左心房，应当有经过二尖瓣流入。压强可能降到(0.8s)&lt;/p>
+&lt;h3 id="快速充盈舒张心房收缩">快速充盈、舒张、心房收缩
+&lt;/h3>&lt;p>此阶段移除windkessel模型，移除主动收缩力，内壁压力加载和预加载阶段相同。由于顺应性，主动脉压强逐渐降低。&lt;/p>
+&lt;h2 id="设计闭环系统">设计闭环系统
+&lt;/h2>&lt;blockquote>
+&lt;p>(WIP)
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/202506051622874.svg" alt="" style="width: 60%;" />
+&lt;figcaption>接入左心室的闭环系统&lt;/figcaption>
+&lt;/div>
+&lt;/p>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>三种windkessel模型
+&lt;img src="https://githubimages.pengfeima.cn/images/202506032144779.jpg"
+loading="lazy"
+alt="11441748957626_.pic"
+>
+&lt;img src="https://githubimages.pengfeima.cn/images/202506032145032.jpg"
+loading="lazy"
+alt="11451748957730_.pic_hd"
+>
+&lt;img src="https://githubimages.pengfeima.cn/images/202506032144788.jpg"
+loading="lazy"
+alt="11461748958030_.pic"
+>&lt;/p>&lt;/blockquote></description></item><item><title>附录0001</title><link>https://hugo.pengfeima.cn/appendix-0001/</link><pubDate>Mon, 02 Jun 2025 23:00:59 +0800</pubDate><guid>https://hugo.pengfeima.cn/appendix-0001/</guid><description>&lt;p>本文是 &lt;a class="link" href="https://hugo.pengfeima.cn/p/windkessel/" >《windkessel 模型》&lt;/a>的附录。&lt;/p>
+&lt;h2 id="王英洁">王英洁
+&lt;/h2>&lt;p>下面两张图来自王英洁论文&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup> ，其中主动脉压强、左心室压强、心肌内压强可作为参考。&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022243005.png"
+loading="lazy"
+alt="image-20250602224317966"
+>&lt;/p>
+&lt;p>windkessel电路图和abqus 中使用的等效模型为&lt;sup id="fnref1:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>：&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022243721.png"
+loading="lazy"
+alt="image-20250602224305604"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022249592.png"
+loading="lazy"
+alt="image-20250602224924505"
+>&lt;/p>
+&lt;p>下面的图来自王英洁博士学位论文&lt;sup id="fnref1:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>，参考了&lt;sup id="fnref:3">&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref">3&lt;/a>&lt;/sup>&lt;sup id="fnref:4">&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref">4&lt;/a>&lt;/sup>,可作为左心室压强和主动脉压强的参考，只不过他把左心室
+和主动脉压强写反了。&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022247297.png"
+loading="lazy"
+alt="image-20250602224710248"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022249746.png"
+loading="lazy"
+alt="image-20250602224940698"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022250583.png"
+loading="lazy"
+alt="image-20250602225001545"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022250248.png"
+loading="lazy"
+alt="image-20250602225012216"
+>&lt;/p>
+&lt;p>王英杰使用的双心室模型&lt;sup id="fnref2:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>&lt;sup id="fnref:5">&lt;a href="#fn:5" class="footnote-ref" role="doc-noteref">5&lt;/a>&lt;/sup>:&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022250969.png"
+loading="lazy"
+alt="image-20250602225043928"
+>&lt;/p>
+&lt;h2 id="德宝">德宝
+&lt;/h2>&lt;p>德宝的左心室电路图&lt;sup id="fnref:6">&lt;a href="#fn:6" class="footnote-ref" role="doc-noteref">6&lt;/a>&lt;/sup>，需要注意的是这个电路是两个开路构成&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022253964.png"
+loading="lazy"
+alt="image-20250602225212390"
+>&lt;/p>
+&lt;p>还有一个闭路&lt;sup id="fnref:7">&lt;a href="#fn:7" class="footnote-ref" role="doc-noteref">7&lt;/a>&lt;/sup> 及其等效windkessel模型&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022255421.png"
+loading="lazy"
+alt="image-20250602225542341"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022256197.png"
+loading="lazy"
+alt="image-20250602225612157"
+>&lt;/p>
+&lt;p>aaa&lt;/p>
+&lt;p>另一篇论文中有以下电路图&lt;sup id="fnref:8">&lt;a href="#fn:8" class="footnote-ref" role="doc-noteref">8&lt;/a>&lt;/sup>:
+&lt;img src="https://githubimages.pengfeima.cn/images/202506022257503.png"
+loading="lazy"
+alt="image-20250602225725451"
+>&lt;/p>
+&lt;p>aaa
+德宝博士学位论文中&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022258818.png"
+loading="lazy"
+alt="image-20250602225824782"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022258605.png"
+loading="lazy"
+alt="image-20250602225800556"
+>&lt;/p>
+&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>Modelling coronary flow and myocardial perfusion by integrating a structured-tree coronary flow model and a hyperelastic left ventricle model Yingjie Wang ∗, Xueqing Yin&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&amp;#160;&lt;a href="#fnref1:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:2">
+&lt;p>Wang, Yingjie (2023) Mathematical modelling of myocardial perfusion: coronary flow and myocardial mechanics. PhD thesis.&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&amp;#160;&lt;a href="#fnref1:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&amp;#160;&lt;a href="#fnref2:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:3">
+&lt;p>Avanzolini et al., 1988&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:4">
+&lt;p>Duanmu et al., 2019&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:5">
+&lt;p>Effect of pulmonary regurgitation on cardiac functions based on a human bi-ventricle model&amp;#160;&lt;a href="#fnref:5" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:6">
+&lt;p>Debao Guan; Constrained mixture models of growth and remodelling in an infarct left ventricle: A modelling study&amp;#160;&lt;a href="#fnref:6" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:7">
+&lt;p>Effects of dispersed fibres in myocardial mechanics, Part II: active response&amp;#160;&lt;a href="#fnref:7" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:8">
+&lt;p>Modelling of fibre dispersion and its effects on cardiac mechanics from diastole to systole&amp;#160;&lt;a href="#fnref:8" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div></description></item></channel></rss>

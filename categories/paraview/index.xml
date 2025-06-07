@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>paraview on</title><link>https://hugo.pengfeima.cn/categories/paraview/</link><description>Recent content in paraview on</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 29 Sep 2024 13:53:00 +0000</lastBuildDate><atom:link href="https://hugo.pengfeima.cn/categories/paraview/index.xml" rel="self" type="application/rss+xml"/><item><title>Q准则涡</title><link>https://hugo.pengfeima.cn/p/paraview-plot-q-criterion/</link><pubDate>Tue, 24 Sep 2024 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/p/paraview-plot-q-criterion/</guid><description>&lt;img src="https://hugo.pengfeima.cn/p/paraview-plot-q-criterion/2153815980797591552.jpeg" alt="Featured image of post Q准则涡" />&lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1ft421b7iW/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=5abfb7c63abd04e3e543a6829e7d3578" target="_blank" rel="noopener"
+>https://www.bilibili.com/video/BV1ft421b7iW/?spm_id_from=333.337.search-card.all.click&amp;vd_source=5abfb7c63abd04e3e543a6829e7d3578&lt;/a>&lt;/p></description></item><item><title>流固耦合运动绘图</title><link>https://hugo.pengfeima.cn/p/paraview-plot-deformation/</link><pubDate>Tue, 24 Sep 2024 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/p/paraview-plot-deformation/</guid><description>&lt;img src="https://hugo.pengfeima.cn/p/paraview-plot-deformation/2153815980797591552.jpeg" alt="Featured image of post 流固耦合运动绘图" />&lt;p>浏览量：&lt;span id="ArtalkCount">&lt;/span>
+评论数：&lt;span id="ArtalkPV">&lt;/span>&lt;/p>
+&lt;p>需要画流体的流线图和固体的形变图。
+流线图用 Mask Points 和 Stream Tracer With Custom Source 绘制, 这两个 Filter 的使用可以参考&lt;a class="link" href="https://hugo.pengfeima.cn/p/paraview-plot-streamline/" target="_blank" rel="noopener"
+>画双心室的纤维图&lt;/a>。形变图用 Warp By Vector 绘制。&lt;/p>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409252219613.webp" alt="" style="width: 60%;" />
+&lt;figcaption>导入流体和固体的数据&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409252220375.webp" alt="" style="width: 60%;" />
+&lt;figcaption>计算固体形变&lt;/figcaption>
+&lt;/div>
+&lt;ul>
+&lt;li>WIP：下面这些图的教程&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202409281050653.png"
+loading="lazy"
+alt="image-20240928105008567"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202409281049017.png"
+loading="lazy"
+alt="image-20240928104922924"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202409281047106.png"
+loading="lazy"
+alt="image-20240928104742963"
+>&lt;/p>
+&lt;ul>
+&lt;li>速度等高图
+&lt;img src="https://githubimages.pengfeima.cn/images/202409281100167.png"
+loading="lazy"
+alt="image-20240928110037029"
+>
+&lt;img src="https://githubimages.pengfeima.cn/images/202409281102000.png"
+loading="lazy"
+alt="image-20240928110253889"
+>
+&lt;img src="https://githubimages.pengfeima.cn/images/202409281048332.png"
+loading="lazy"
+alt="image-20240928104852205"
+>&lt;/li>
+&lt;/ul>
+&lt;p>下载数据: &lt;a class="link" href="https://pan.quark.cn/s/461a633eb6b4" target="_blank" rel="noopener"
+>paraview-fsi-plot.001.zip&lt;/a>&lt;/p></description></item><item><title>Paraview 目录</title><link>https://hugo.pengfeima.cn/p/paraview-toc/</link><pubDate>Mon, 23 Sep 2024 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/p/paraview-toc/</guid><description>&lt;img src="https://hugo.pengfeima.cn/p/paraview-toc/2153815987617529856.jpeg" alt="Featured image of post Paraview 目录" />&lt;ul>
+&lt;li>
+&lt;p>paraview 输出 png 格式文件, 背景为透明色，更方便修改&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://hugo.pengfeima.cn/p/paraview-plot-streamline-2d/" >画二维截面的流线图&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://hugo.pengfeima.cn/p/paraview-plot-legend/" >修改图例&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://hugo.pengfeima.cn/p/fsi-demo-1-elastic-shell/" >流固耦合算例(一)&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://hugo.pengfeima.cn/p/fsi-demo-2-turek-hron/" >流固耦合算例(二)&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://hugo.pengfeima.cn/p/fsi-demo-3-soft-disk/" >流固耦合算例(三)&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>画双心室的纤维图</title><link>https://hugo.pengfeima.cn/p/paraview-plot-streamline/</link><pubDate>Mon, 23 Sep 2024 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/p/paraview-plot-streamline/</guid><description>&lt;img src="https://hugo.pengfeima.cn/p/paraview-plot-streamline/2153816028738486272.jpeg" alt="Featured image of post 画双心室的纤维图" />&lt;p>浏览量：&lt;span id="ArtalkPV">加载中&amp;hellip;&lt;/span>&lt;br>
+评论数：&lt;span id="ArtalkCount">加载中&amp;hellip;&lt;/span>&lt;/p>
+&lt;p>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231723270.webp" alt="" style="width: 60%;" />
+&lt;figcaption>打开文件&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231724696.webp" alt="" style="width: 40%;" />
+&lt;figcaption>Filters -&amp;gt; Search -&amp;gt; Mask Points&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231723019.webp" alt="" style="width: 40%;" />
+&lt;figcaption>选择 Mask Points, 修改数量&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231723087.webp" alt="" style="width: 40%;" />
+&lt;figcaption>Filters -&amp;gt; Search -&amp;gt; Stream Tracer With Custom Source&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231723339.webp" alt="" style="width: 50%;" />
+&lt;figcaption>f0 作为输入数据&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231723244.webp" alt="" style="width: 50%;" />
+&lt;figcaption>MaskPoints1 作为采样点&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231826659.webp" alt="" style="width: 40%;" />
+&lt;figcaption>Streamline&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231638875.webp" alt="" style="width: 60%;" />
+&lt;figcaption>修改 Tube1 的宽度&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231633231.webp" alt="" style="width: 60%;" />
+&lt;figcaption>减少 Tube1 的数量&lt;/figcaption>
+&lt;/div>
+&lt;/p>
+&lt;p>下载数据: &lt;a class="link" href="https://pan.quark.cn/s/76d0a7540126" target="_blank" rel="noopener"
+>ventricle-mesh.zip&lt;/a>&lt;/p></description></item></channel></rss>

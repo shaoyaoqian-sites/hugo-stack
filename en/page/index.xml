@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on</title><link>https://hugo.pengfeima.cn/en/page/</link><description>Recent content in Pages on</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 27 May 2025 11:21:27 +0800</lastBuildDate><atom:link href="https://hugo.pengfeima.cn/en/page/index.xml" rel="self" type="application/rss+xml"/><item><title>许可协议(一)</title><link>https://hugo.pengfeima.cn/en/license-strict/</link><pubDate>Tue, 27 May 2025 11:21:27 +0800</pubDate><guid>https://hugo.pengfeima.cn/en/license-strict/</guid><description>&lt;h2 id="usage-agreement">Usage Agreement
+&lt;/h2>&lt;p>&lt;strong>Copyright © 2025 Ma Pengfei and Wang Xuan&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>Authors:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Ma Pengfei (&lt;a class="link" href="mailto:mapengfei@mail.nwpu.edu.cn" >mapengfei@mail.nwpu.edu.cn&lt;/a>)&lt;/li>
+&lt;li>Wang Xuan (&lt;a class="link" href="mailto:wangxuan2022@mail.nwpu.edu.cn" >wangxuan2022@mail.nwpu.edu.cn&lt;/a>)&lt;/li>
+&lt;/ul>
+&lt;p>This software is provided strictly for internal use and academic research purposes only, subject to the following conditions:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>No Public Disclosure&lt;/strong>&lt;br>
+You may not publicly share, disclose, discuss, or publish any portion of the source code or its implementation details in any form, including but not limited to online platforms, forums, lectures, or presentations.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>No Modification&lt;/strong>&lt;br>
+Use of the code is permitted in its original form only. Any modification, adaptation, or creation of derivative works is strictly prohibited.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>No Reverse Engineering&lt;/strong>&lt;br>
+Reverse engineering, decompiling, disassembling, or attempting to derive the source code by any means is strictly prohibited.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>No Redistribution&lt;/strong>&lt;br>
+Redistribution of this software, whether in original or altered form, is forbidden without the prior written consent of the authors.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Authorized Use Only&lt;/strong>&lt;br>
+This software may only be used by individuals or entities explicitly authorized by the authors.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>Violation of any of the above terms may result in legal liability. For authorization requests or further inquiries, please contact the authors via the email addresses provided above.&lt;/p></description></item><item><title>Archives</title><link>https://hugo.pengfeima.cn/en/archives/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/en/archives/</guid><description/></item><item><title>About</title><link>https://hugo.pengfeima.cn/en/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/en/about/</guid><description>&lt;p>&lt;a class="link" href="https://hugo.pengfeima.cn/p/pay-for-help/" >赠人玫瑰，手留余香&lt;/a>&lt;/p></description></item><item><title>Links</title><link>https://hugo.pengfeima.cn/en/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/en/links/</guid><description>&lt;p>To use this feature, add &lt;code>links&lt;/code> section to frontmatter.&lt;/p>
+&lt;p>This page&amp;rsquo;s frontmatter:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">links&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub is the world&amp;#39;s largest software development platform.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">website&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://github.com&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">TypeScript&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">website&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://www.typescriptlang.org&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ts-logo-128.jpg&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>image&lt;/code> field accepts both local and external images.&lt;/p></description></item><item><title>Search</title><link>https://hugo.pengfeima.cn/en/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/en/search/</guid><description/></item></channel></rss>

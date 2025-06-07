@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vhdx on</title><link>https://hugo.pengfeima.cn/tags/vhdx/</link><description>Recent content in Vhdx on</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 01 Jun 2025 18:36:21 +0800</lastBuildDate><atom:link href="https://hugo.pengfeima.cn/tags/vhdx/index.xml" rel="self" type="application/rss+xml"/><item><title>Ventoy</title><link>https://hugo.pengfeima.cn/p/ventoy/</link><pubDate>Sun, 01 Jun 2025 18:36:21 +0800</pubDate><guid>https://hugo.pengfeima.cn/p/ventoy/</guid><description>&lt;p>安装移动系统的目的就是让你把系统装到移动硬盘的VHDX虚拟磁盘里，这样配合Ventoy之类的工具，就能随身带着自己的系统到处用，换电脑也不用重装系统。启动方式有两种：一种是直接在原来电脑的启动菜单里加个引导项，用EasyBCD改一下就行；另一种更简单，直接把VHDX文件扔进Ventoy的目录，开机从Ventoy选择系统就能进，连引导分区都不用操心。两种方法都能用，看你喜欢哪种了。&lt;/p>
+&lt;h2 id="将系统安装到vhdx磁盘文件中">将系统安装到VHDX磁盘文件中
+&lt;/h2>&lt;p>创建VHDX文件，用 WinNTSetup 工具和windows系统 iso 文件，首次创建可以小一点，因为可以扩容很简单但缩小比较困难。
+&lt;a class="link" href="https://blog.csdn.net/weixin_73636162/article/details/132497661" target="_blank" rel="noopener"
+>https://blog.csdn.net/weixin_73636162/article/details/132497661&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.ventoy.net" target="_blank" rel="noopener"
+>https://www.ventoy.net&lt;/a>&lt;/p>
+&lt;h2 id="扩大vhdx文件的容量">扩大VHDX文件的容量
+&lt;/h2>&lt;p>EasyBCD&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.ventoy.net/cn/plugin_vhdboot.html" target="_blank" rel="noopener"
+>https://www.ventoy.net/cn/plugin_vhdboot.html&lt;/a>&lt;/p>
+&lt;h2 id="为本地计算机添加引导">为本地计算机添加引导
+&lt;/h2>&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202501031610489.png"
+loading="lazy"
+>&lt;/p>
+&lt;h2 id="vhdx-文件扩容">VHDX 文件扩容
+&lt;/h2>&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202501031606869.png"
+loading="lazy"
+>&lt;/p></description></item></channel></rss>
