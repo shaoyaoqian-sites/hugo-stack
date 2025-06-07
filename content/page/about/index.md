@@ -14,6 +14,7 @@ menu:
 
 [简历](/CV/)
 
+[注册](/cdn/appwite/)
 
 [赠人玫瑰，手留余香](/p/pay-for-help/)
 
