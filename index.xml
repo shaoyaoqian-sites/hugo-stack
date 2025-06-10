@@ -1,0 +1,2557 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title/><link>https://hugo.pengfeima.cn/</link><description>Recent content on</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 09 Jun 2025 22:24:48 +0800</lastBuildDate><atom:link href="https://hugo.pengfeima.cn/index.xml" rel="self" type="application/rss+xml"/><item><title>Jupyter</title><link>https://hugo.pengfeima.cn/p/python-juputer/</link><pubDate>Mon, 09 Jun 2025 22:24:48 +0800</pubDate><guid>https://hugo.pengfeima.cn/p/python-juputer/</guid><description>&lt;p>我最近想搭个 Jupyter Lab, 主要出于这几个原因：&lt;/p>
+&lt;ol>
+&lt;li>调试 Windkessel 模型：需要一个方便画图、能轻松分享结果的环境（受够了在本地画完图还要到处传文件😂）&lt;/li>
+&lt;li>学习 Pyvista 可视化：想在网页上直接展示计算结果，pyvista 的 3D 可视化效果很酷炫，以后通过代码可重复画图&lt;/li>
+&lt;li>学习 FEniCSx ：正在学这个有限元分析工具，Jupyter 的交互特性很适合边学边试&lt;/li>
+&lt;/ol>
+&lt;h2 id="安装-jupyter-和-pyvista">安装 Jupyter 和 pyvista
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pip install &lt;span class="s1">&amp;#39;jupyterlab&amp;gt;=3&amp;#39;&lt;/span> ipywidgets &lt;span class="s1">&amp;#39;pyvista[all,trame]&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pip install notebook
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">jupyter notebook password
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">jupyter notebook --port&lt;span class="o">=&lt;/span>&lt;span class="m">9202&lt;/span> --ip&lt;span class="o">=&lt;/span>0.0.0.0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后设置外网访问&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>, 需要注意, 在 Nginx Proxy Manager 打开 Websocket Support 才能执行代码，否则只能写代码。
+&lt;img src="https://githubimages.pengfeima.cn/images/202505181730334.png"
+loading="lazy"
+alt="image-20250518173009001"
+>&lt;/p>
+&lt;h2 id="运行pyvista">运行pyvista
+&lt;/h2>&lt;p>可以选择前端显示或者后端显示。&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202505181136541.png"
+loading="lazy"
+alt="image-20250518113614370"
+>&lt;/p>
+&lt;h2 id="jupyter执行环境切换">Jupyter执行环境切换
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">python -m venv circadapt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 假设已经激活 python 环境&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pip3 install ipykernel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">python -m ipykernel install --user --name&lt;span class="o">=&lt;/span>spack_fenics --display-name&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;FEniCSx Spack&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">jupyter kernelspec uninstall fenics_spack
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="系统默认启动">系统默认启动
+&lt;/h2>&lt;blockquote>
+&lt;p>我通过ssh登陆命令执行脚本，尽可能与命令行执行命令的环境相同&lt;/p>&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo vi /etc/systemd/system/manyservices.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat ~/.ssh/id_rsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo systemctl &lt;span class="nb">enable&lt;/span> manyservices.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># sudo systemctl daemon-reload&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo systemctl restart manyservices.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo journalctl -u manyservices.service -n &lt;span class="m">100&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ssh fenics@localhost &lt;span class="s2">&amp;#34;export DISPLAY=:99.0 &amp;amp;&amp;amp; source ~/pyvenv/bin/activate &amp;amp;&amp;amp; jupyter notebook --port=9202 --ip=0.0.0.0 --notebook-dir=/home/fenics/jupyter&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-ini" data-lang="ini">&lt;span class="line">&lt;span class="cl">&lt;span class="k">[Unit]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Description&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">many services&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">After&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">network.target syslog.target&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Wants&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">network.target&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">[Service]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">simple&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 指定运行用户和组&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">User&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">fenics&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Group&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">fenics&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启动命令&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Restart&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">on-failure &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">RestartSec&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">5s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">ExecStart&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">/bin/bash /home/fenics/start_services.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">[Install]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">WantedBy&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">multi-user.target&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>&lt;a class="link" href="http://talk.pengfeima.cn/t/topic/278/4?u=merryjingle" target="_blank" rel="noopener"
+>http://talk.pengfeima.cn/t/topic/278/4?u=merryjingle&lt;/a>&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:2">
+&lt;p>&lt;a class="link" href="https://jupyter.pengfeima.cn" target="_blank" rel="noopener"
+>https://jupyter.pengfeima.cn&lt;/a>&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div></description></item><item><title>附录0002</title><link>https://hugo.pengfeima.cn/appendix-0002/</link><pubDate>Tue, 03 Jun 2025 22:08:06 +0800</pubDate><guid>https://hugo.pengfeima.cn/appendix-0002/</guid><description>&lt;p>本文是 &lt;a class="link" href="https://hugo.pengfeima.cn/p/windkessel/" >《windkessel 模型》&lt;/a>的附录。&lt;/p>
+&lt;h2 id="设计开环系统">设计开环系统
+&lt;/h2>&lt;blockquote>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/202506051622227.svg" alt="" style="width: 60%;" />
+&lt;figcaption>收缩期的开环windkessel模型&lt;/figcaption>
+&lt;/div>
+&lt;/blockquote>
+&lt;p>本文提出的winkessel模型中，由于二极管的存在，只有在射血阶段左右两边的电路是联通的，其他情况下，两边的电路都是断开的。因此，在此模型中，假设了&lt;strong>截断&lt;/strong>的左心室模型和电容 $C_{LV}$ 中容纳的血液为左心室的总容积，它的变化可以通过流过$R_\text{AO}$的电流计算，在等容收缩期&lt;strong>截断&lt;/strong>的左心室模型的容积发生了变化，但是我们认为左心室的容积并没有发生变化，这是符合生理常识的。&lt;/p>
+&lt;h3 id="预加载阶段">预加载阶段
+&lt;/h3>&lt;p>在预加载阶段，左心室压力（$P_\text{LV}$）上升至 8 mmHg，达到舒张末期，无主动收缩模型，无windkessel模型。(0.3s)&lt;/p>
+&lt;h3 id="等容收缩期">等容收缩期
+&lt;/h3>&lt;p>在等容收缩期，此时左心室开始收缩，$P_\text{LV}$ 从 8 mmHg 逐渐升高，主动脉压力（$P_\text{AO}$）从 $80\text{mmHg}$ 逐渐降低，直至两者相等。因为二极管的作用，左右两边的电路是断开的。&lt;/p>
+&lt;p>&lt;strong>左心室压强&lt;/strong>：在更复杂的电路模型中，当其他条件保持不变时，左心室顺应性（$C_\text{LV}$） 是最关键的影响因素，其值越大，$P_\text{LV}$ 越低。相比之下，左心室阻力（$R_\text{LV}$） 的影响较弱，但其减小会导致更多电流从电容支路分流，从而进一步降低 $P_\text{LV}$。暂时考虑$R_C$为零，可能有潜在影响，暂时不考虑它。&lt;/p>
+&lt;blockquote>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/202506051622700.svg" alt="" style="width: 60%;" />
+&lt;figcaption>三元素windkessel模型&lt;/figcaption>
+&lt;/div>
+&lt;/blockquote>
+&lt;p>&lt;strong>主动脉压强&lt;/strong>：在此阶段，主动脉瓣处于关闭状态，主动脉依靠血管顺应性维持对全身的血流灌注。若采用简化电路模型（仅包含一个电容与系统血管阻力$R_\text{SYS}$串联），则主动脉压力（$P_\text{AO}$）随时间呈线性下降。&lt;/p>
+&lt;h3 id="射血期">射血期
+&lt;/h3>&lt;p>在射血期，左心室压强大于主动脉压强，左右两边电路连通。需要求解四个方程。&lt;/p>
+&lt;blockquote>
+&lt;p>(WIP)&lt;/p>&lt;/blockquote>
+&lt;h3 id="等容舒张期">等容舒张期
+&lt;/h3>&lt;p>左心室压强降低到主动脉压强以下，左右电路再次断开，左心室和主动脉压强各自求解，直到周期结束。此过程中，应防止左心室压强降低到0mmHg以下，因为实际情况中，左心房，应当有经过二尖瓣流入。压强可能降到(0.8s)&lt;/p>
+&lt;h3 id="快速充盈舒张心房收缩">快速充盈、舒张、心房收缩
+&lt;/h3>&lt;p>此阶段移除windkessel模型，移除主动收缩力，内壁压力加载和预加载阶段相同。由于顺应性，主动脉压强逐渐降低。&lt;/p>
+&lt;h2 id="设计闭环系统">设计闭环系统
+&lt;/h2>&lt;blockquote>
+&lt;p>(WIP)
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/202506051622874.svg" alt="" style="width: 60%;" />
+&lt;figcaption>接入左心室的闭环系统&lt;/figcaption>
+&lt;/div>
+&lt;/p>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>三种windkessel模型
+&lt;img src="https://githubimages.pengfeima.cn/images/202506032144779.jpg"
+loading="lazy"
+alt="11441748957626_.pic"
+>
+&lt;img src="https://githubimages.pengfeima.cn/images/202506032145032.jpg"
+loading="lazy"
+alt="11451748957730_.pic_hd"
+>
+&lt;img src="https://githubimages.pengfeima.cn/images/202506032144788.jpg"
+loading="lazy"
+alt="11461748958030_.pic"
+>&lt;/p>&lt;/blockquote></description></item><item><title>附录0001</title><link>https://hugo.pengfeima.cn/appendix-0001/</link><pubDate>Mon, 02 Jun 2025 23:00:59 +0800</pubDate><guid>https://hugo.pengfeima.cn/appendix-0001/</guid><description>&lt;p>本文是 &lt;a class="link" href="https://hugo.pengfeima.cn/p/windkessel/" >《windkessel 模型》&lt;/a>的附录。&lt;/p>
+&lt;h2 id="王英洁">王英洁
+&lt;/h2>&lt;p>下面两张图来自王英洁论文&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup> ，其中主动脉压强、左心室压强、心肌内压强可作为参考。&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022243005.png"
+loading="lazy"
+alt="image-20250602224317966"
+>&lt;/p>
+&lt;p>windkessel电路图和abqus 中使用的等效模型为&lt;sup id="fnref1:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>：&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022243721.png"
+loading="lazy"
+alt="image-20250602224305604"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022249592.png"
+loading="lazy"
+alt="image-20250602224924505"
+>&lt;/p>
+&lt;p>下面的图来自王英洁博士学位论文&lt;sup id="fnref1:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>，参考了&lt;sup id="fnref:3">&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref">3&lt;/a>&lt;/sup>&lt;sup id="fnref:4">&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref">4&lt;/a>&lt;/sup>,可作为左心室压强和主动脉压强的参考，只不过他把左心室
+和主动脉压强写反了。&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022247297.png"
+loading="lazy"
+alt="image-20250602224710248"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022249746.png"
+loading="lazy"
+alt="image-20250602224940698"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022250583.png"
+loading="lazy"
+alt="image-20250602225001545"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022250248.png"
+loading="lazy"
+alt="image-20250602225012216"
+>&lt;/p>
+&lt;p>王英杰使用的双心室模型&lt;sup id="fnref2:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>&lt;sup id="fnref:5">&lt;a href="#fn:5" class="footnote-ref" role="doc-noteref">5&lt;/a>&lt;/sup>:&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022250969.png"
+loading="lazy"
+alt="image-20250602225043928"
+>&lt;/p>
+&lt;h2 id="德宝">德宝
+&lt;/h2>&lt;p>德宝的左心室电路图&lt;sup id="fnref:6">&lt;a href="#fn:6" class="footnote-ref" role="doc-noteref">6&lt;/a>&lt;/sup>，需要注意的是这个电路是两个开路构成&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022253964.png"
+loading="lazy"
+alt="image-20250602225212390"
+>&lt;/p>
+&lt;p>还有一个闭路&lt;sup id="fnref:7">&lt;a href="#fn:7" class="footnote-ref" role="doc-noteref">7&lt;/a>&lt;/sup> 及其等效windkessel模型&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022255421.png"
+loading="lazy"
+alt="image-20250602225542341"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022256197.png"
+loading="lazy"
+alt="image-20250602225612157"
+>&lt;/p>
+&lt;p>aaa&lt;/p>
+&lt;p>另一篇论文中有以下电路图&lt;sup id="fnref:8">&lt;a href="#fn:8" class="footnote-ref" role="doc-noteref">8&lt;/a>&lt;/sup>:
+&lt;img src="https://githubimages.pengfeima.cn/images/202506022257503.png"
+loading="lazy"
+alt="image-20250602225725451"
+>&lt;/p>
+&lt;p>aaa
+德宝博士学位论文中&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022258818.png"
+loading="lazy"
+alt="image-20250602225824782"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202506022258605.png"
+loading="lazy"
+alt="image-20250602225800556"
+>&lt;/p>
+&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>Modelling coronary flow and myocardial perfusion by integrating a structured-tree coronary flow model and a hyperelastic left ventricle model Yingjie Wang ∗, Xueqing Yin&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&amp;#160;&lt;a href="#fnref1:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:2">
+&lt;p>Wang, Yingjie (2023) Mathematical modelling of myocardial perfusion: coronary flow and myocardial mechanics. PhD thesis.&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&amp;#160;&lt;a href="#fnref1:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&amp;#160;&lt;a href="#fnref2:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:3">
+&lt;p>Avanzolini et al., 1988&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:4">
+&lt;p>Duanmu et al., 2019&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:5">
+&lt;p>Effect of pulmonary regurgitation on cardiac functions based on a human bi-ventricle model&amp;#160;&lt;a href="#fnref:5" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:6">
+&lt;p>Debao Guan; Constrained mixture models of growth and remodelling in an infarct left ventricle: A modelling study&amp;#160;&lt;a href="#fnref:6" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:7">
+&lt;p>Effects of dispersed fibres in myocardial mechanics, Part II: active response&amp;#160;&lt;a href="#fnref:7" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:8">
+&lt;p>Modelling of fibre dispersion and its effects on cardiac mechanics from diastole to systole&amp;#160;&lt;a href="#fnref:8" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div></description></item><item><title>Ventoy</title><link>https://hugo.pengfeima.cn/p/ventoy/</link><pubDate>Sun, 01 Jun 2025 18:36:21 +0800</pubDate><guid>https://hugo.pengfeima.cn/p/ventoy/</guid><description>&lt;p>安装移动系统的目的就是让你把系统装到移动硬盘的VHDX虚拟磁盘里，这样配合Ventoy之类的工具，就能随身带着自己的系统到处用，换电脑也不用重装系统。启动方式有两种：一种是直接在原来电脑的启动菜单里加个引导项，用EasyBCD改一下就行；另一种更简单，直接把VHDX文件扔进Ventoy的目录，开机从Ventoy选择系统就能进，连引导分区都不用操心。两种方法都能用，看你喜欢哪种了。&lt;/p>
+&lt;h2 id="将系统安装到vhdx磁盘文件中">将系统安装到VHDX磁盘文件中
+&lt;/h2>&lt;p>创建VHDX文件，用 WinNTSetup 工具和windows系统 iso 文件，首次创建可以小一点，因为可以扩容很简单但缩小比较困难。
+&lt;a class="link" href="https://blog.csdn.net/weixin_73636162/article/details/132497661" target="_blank" rel="noopener"
+>https://blog.csdn.net/weixin_73636162/article/details/132497661&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.ventoy.net" target="_blank" rel="noopener"
+>https://www.ventoy.net&lt;/a>&lt;/p>
+&lt;h2 id="扩大vhdx文件的容量">扩大VHDX文件的容量
+&lt;/h2>&lt;p>EasyBCD&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.ventoy.net/cn/plugin_vhdboot.html" target="_blank" rel="noopener"
+>https://www.ventoy.net/cn/plugin_vhdboot.html&lt;/a>&lt;/p>
+&lt;h2 id="为本地计算机添加引导">为本地计算机添加引导
+&lt;/h2>&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202501031610489.png"
+loading="lazy"
+>&lt;/p>
+&lt;h2 id="vhdx-文件扩容">VHDX 文件扩容
+&lt;/h2>&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202501031606869.png"
+loading="lazy"
+>&lt;/p></description></item><item><title>秦岭四宝科学公园</title><link>https://hugo.pengfeima.cn/p/1/</link><pubDate>Thu, 29 May 2025 01:34:15 +0800</pubDate><guid>https://hugo.pengfeima.cn/p/1/</guid><description>&lt;h2 id="朱鹮">朱鹮
+&lt;/h2>&lt;!-- ![](images/IMG_20250517_142921.webp) -->
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143356.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143356_hu_26870321b154ddb5.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143356_hu_5cb5ae86b3347f16.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143357.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143357_hu_2b712b409fadff3c.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143357_hu_ad388ea1ec47a3b1.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143438.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143438_hu_5dead2fdc5a96cce.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143438_hu_887fb87bffc9327a.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143512.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143512_hu_f9076bb965e8d03.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143512_hu_34b326fbdad5bb15.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143522.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143522_hu_17654e09daa49289.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143522_hu_86fc1a8befd41946.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143528.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143528_hu_a7d8aa61e1a76fa3.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143528_hu_b5687f9e1486c812.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143531.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143531_hu_d00392b25e4334c7.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143531_hu_25bf2b32cc4db90c.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143533.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143533_hu_7f47a44569ea0105.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143533_hu_9b9b0d5b0469b3a5.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143803.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143803_hu_66bac0c1a38a355.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143803_hu_86e1efa0e9fa9940.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143806.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143806_hu_942f56bacea0a6f3.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143806_hu_ebe75284307a2a9d.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143808.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143808_hu_da17e546ca322ada.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_143808_hu_3839eaa06a408b83.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;h2 id="秃鹫">秃鹫
+&lt;/h2>&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_144350.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_144350_hu_4e703b2a33e34376.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_144350_hu_9b0309626dfa320e.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_144347.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_144347_hu_6ea837db51099483.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_144347_hu_cbe6d8c03c5ff643.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_144356.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_144356_hu_27751715ac2f6055.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_144356_hu_f0d42a2e8171c68d.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;h2 id="大熊猫">大熊猫
+&lt;/h2>&lt;div class="video-wrapper">
+&lt;video
+controls
+src="videos/VID_20250517_145323_DOLBY.mp4"
+autoplay
+>
+&lt;p>
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="videos/VID_20250517_145323_DOLBY.mp4">link to the video&lt;/a> instead.
+&lt;/p>
+&lt;/video>
+&lt;/div>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145158.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145158_hu_c40813d51ea23273.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145158_hu_e93c9e0bacddd771.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;div class="video-wrapper">
+&lt;video
+controls
+src="videos/VID_20250517_145528.mp4"
+autoplay
+>
+&lt;p>
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="videos/VID_20250517_145528.mp4">link to the video&lt;/a> instead.
+&lt;/p>
+&lt;/video>
+&lt;/div>
+&lt;div class="video-wrapper">
+&lt;video
+controls
+src="videos/VID_20250517_145719_DOLBY.mp4"
+autoplay
+>
+&lt;p>
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="videos/VID_20250517_145719_DOLBY.mp4">link to the video&lt;/a> instead.
+&lt;/p>
+&lt;/video>
+&lt;/div>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145302.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145302_hu_b7a7a242d159dc3.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145302_hu_4fae1f8752bfa68d.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145304.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145304_hu_3c02d3b67dc88421.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145304_hu_e496e4b8cceff01a.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145308.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145308_hu_1702a6e3faba7de9.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145308_hu_25369c0b6bd2acc5.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145315.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145315_hu_b7d2dd48e39aed4e.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145315_hu_2955effd6d43fb37.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145504.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145504_hu_98633f7e29496966.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_145504_hu_aeb04518299444b8.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;h2 id="羚牛">羚牛
+&lt;/h2>&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151111.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151111_hu_7321a54aad444925.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151111_hu_56e1a1a7c3572b16.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151115.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151115_hu_32f5304bc847a46a.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151115_hu_4ad558bf8571cf5d.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151117.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151117_hu_34c990e6ae2c6b1f.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151117_hu_24a2b49d0f2b0552.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;h2 id="雉">雉
+&lt;/h2>&lt;p>&lt;div class="video-wrapper">
+&lt;video
+controls
+src="videos/VID_20250517_152427.mp4"
+autoplay
+>
+&lt;p>
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="videos/VID_20250517_152427.mp4">link to the video&lt;/a> instead.
+&lt;/p>
+&lt;/video>
+&lt;/div>
+&lt;div class="video-wrapper">
+&lt;video
+controls
+src="videos/VID_20250517_152524_DOLBY.mp4"
+autoplay
+>
+&lt;p>
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="videos/VID_20250517_152524_DOLBY.mp4">link to the video&lt;/a> instead.
+&lt;/p>
+&lt;/video>
+&lt;/div>
+&lt;div class="video-wrapper">
+&lt;video
+controls
+src="videos/VID_20250517_152739_DOLBY.mp4"
+autoplay
+>
+&lt;p>
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="videos/VID_20250517_152739_DOLBY.mp4">link to the video&lt;/a> instead.
+&lt;/p>
+&lt;/video>
+&lt;/div>
+&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151801.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151801_hu_db4d92c7f3de0d9e.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151801_hu_74074ac4694ac474.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151807.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151807_hu_e644b677ade4aa1f.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151807_hu_c28654fea2695e92.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151812.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151812_hu_cbc0c6b80348b016.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151812_hu_695ac8da310a8cf0.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;div class="video-wrapper">
+&lt;video
+controls
+src="videos/VID_20250517_152045.mp4"
+autoplay
+>
+&lt;p>
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="videos/VID_20250517_152045.mp4">link to the video&lt;/a> instead.
+&lt;/p>
+&lt;/video>
+&lt;/div>
+&lt;div class="video-wrapper">
+&lt;video
+controls
+src="videos/VID_20250517_152111.mp4"
+autoplay
+>
+&lt;p>
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="videos/VID_20250517_152111.mp4">link to the video&lt;/a> instead.
+&lt;/p>
+&lt;/video>
+&lt;/div>
+&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151859.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151859_hu_ffbdbbc0fd7674da.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151859_hu_54a0f6bc55f0a8f8.webp 1024w"
+loading="lazy"
+alt="红腹锦鸡"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151902.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151902_hu_92288fc2547067b1.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151902_hu_5a8c5aafac8db1e2.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151903.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151903_hu_8d947e751704eaf.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151903_hu_3d58fdf8ef94c1df.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151905.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151905_hu_29e42c995177bf3b.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151905_hu_75748b20b7f11198.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151906.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151906_hu_ce1d5c2614d3bbdf.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151906_hu_9c1f0477c04f4e57.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151921.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151921_hu_43e6acdbe5c3fdc4.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151921_hu_a278a16e43972e6f.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151921_1.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151921_1_hu_5fd8c240c27d0745.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151921_1_hu_d958db7282435ced.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151922.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151922_hu_8f939b4216c71.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151922_hu_2d65260e78e7cb05.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151931.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151931_hu_1845b1f13041f024.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151931_hu_e409f94a6fb737d3.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151933.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151933_hu_b235edfefd08247f.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151933_hu_47c043e471511e9d.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151945.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151945_hu_85557dbd5e13588f.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151945_hu_4771ce0d388ef6d3.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151948.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151948_hu_80f60f8faf93bcc7.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151948_hu_77acc182fe31909a.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151951.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151951_hu_bddb82a43bee5321.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_151951_hu_4f929b19b4fb4738.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_152038.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_152038_hu_e890b8eec5646ee9.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_152038_hu_32ec618faa301060.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_152312.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_152312_hu_6911096248281899.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_152312_hu_a53c28f90b284a48.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_152314.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_152314_hu_a8c24f92a87c3eed.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_152314_hu_a679e35916303ece.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;h2 id="人类幼崽">人类幼崽
+&lt;/h2>&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_153341.webp"
+width="3072"
+height="4096"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_153341_hu_e1bc8b1e88606c23.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_153341_hu_381bf24734232857.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="75"
+data-flex-basis="180px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_153344.webp"
+width="3072"
+height="4096"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_153344_hu_639fa1d24eedb084.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_153344_hu_842214818466a610.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="75"
+data-flex-basis="180px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_153345.webp"
+width="3072"
+height="4096"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_153345_hu_1eafa92389ffe76a.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_153345_hu_6a7630a49af2d00d.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="75"
+data-flex-basis="180px"
+>&lt;/p>
+&lt;!-- ![](images/IMG_20250517_153536.webp) -->
+&lt;h2 id="麂">麂
+&lt;/h2>&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154341.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154341_hu_dd455928f4419406.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154341_hu_622dee5c54b2f688.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154400.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154400_hu_271d1d2d08c30222.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154400_hu_fae8d5dfdf9f0156.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154406.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154406_hu_94b99826d35b5a92.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154406_hu_71a4912701af4561.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154402.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154402_hu_dd0952211f2952ec.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154402_hu_69c9869cd8649c43.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;h2 id="斑驴黑熊小熊猫">斑驴、黑熊、小熊猫
+&lt;/h2>&lt;p>&lt;div class="video-wrapper">
+&lt;video
+controls
+src="videos/VID_20250517_154757.mp4"
+autoplay
+>
+&lt;p>
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="videos/VID_20250517_154757.mp4">link to the video&lt;/a> instead.
+&lt;/p>
+&lt;/video>
+&lt;/div>
+&lt;div class="video-wrapper">
+&lt;video
+controls
+src="videos/VID_20250517_154829_DOLBY.mp4"
+autoplay
+>
+&lt;p>
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="videos/VID_20250517_154829_DOLBY.mp4">link to the video&lt;/a> instead.
+&lt;/p>
+&lt;/video>
+&lt;/div>
+&lt;div class="video-wrapper">
+&lt;video
+controls
+src="videos/VID_20250517_155018.mp4"
+autoplay
+>
+&lt;p>
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="videos/VID_20250517_155018.mp4">link to the video&lt;/a> instead.
+&lt;/p>
+&lt;/video>
+&lt;/div>
+&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154751.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154751_hu_7eb34dc53eb239eb.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_154751_hu_47e2b619f6cc0754.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155152.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155152_hu_659f635bd57e7855.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155152_hu_c9517a695245c07b.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155555.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155555_hu_ea757f6b16cb42ba.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155555_hu_f292ff64f0e881bb.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155557.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155557_hu_78243b309f16f04c.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155557_hu_46b1f517216ebde2.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;h2 id="金丝猴">金丝猴
+&lt;/h2>&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_142747.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_142747_hu_297d2f02784379cf.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_142747_hu_12fd88031166d73e.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155650.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155650_hu_da5c80a1a2c2b448.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155650_hu_566ce9acf7430779.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155652.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155652_hu_2a8496dbd082df7.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_155652_hu_58ee202555f5c9bb.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160222.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160222_hu_2777113f685ce909.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160222_hu_b6bdb8c4c0c78934.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160858.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160858_hu_a0cb5ee5b4beab88.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160858_hu_ea0c5cdee7030298.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160900.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160900_hu_9d03897b8d26aaeb.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160900_hu_e32a0537f36c63e1.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160902.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160902_hu_5600bedd6fbced41.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160902_hu_51e160bfef93bab7.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160903.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160903_hu_be4d30d1022e4904.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160903_hu_8bee5ad522738f1c.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160904.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160904_hu_45315b56098dee1f.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160904_hu_1a0998fcf35c7b9d.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160906.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160906_hu_fee5ab3cab47e94f.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160906_hu_adac673e3fb70342.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160908.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160908_hu_4d55099307d2d31.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_160908_hu_5935cf59b70ed881.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;p>&lt;div class="video-wrapper">
+&lt;video
+controls
+src="videos/VID_20250517_155828.mp4"
+autoplay
+>
+&lt;p>
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="videos/VID_20250517_155828.mp4">link to the video&lt;/a> instead.
+&lt;/p>
+&lt;/video>
+&lt;/div>
+&lt;div class="video-wrapper">
+&lt;video
+controls
+src="videos/VID_20250517_160808.mp4"
+autoplay
+>
+&lt;p>
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="videos/VID_20250517_160808.mp4">link to the video&lt;/a> instead.
+&lt;/p>
+&lt;/video>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="我家狗哥">我家狗哥
+&lt;/h2>&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_161958.webp"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/1/images/IMG_20250517_161958_hu_9ebcbc02e52d6efb.webp 480w, https://hugo.pengfeima.cn/p/1/images/IMG_20250517_161958_hu_e70332b9d9089f0f.webp 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p></description></item><item><title>心肌主动收缩力模型</title><link>https://hugo.pengfeima.cn/p/active-stress/</link><pubDate>Wed, 28 May 2025 19:43:56 +0800</pubDate><guid>https://hugo.pengfeima.cn/p/active-stress/</guid><description>&lt;h2 id="时变弹性模型">时变弹性模型
+&lt;/h2>&lt;p>德宝&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>经常使用的 Time-varying Elastance 模型 &lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>&lt;sup id="fnref:3">&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref">3&lt;/a>&lt;/sup>，计算主动张力 ($T_{\mathrm{a}}$)
+这是一个很成熟的模型。&lt;/p>
+$$
+T_{\mathrm{a}}(t,l) = \frac{T_{\mathrm{max}}}{2} \frac{\mathrm{Ca}_{0}^{2}}{\mathrm{Ca}_{0}^{2} + \mathrm{ECa}_{50}^{2}(l)} (1 - \cos(\omega(t,l)))\tag{2.8}
+$$&lt;p>其中，&lt;/p>
+&lt;ol>
+&lt;li>$T_{\mathrm{max}}$ 是最大等长主动张力；&lt;/li>
+&lt;li>$\mathrm{Ca}_{0}$ 是细胞内钙离子的峰值浓度&lt;/li>
+&lt;li>长度相关的钙敏感性 $ECa_{50}(l)$ 定义为&lt;/li>
+&lt;/ol>
+$$
+\mathrm{ECa}_{50}(l) = \frac{\mathrm{Ca}_{0\mathrm{max}}}{\sqrt{e^{B(l-l_{0})} - 1}}
+$$&lt;p>
+其中 $B$ 和 $\mathrm{Ca}_{0\mathrm{max}}$ 是常数;
+$l_0$ 是能产生主动应力的最小肌节长度
+$l$ 是变形后的肌节长度，由下式给出：&lt;/p>
+$$
+l = l_{r} \sqrt{2E_{\mathrm{ff}} + 1}
+$$&lt;p>其中， $l_{r}$ 是无应力状态下的肌节长度,
+$E_{\mathrm{ff}}$ 是肌纤维方向的拉格朗日应变
+收缩开始后用于描述时间变化的函数 (2.8) 为&lt;/p>
+$$
+\omega(t,l) = \left\{
+\begin{array}{ll}
+\pi \frac{t}{t_{0}} &amp; \text{for } 0 \leqslant t \leqslant t_{0} \\
+\pi \frac{t - t_{0} + t_{r}(l)}{t_{r}} &amp; \text{for } t_{0} &lt; t \leqslant t_{0} + t_{r} \\
+0 &amp; \text{for } t > t_{0} + t_{r}
+\end{array}
+\right.
+$$&lt;p>$t_{0}$ 为张力达到峰值的时间, $t_{r}$ 为肌肉舒张的持续时间。&lt;/p>
+$$
+t_{r}(l) = ml + b
+$$&lt;p>$m$ 和 $b$ 为常数. 最后, 采用&lt;strong>主动应力法&lt;/strong>计算心肌总Cauchy应力.&lt;/p>
+$$
+\sigma = \mathbb{F} \frac{\partial \Psi}{\partial \mathbb{F}} + \sigma^{\mathrm{a}} - p \mathbb{I}
+$$&lt;p>其中，$p$ 为Lagrange乘子(施加不可压性质), $\mathbb{I}$ 为单位矩阵。&lt;/p>
+&lt;!-- ## 力电耦合模型
+### FitzHugh-Nagumo电生理模型
+### Ten Tusscher-Panfilov模型 -->
+&lt;!-- ## 基于应力-应变关系的本构模型
+### Niederer-Hunter-Smith模型
+### Land-Ginzburg模型
+## 肌纤维收缩模型
+(Fiber Contraction Model)
+### Hill三元素模型
+### Huxley横桥动力学模型 -->
+&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>J. M. Guccione, A. D. McCulloch, Mechanics of active contraction in cardiac muscle: Part I—constitutive relations for fiber stress that describe deactivation, J. Biomech. Eng., 115 (1993), 72–81. &lt;a class="link" href="https://doi.org/10.1115/1.2895473" target="_blank" rel="noopener"
+>https://doi.org/10.1115/1.2895473&lt;/a>&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:2">
+&lt;p>K. L. Sack, E. Aliotta, D. B. Ennis, J. S. Choy, G. S. Kassab, J. M. Guccione, et al., Construction and validation of subject-specific biventricular finite-element models of healthy and failing swine hearts from high-resolution dt-mri, Front. Physiol., 9 (2018). &lt;a class="link" href="https://doi.org/10.3389/fphys.2018.00539" target="_blank" rel="noopener"
+>https://doi.org/10.3389/fphys.2018.00539&lt;/a>&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:3">
+&lt;p>Effects of dispersed fibres in myocardial mechanics, Part II: active response&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div></description></item><item><title>Windkessel模型</title><link>https://hugo.pengfeima.cn/p/windkessel/</link><pubDate>Wed, 28 May 2025 17:29:35 +0800</pubDate><guid>https://hugo.pengfeima.cn/p/windkessel/</guid><description>&lt;p>主要参考：关德宝、王英杰的博士毕业论文。详见:&lt;a class="link" href="https://hugo.pengfeima.cn/appendix-0001" >appendix-0001&lt;/a>&lt;/p>
+&lt;p>要看 windkessel 模型更详细的实现过程, 详见:&lt;a class="link" href="https://hugo.pengfeima.cn/appendix-0002/" >appendix-0002&lt;/a>&lt;/p>
+&lt;h2 id="左心室">左心室
+&lt;/h2>&lt;h3 id="开环系统">开环系统
+&lt;/h3>&lt;p>主要参考关德宝、王英杰的博士毕业论文，构建左心室动态收缩的数值模型。根据高老师的建议，初步采用三元素Windkessel模型与左心室进行耦合建模，形成一个开环系统。&lt;/p>
+&lt;ol>
+&lt;li>使用主动脉压力近似左心室压力&lt;/li>
+&lt;li>在舒张期结束时接入Windkessel模型&lt;/li>
+&lt;li>以左心室容积变化作为模型输入&lt;/li>
+&lt;li>通过模型反馈获取左心室压力参数&lt;/li>
+&lt;/ol>
+&lt;p>当前遇到的主要技术难点在于压力过渡过程的模拟：&lt;/p>
+&lt;p>左心室舒张末期的压强为8mmHg，需上升至80mmHg后方可应用现有模型。因此需要
+采用经验性线性函数描述压力跃升过程，或寻求其他更合理的建模方法。关德宝说这个过程可能会遇到一个问题，
+如果压强的变化和主动收缩力不匹配，那么会出现左心室扩张过大或者剧烈收缩的现象，导致求解失败。&lt;/p>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/202505272214311.png" alt="" style="width: 30%;" />
+&lt;figcaption>开环系统&lt;/figcaption>
+&lt;/div>
+&lt;h3 id="闭环系统">闭环系统
+&lt;/h3>&lt;p>下图修改自德宝论文&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>的补充材料。&lt;/p>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/202505272210680.png" alt="" style="width: 60%;" />
+&lt;figcaption>闭环系统&lt;/figcaption>
+&lt;/div>
+&lt;p>输入物理量：左心室流量 $Q_{LV}$, 输出物理量：左心室压力 $P_{LV}$. 通过Windkessel模型联立六个方程，求解以下六个关键血流动力学物理量：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: left">参数类型&lt;/th>
+&lt;th style="text-align: left">符号表示&lt;/th>
+&lt;th style="text-align: left">物理意义&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align: left">流量&lt;/td>
+&lt;td style="text-align: left">$Q_{AV}$&lt;/td>
+&lt;td style="text-align: left">主动脉瓣流量&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">$Q_{MV}$&lt;/td>
+&lt;td style="text-align: left">二尖瓣流量&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">$Q_{SYS}$&lt;/td>
+&lt;td style="text-align: left">体循环流量&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: left">压强&lt;/td>
+&lt;td style="text-align: left">$P_{LV}$&lt;/td>
+&lt;td style="text-align: left">左心室压力&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">$P_{AO}$&lt;/td>
+&lt;td style="text-align: left">主动脉压力&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">$P_{LA}$&lt;/td>
+&lt;td style="text-align: left">左心房压力&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>六个方程分别为：&lt;/p>
+&lt;ol>
+&lt;li>主动脉电容方程：&lt;/li>
+&lt;/ol>
+$$
+C_{AOR} \frac{dP_{AOR}}{dt} = Q_{AV} - \frac{P_{AOR} - P_{LA}}{R_{SYS}}
+$$&lt;ol start="2">
+&lt;li>左心房电容方程：&lt;/li>
+&lt;/ol>
+$$
+C_{LA} \frac{dP_{LA}}{dt} = \frac{P_{AOR} - P_{LA}}{R_{SYS}} - Q_{MV}
+$$&lt;ol start="3">
+&lt;li>系统流量：&lt;/li>
+&lt;/ol>
+$$
+Q_{\text{Sys}}=\frac{P_{\text{AOR}}-P_\text{LA}}{R_\text{Sys}}
+$$&lt;ol start="4">
+&lt;li>主动脉瓣（AV）流量：&lt;/li>
+&lt;/ol>
+$$
+Q_{AV} =
+\begin{cases}
+\frac{P_{LV} - P_{AOR}}{R_{AV}}, &amp; \text{if } P_{LV} > P_{AOR} \ (\text{瓣膜开放}) \\
+0, &amp; \text{otherwise}
+\end{cases}
+$$&lt;ol start="5">
+&lt;li>二尖瓣（MV）流量：&lt;/li>
+&lt;/ol>
+$$
+Q_{MV} =
+\begin{cases}
+\frac{P_{LA} - P_{LV}}{R_{MV}}, &amp; \text{if } P_{LA} > P_{LV} \ (\text{瓣膜开放}) \\
+0, &amp; \text{otherwise}
+\end{cases}
+$$&lt;ol start="6">
+&lt;li>左心室容积变化方程（通过力学方程反馈）：&lt;/li>
+&lt;/ol>
+$$
+\frac{dV_{LV}}{dt} = Q_{MV} - Q_{AV}
+$$&lt;h4 id="主要困难">主要困难
+&lt;/h4>&lt;ol>
+&lt;li>文献中采用的Windkessel等效电路模型参数不能直接移植使用。&lt;/li>
+&lt;/ol>
+&lt;h2 id="双心室">双心室
+&lt;/h2>&lt;img src="https://githubimages.pengfeima.cn/images/202505281945887.png" alt="image-20250528194543669" style="zoom:33%;" />
+&lt;img src="https://githubimages.pengfeima.cn/images/202505272214311.png" style="zoom: 50%;" />
+&lt;img src="https://githubimages.pengfeima.cn/images/202506012337692.png" alt="image-20250601233723035" style="zoom: 50%;" />
+$$
+C\frac{dP_\mathrm{WK}}{dt}+\frac{P_\mathrm{WK}}{R_\mathrm{p}}=Q_\mathrm{AO},\\
+\frac{P-P_\mathrm{WK}}{R_\mathrm{c}}=Q_\mathrm{AO}.
+$$
+$$
+C\frac{P^{n+1}_\mathrm{WK}-P^n_\mathrm{WK}}{\Delta t}+\frac{P^{n+1}_\mathrm{WK}}{R_\mathrm{p}}=Q^{n+1}_\mathrm{AO},\\
+\frac{P^{n+1}-P^{n+1}_\mathrm{WK}}{R_\mathrm{c}}=Q^{n+1}_\mathrm{AO}.
+$$$$
+P_{WK}^{n+1}=\left(Q_{AO}^{n+1}+\frac{C}{\Delta t}P^n_{WK}\right)/(\frac{C}{\Delta t}+\frac{1}{R_{p}})\\
+P^{n+1}=P^{n+1}_{WK}+Q_{AO}^{n+1}R_{c}
+$$&lt;p>高老师，我按您说的，使用三元素的Windkessek模型，采用向后欧拉格式求解，并重新调整了参数，得到如下的左心室内壁压强曲线:&lt;/p>
+&lt;img src="https://githubimages.pengfeima.cn/images/202506012342736.png" alt="image-20250601234256629" style="zoom: 33%;" />
+&lt;p>这里，我用 $P_{WK}=P=8\text{mmHg}$ 作为windkessel模型的初值条件(因为舒张末期是8mmHg，不知道怎么升到80mmHg，这个问题还问了德宝)，没有区分主动脉压强和左心室压强，直接把主动脉压强当作左心室压强。&lt;/p>
+&lt;p>我有个问题，如果我想将主动脉压强施加在冠脉上，怎么分别模拟左心室和主动脉压强？我们尝试求解下面的闭环系统，遇到的困难是不知道怎么处理二极管，比如在舒张末期，左心室压强低于主动脉压强，电路处于断路状态，左心室压强无法更新。&lt;/p>
+&lt;img src="https://githubimages.pengfeima.cn/images/202505272210680.png" style="zoom: 25%;" />
+&lt;p>Windkessel 模型对应三种电路图，可通过基尔霍夫定律写出它们的方程。针对二元素windkessel模型，两条定律即可:&lt;/p>
+&lt;ol>
+&lt;li>干路电流=电容电流+电阻电流&lt;/li>
+&lt;li>电压=电阻$\times$电流&lt;/li>
+&lt;/ol>
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/2-element%2C_3-element_and_4_element_Windkessel_models.svg" style="zoom:25%;" />
+&lt;h2 id="open-loop">Open loop
+&lt;/h2>&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202505241459296.png"
+loading="lazy"
+alt="image-20250524145934522"
+>&lt;/p>
+&lt;p>&lt;strong>图1&lt;/strong>为二元素 Windkessel 电路，总共五个参数：$R_{AO}=2.0$, $R_{SA}=120.0$, $R_{SV}=0.8$, $C_{AO}=2.5$, $C_{SA}=1.25$ {cite:p}&lt;code>wang2024modelling&lt;/code> 。已知量为静脉端压力$P_{SV}$为($=8 \text{mmHg}$)，从左心室容积随时间变化的函数 $V_{LV}(t)$ 可知$Q_{Ao}$，待求 $P_{LV}$, $P_{AO}$, $P_{SA}$, $Q_{SA}$, $Q_{SV}$五个未知数，可以联立五个方程。&lt;/p>
+$$
+\begin{aligned}
+Q_{Ao}&amp;=\frac{P_{LV}-P_{AO}}{R_{AO}}\\
+Q_{SA}&amp;=\frac{P_{Ao}-P_{SA}}{R_{SA}} \\
+Q_{SV}&amp;=\frac{P_{SA}-P_{SV}}{R_{SV}} \\
+Q_{SA}&amp;=Q_{AO}-C_{AO}\frac{dP_{AO}}{dt}\\
+Q_{SV}&amp;=Q_{SA}-C_{SA}\frac{dP_{SA}}{dt}
+\end{aligned}
+$$&lt;h2 id="三元素windkessel模型">三元素Windkessel模型
+&lt;/h2>&lt;p>我们采用一个三元件的Windkessel模型：主动脉流量首先通过一个电阻 $R_c$ 与左心室连接，对应的压强关系为 $P_{ao} - P_{wk} = Q_{ao} \cdot R_c$。接着，流体通过一个串联电阻 $R_p$，该电阻与一个电容 $C$ 并联，模拟血管的顺应性。
+在舒张期（diastole），左心室压强与主动脉压强存在明显差异；而在收缩期（systole），两者则基本相等。在舒张期内，我们将左心室压强设置为恒定的 8 mmHg；在收缩期，则通过Windkessel模型动态反馈左心室压强。
+在第一个心动周期的前 0.5 秒内，左心室压强线性上升，模拟前负荷加载过程，最终在舒张末期达到 8 mmHg，随后进入等容收缩期，此时整个左心室同时开始收缩。约在 $t \approx 0.6$ 秒时，左心室腔压超过主动脉压（约 80 mmHg），开始射血期；当左心室压强再次低于主动脉压时，射血结束。&lt;strong>在Windkessel模型中引入一个二极管（或理想单向阀）&lt;/strong> 是很常见的做法，尤其在数值模拟中用以阻止舒张早期的反向流动。这个元件可以在模型中模拟主动脉瓣的单向流动特性，使得当左心室压强低于主动脉压时，血液不会倒流回心室。&lt;/p>
+&lt;h2 id="求解常微分方程组todo">求解常微分方程组(TODO)
+&lt;/h2>&lt;p>给定Qao=Qlv, Pao,关于时间的变化，以及参数$Cao=2.5, Csa=1.25, Rao=2.0, Rsa=120$，求解下面的常微分方程组，绘制P_LV的曲线
+&lt;/p>
+$$
+\begin{aligned}
+-\frac{P_{LV}^{n+1}}{R_{AO}}&amp;=-Q_{LV}^{n+1}-\frac{P_{AO}^{n+1}}{R_{AO}}\\
+Q_{SV}^{n+1}-\frac{P_{SA}^{n+1}}{R_{SV}}&amp;=-\frac{P_{SV}^{n+1}}{R_{SV}}\\
+Q_{SA}^{n+1}&amp;=Q_{AO}^{n+1}-C_{AO}\frac{P_{AO}^{n+1}-P_{AO}^{n}}{\Delta t}\\
+Q_{SV}^{n+1}-Q_{SA}^{n+1}+C_{SA}\frac{P_{SA}^{n+1}}{\Delta t}&amp;=C_{SA}\frac{P_{SA}^{n}}{\Delta t}
+\end{aligned}
+$$$$
+\begin{pmatrix}
+-\frac{1}{R_{AO}} &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; -\frac{1}{R_{SV}} &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; \frac{C_{SA}}{\Delta t} &amp; 1 &amp; -1 \\
+\end{pmatrix}
+\begin{pmatrix}
+P_{LV}^{n+1} \\
+P_{SA}^{n+1} \\
+Q_{SV}^{n+1} \\
+Q_{SA}^{n+1}
+\end{pmatrix}
+$$&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">numpy&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">np&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">build_coefficient_matrix&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Cao&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Csa&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Rao&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Rsa&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">dt&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> 返回给定参数下的 4x4 系数矩阵 A，
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> 形式为 A @ [P_LV, P_SA, Q_SV, Q_SA]^T
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> &amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">A&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">array&lt;/span>&lt;span class="p">([&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="n">Rao&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="n">Rsa&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Csa&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="n">dt&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">])&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">A&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">build_rhs_vector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Qlv&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Pao&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Psv&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Qao&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Pao_1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Psa&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Rao&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Rsv&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Cao&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Csa&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">dt&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> 返回右端向量 b：
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> [
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> -Qlv - Pao / Rao,
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> -Psv / Rsv,
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> Qao - Cao/dt * (Pao_1 - Pao),
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> Csa/dt * Psa
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> ]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> &amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">b1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">Qlv&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">Pao&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="n">Rao&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">b2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">Psv&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="n">Rsv&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">b3&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Qao&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">Cao&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">Pao_1&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">Pao&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="n">dt&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">b4&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Csa&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="n">dt&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">Psa&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">array&lt;/span>&lt;span class="p">([&lt;/span>&lt;span class="n">b1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">b2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">b3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">b4&lt;/span>&lt;span class="p">])&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>Modelling of fibre dispersion and its effects on cardiac mechanics from diastole to systole&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div></description></item><item><title>许可协议</title><link>https://hugo.pengfeima.cn/license-strict/</link><pubDate>Tue, 27 May 2025 11:21:27 +0800</pubDate><guid>https://hugo.pengfeima.cn/license-strict/</guid><description>&lt;p>&lt;strong>版权所有 © 2025 马鹏飞、王璇&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>作者：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>马鹏飞（&lt;a class="link" href="mailto:mapengfei@mail.nwpu.edu.cn" >mapengfei@mail.nwpu.edu.cn&lt;/a>)&lt;/li>
+&lt;li>王璇（&lt;a class="link" href="mailto:wangxuan2022@mail.nwpu.edu.cn" >wangxuan2022@mail.nwpu.edu.cn&lt;/a>)&lt;/li>
+&lt;/ul>
+&lt;p>本软件仅供&lt;strong>内部使用&lt;/strong>与&lt;strong>学术研究&lt;/strong>之目的，特此声明如下使用限制：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>禁止公开讨论&lt;/strong>
+严禁在任何公开场合（包括但不限于论坛、讲座、社交平台等）讨论、展示或发布本软件的全部或部分代码及其实现细节。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>禁止修改&lt;/strong>
+本软件可用于研究用途，但禁止对其进行任何形式的修改、二次开发或派生版本制作。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>禁止逆向工程&lt;/strong>
+严禁对本软件进行逆向工程，包括但不限于反编译、反汇编或其他任何形式的还原操作。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>禁止未经授权的分发&lt;/strong>
+未经作者明确的书面许可，禁止以任何形式（无论原始版本或修改后版本）对本软件进行复制、传播或发布。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>仅限授权范围内使用&lt;/strong>
+本软件仅限作者明确授权的个人或单位使用，未经授权者不得使用。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>如有违反上述任一条款，作者保留依法追究相关法律责任的权利。如需获取授权或有相关疑问，请通过上述联系方式与作者联系。&lt;/p></description></item><item><title>流程图和示意图</title><link>https://hugo.pengfeima.cn/p/paper-writing-1/</link><pubDate>Wed, 09 Apr 2025 15:53:00 +0800</pubDate><guid>https://hugo.pengfeima.cn/p/paper-writing-1/</guid><description>&lt;h1 id="1">1
+&lt;/h1>&lt;blockquote>
+&lt;p>Shi F, Xin J, Yin P, et al. A GPU accelerated three-dimensional ghost cell method with an improved implicit surface representation for complex rigid or flexible boundary flows[J]. Computer Physics Communications, 2024, 298: 109098.&lt;/p>&lt;/blockquote>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091445810.png"
+loading="lazy"
+alt="image-20250409144540643"
+>&lt;/p>
+&lt;h1 id="2">2
+&lt;/h1>&lt;p>Lu Y, Wu P, Liu M, et al. A GPU-accelerated 3D ISPH-TLSPH framework for patient-specific simulations of cardiovascular fluid–structure interactions[J]. Computer Methods in Applied Mechanics and Engineering, 2024, 428: 117110.&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091447529.png"
+loading="lazy"
+alt="image-20250409144717426"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091448293.png"
+loading="lazy"
+alt="image-20250409144831244"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091448293.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091448956.png"
+loading="lazy"
+alt="image-20250409144845916"
+>&lt;/p>
+&lt;h1 id="3">3
+&lt;/h1>&lt;blockquote>
+&lt;p>De Vanna F, Avanzi F, Cogo M, et al. URANOS: A GPU accelerated Navier-Stokes solver for compressible wall-bounded flows[J]. Computer Physics Communications, 2023, 287: 108717.&lt;/p>&lt;/blockquote>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091450487.png"
+loading="lazy"
+alt="image-20250409145055395"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091451653.png"
+loading="lazy"
+alt="image-20250409145119590"
+>&lt;/p>
+&lt;h1 id="4">4
+&lt;/h1>&lt;blockquote>
+&lt;p>Yan K. A coupled immersed boundary method and isogeometric shell analysis for fluid–structure interaction of flexible and lightweight shells in high-Reynolds number flows[J]. Computer Methods in Applied Mechanics and Engineering, 2025.&lt;/p>&lt;/blockquote>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091454130.png"
+loading="lazy"
+alt="image-20250409145419009"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091451042.png"
+loading="lazy"
+alt="image-20250409145157996"
+>&lt;/p>
+&lt;h1 id="5">5
+&lt;/h1>&lt;blockquote>
+&lt;p>Hierarchical Optimization Time Integration for CFL-Rate MPM Stepping&lt;/p>&lt;/blockquote>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091519690.png"
+loading="lazy"
+alt="image-20250409151946595"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091519537.png"
+loading="lazy"
+alt="image-20250409151959473"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091520403.png"
+loading="lazy"
+alt="image-20250409152017347"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091602551.png"
+loading="lazy"
+alt="image-20250409160226458"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091521393.png"
+loading="lazy"
+alt="image-20250409152107334"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091521976.png"
+loading="lazy"
+alt="image-20250409152127923"
+>&lt;/p>
+&lt;h1 id="6">6
+&lt;/h1>&lt;blockquote>
+&lt;p>A Massively Parallel and Scalable Multi-GPU Material Point Method&lt;/p>&lt;/blockquote>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091516327.png"
+loading="lazy"
+alt="image-20250409151616253"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091514752.png"
+loading="lazy"
+alt="image-20250409151423669"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091459877.png"
+loading="lazy"
+alt="image-20250409145957826"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091459220.png"
+loading="lazy"
+alt="image-20250409145931162"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091515105.png"
+loading="lazy"
+alt="image-20250409151509048"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091514508.png"
+loading="lazy"
+alt="image-20250409151457439"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091515922.png"
+loading="lazy"
+alt="image-20250409151535875"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091516269.png"
+loading="lazy"
+alt="image-20250409151637215"
+>&lt;/p>
+&lt;h1 id="其他">其他
+&lt;/h1>&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091458860.png"
+loading="lazy"
+alt="image-20250409145840761"
+>&lt;/p>
+&lt;h1 id="11">11
+&lt;/h1>&lt;blockquote>
+&lt;p>A conservative and non-dissipative Eulerian formulation for the simulation of soft solids in fluids&lt;/p>&lt;/blockquote>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091501423.png"
+loading="lazy"
+alt="image-20250409150148344"
+>&lt;/p>
+&lt;h1 id="12">12
+&lt;/h1>&lt;blockquote>
+&lt;p>A comprehensive and biophysically detailed computational model of the whole human heart electromechanics&lt;/p>&lt;/blockquote>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091511731.png"
+loading="lazy"
+alt="image-20250409151143652"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091503589.png"
+loading="lazy"
+alt="image-20250409150329500"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091504063.png"
+loading="lazy"
+alt="image-20250409150408982"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091504890.png"
+loading="lazy"
+alt="image-20250409150420835"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091504602.png"
+loading="lazy"
+alt="image-20250409150434571"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091505029.png"
+loading="lazy"
+alt="image-20250409150505953"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091601134.png"
+loading="lazy"
+alt="image-20250409160141068"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091505628.png"
+loading="lazy"
+alt="image-20250409150538557"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091505409.png"
+loading="lazy"
+alt="image-20250409150548364"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091506796.png"
+loading="lazy"
+alt="image-20250409150612762"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091601213.png"
+loading="lazy"
+alt="image-20250409160102103"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091506995.png"
+loading="lazy"
+alt="image-20250409150641947"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091508038.png"
+loading="lazy"
+alt="image-20250409150715358"
+>&lt;/p>
+&lt;h1 id="a-gpu-accelerated-semi-implicit-fractional-step-method-for-numerical-solutions-of-incompressible-navierstokes-equations">A GPU-accelerated semi-implicit fractional-step method for numerical solutions of incompressible Navier–Stokes equations
+&lt;/h1>&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091507108.png"
+loading="lazy"
+alt="image-20250409150751056"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091600729.png"
+loading="lazy"
+alt="image-20250409160037647"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091509057.png"
+loading="lazy"
+alt="image-20250409150920011"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091509249.png"
+loading="lazy"
+alt="image-20250409150941205"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091510720.png"
+loading="lazy"
+alt="image-20250409151049626"
+>&lt;/p>
+&lt;h1 id="15">15
+&lt;/h1>&lt;blockquote>
+&lt;p>A Python-based flow solver for numerical simulations using an immersed boundary method on single GPUs&lt;/p>&lt;/blockquote>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091522486.png"
+loading="lazy"
+alt="image-20250409152233433"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091522236.png"
+loading="lazy"
+alt="image-20250409152254183"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091523391.png"
+loading="lazy"
+alt="image-20250409152326339"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091522236.png"
+loading="lazy"
+alt="image-20250409152254183"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202504091600321.png"
+loading="lazy"
+alt="image-20250409160010212"
+>&lt;/p></description></item><item><title>个人简历</title><link>https://hugo.pengfeima.cn/cv/</link><pubDate>Tue, 19 Nov 2024 14:33:22 +0800</pubDate><guid>https://hugo.pengfeima.cn/cv/</guid><description>&lt;p>电话: 15991859247
+邮箱: &lt;a class="link" href="mailto:job@pengfeima.cn" >job@pengfeima.cn&lt;/a>&lt;/p>
+&lt;h3 id="教育背景">教育背景
+&lt;/h3>&lt;ul>
+&lt;li>2019.9-2025.7 &lt;strong>博士研究生，数学&lt;/strong>，西北工业大学&lt;/li>
+&lt;li>2018.9-2019.7 &lt;strong>硕士研究生，计算数学&lt;/strong>，西北工业大学&lt;/li>
+&lt;li>2014.9-2018.7 &lt;strong>本科，信息与计算科学&lt;/strong>，西北工业大学&lt;/li>
+&lt;/ul>
+&lt;h3 id="研究方向">研究方向
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>计算力学&lt;/strong>：流固耦合、纤维增强材料、多孔弹性&lt;/li>
+&lt;/ul>
+&lt;h3 id="科研经历">科研经历
+&lt;/h3>&lt;p>&lt;strong>研究项目&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>国家自然科学基金面上项目（12271440），心肌灌注跨尺度多场耦合建模与计算（2023.1-2026.12）&lt;/li>
+&lt;li>国家自然科学基金面上项目（11871399），受损心脏电力耦合问题高效数值模拟方法及其应用研究（2019.1-2022.12）&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>软件开发&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>ibfenics&lt;/strong>：基于 Python3 和 C++ 混合编程的流固耦合软件，基于开源有限元软件 FEniCS 开发，使用 CMake 进行项目管理。(作者)&lt;/li>
+&lt;li>&lt;strong>npuheart&lt;/strong>：异构并行流固耦合软件，初期使用 MPI+CUDA，后期采用 KOKKOS 生成 CUDA 代码。目前支持 CPU 多核和单块 GPU 异构计算。(作者)&lt;/li>
+&lt;li>&lt;strong>porosolver&lt;/strong>：心脏灌注问题的求解软件。(负责数学建模和编程计算。)&lt;/li>
+&lt;/ul>
+&lt;h3 id="代表论文">代表论文
+&lt;/h3>&lt;ul>
+&lt;li>Pengfei Ma, Li Cai, Xuan Wang, Yongheng Wang, Xiaoyu Luo, Hao Gao. An unconditionally stable scheme for the immersed boundary method with application in cardiac mechanics, Physics of Fluids, 2024, 36: 081914&lt;/li>
+&lt;/ul>
+&lt;h3 id="专业技能">专业技能
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>编程语言&lt;/strong>：C++，Python3，CMake&lt;/li>
+&lt;li>&lt;strong>数值方法&lt;/strong>：有限元法（FEM），有限差分法（FDM），浸没边界法（IBM）（从零实现并进行并行加速）&lt;/li>
+&lt;li>&lt;strong>并行计算&lt;/strong>：MPI，CUDA，KOKKOS&lt;/li>
+&lt;li>&lt;strong>其他&lt;/strong>：linux系统&lt;/li>
+&lt;/ul>
+&lt;!-- 擅长搭建各种开发环境 --></description></item><item><title>Linux系统中新磁盘的分区与格式化</title><link>https://hugo.pengfeima.cn/p/initial-new-disk/</link><pubDate>Wed, 16 Oct 2024 14:33:27 +0800</pubDate><guid>https://hugo.pengfeima.cn/p/initial-new-disk/</guid><description>&lt;h2 id="磁盘分区与格式化">磁盘分区与格式化
+&lt;/h2>&lt;p>使用 parted 工具为新硬盘创建GPT分区表。在 parted 交互式界面中，执行以下命令：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo parted /dev/sda
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>
+&lt;p>在 parted 交互式界面中，执行以下命令：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>创建GPT分区表：
+&lt;code>mklabel gpt&lt;/code>
+创建新分区
+&lt;code>mkpart primary ext4 0% 100%&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>退出&lt;code>parted&lt;/code>&lt;/p>
+&lt;p>&lt;code>quit&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>格式化分区&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo mkfs.ext4 /dev/sdb1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="磁盘挂载">磁盘挂载
+&lt;/h2>&lt;p>编辑&lt;code>/etc/fstab&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">/dev/sdb1 /mnt/large0 ext4 defaults 0 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/sda1 /mnt/large1 ext4 defaults 0 2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看已经挂载的硬盘
+&lt;code>df -h&lt;/code>&lt;/p>
+&lt;h2 id="共享硬盘">共享硬盘
+&lt;/h2>&lt;ul>
+&lt;li>在挂载目录下创建用户目录并修改用户和用户组&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo mkdir /mnt/large0/user
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo chown group:user /mnt/large0/user
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>为当前项目创建文件夹，并创建软连接&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mkdir /mnt/large0/user/project
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s /mnt/large0/user/project data/large
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>至此，可以在&lt;code>data/large&lt;/code>目录中使用新硬盘&lt;/p>
+&lt;h2 id="远程连接">远程连接
+&lt;/h2>&lt;p>开启smb服务，创建的账号名为&lt;code>smb_user&lt;/code>，可以凭此账号通过445端口连接smb远程文件夹。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo apt install samba
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo vi /etc/samba/smb.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo smbpasswd -a smb_user
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo systemctl restart smbd
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[shared_1]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">path = /mnt/large1/user
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">available = yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">valid users = smb_user
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">read only = no
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">browsable = yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">public = yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">writable = yes
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>需要注意权限，smb_user只给user使用，因为smb_user账号可以修改目录&lt;code>/mnt/large1/user&lt;/code>下所有文件。&lt;/p>
+&lt;p>路径&lt;code>//10.70.181.65/shared_1&lt;/code>可以连接上用户&lt;code>/mnt/large1/user&lt;/code>文件夹，&lt;/p></description></item><item><title>流固耦合算例(WIP)</title><link>https://hugo.pengfeima.cn/p/.name/</link><pubDate>Sun, 29 Sep 2024 02:22:22 +0000</pubDate><guid>https://hugo.pengfeima.cn/p/.name/</guid><description>&lt;p>&lt;a class="link" href="https://wangxuan.mapengfei.cn/web" target="_blank" rel="noopener"
+>https://wangxuan.mapengfei.cn/web&lt;/a>&lt;/p>
+&lt;iframe src="https://wangxuan.mapengfei.cn/web" width="800" height="5000" frameborder="0">&lt;/iframe></description></item><item><title>Navier Stokes 算例</title><link>https://hugo.pengfeima.cn/p/navier-stokes-demos/</link><pubDate>Sat, 28 Sep 2024 22:42:25 +0000</pubDate><guid>https://hugo.pengfeima.cn/p/navier-stokes-demos/</guid><description>&lt;h2 id="二维解析解">二维解析解
+&lt;/h2>&lt;ol>
+&lt;li>&lt;/li>
+&lt;/ol>
+$$
+\Omega=[ 0, 1 ] \times[ 0, 1 ], \, \mathrm{T}=0. 1 \mathrm{s},
+$$$$
+\left\{\begin{array} {l} {{{u_{1} ( x, y, t )=-\operatorname{e x p} ( t ) x^{2} ( x-1 )^{2} y ( y-1 ) ( 2 y-1 ) / 2 5 6}}} \\ {{{u_{2} ( x, y, t )=\operatorname{e x p} ( t ) x ( x-1 ) ( 2 x-1 ) y^{2} ( y-1 )^{2} / 2 5 6}}} \\ {{{p ( x, y, t )=\operatorname{e x p} ( t ) ( x^{3}-1 / 4 )}}} \\ \end{array} \right.
+$$&lt;ol start="2">
+&lt;li>&lt;/li>
+&lt;/ol>
+$$
+\Omega=[0,1] \times[0,1], \mathrm{T}=0.1 \mathrm{~s},
+$$$$
+\begin{aligned}
+&amp; \qquad\left\{\begin{array}{l}
+u_1(x, y, t)=\exp (t) \sin ^2(\pi x) \sin (2 \pi y) \\
+u_2(x, y, t)=-\exp (t) \sin (2 \pi x) \sin ^2(\pi y) \\
+p(x, y, t)=\exp (t)(\sin (\pi y)-2 / \pi)
+\end{array}\right.
+\end{aligned}
+$$&lt;ol start="3">
+&lt;li>&lt;/li>
+&lt;/ol>
+$$
+\Omega=[0,1] \times[0,1], \mathrm{T}=0.1 \mathrm{~s}
+$$$$
+\begin{aligned}
+\qquad\left\{\begin{array}{l}
+u_1(x, y, t)=20 x^2(x-1)^2 y(y-1)(2 y-1) t \\
+u_2(x, y, t)=-20 x(x-1)(2 x-1) y^2(y-1)^2 t \\
+p(x, y, t)=10(2 x-1)(2 y-1)
+\end{array}\right.
+\end{aligned}
+$$&lt;ol start="4">
+&lt;li>&lt;/li>
+&lt;/ol>
+$$
+\Omega=[0,1] \times[0,1], \mathrm{T}=0.1 \mathrm{~s}
+$$$$
+\begin{aligned}
+&amp; \qquad\left\{\begin{array}{l}
+u_1(x, y, t)=20 x^2(x-1)^2 y(y-1)(2 y-1) t \\
+u_2(x, y, t)=-20 x(x-1)(2 x-1) y^2(y-1)^2 t \\
+p(x, y, t)=10(2 x-1)(2 y-1) t
+\end{array}\right.
+\end{aligned}
+$$&lt;ol start="5">
+&lt;li>&lt;/li>
+&lt;/ol>
+$$
+\Omega=[0,1] \times[0,1], \mathrm{T}=0.1 \mathrm{~s}
+$$$$
+\begin{aligned}
+\qquad\left\{\begin{array}{l}
+u_1(x, y, t)=2 \pi \sin ^2(\pi x) \sin (\pi y) \cos (\pi y) \cos (t) \\
+u_2(x, y, t)=-2 \pi \sin (\pi x) \cos (\pi x) \sin ^2(\pi y) \cos (t) \\
+p(x, y, t)=\cos (\pi x) \cos (\pi y)
+\end{array}\right.
+\end{aligned}
+$$&lt;ol start="7">
+&lt;li>[p. 389.] &lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>&lt;/li>
+&lt;/ol>
+$$
+\begin{aligned}
+&amp; u=\left[\begin{array}{c}
+\sin (4 \pi x) \cos (4 \pi y) \\
+-\cos (4 \pi x) \sin (4 \pi y)
+\end{array}\right] \\
+&amp; p=\pi \cos (4 \pi x) \cos (4 \pi y)
+\end{aligned}
+$$&lt;ol start="8">
+&lt;li>Taylor–Green vortex&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>
+$$
+\Omega=[-1,1] \times[-1,1], \mathrm{T}=0.5, \nu=0.01
+$$&lt;/li>
+&lt;/ol>
+$$
+\begin{aligned}
+&amp; u(x, y, t)=\left(\cos (\pi x) \sin (\pi y) e^{-2 t v \pi^2}, \cos (\pi y) \sin (\pi x) e^{-2 t v \pi^2}\right) \\
+&amp; p(x, y, t)=-0.25(\cos (2 \pi x)+\cos (2 \pi y)) e^{-4 t v \pi^2}
+\end{aligned}
+$$&lt;ol start="8">
+&lt;li>&lt;/li>
+&lt;/ol>
+$$
+\Omega=[0,2] \times[-1,1], \mathrm{T}=0.1, \mu=0.01 .
+$$$$
+\begin{aligned}
+&amp; \qquad\left\{\begin{array}{l}
+u=2 \cos (\pi y) \sin (\pi x) \sin t \\
+v=-2 \sin (\pi y) \cos (\pi x) \sin t \\
+p=2 \sin (\pi y) \sin (\pi x) \cos t
+\end{array}\right.
+\end{aligned}
+$$&lt;ol start="9">
+&lt;li>&lt;/li>
+&lt;/ol>
+$$
+\Omega=[0,1] \times[-0.25,0], \mathrm{T}=0.1 \mathrm{~s}
+$$$$
+\begin{aligned}
+&amp; \qquad\left\{\begin{array}{l}
+u_1=\left(x^2 y^2+e^{-y}\right) \cos (2 \pi t) \\
+u_2=\left[-\frac{2}{3} x y^3+2-\pi \sin (\pi x)\right] \cos (2 \pi t) \\
+p=-[2-\pi \sin (\pi x)] \cos (2 \pi y) \cos (2 \pi t)
+\end{array}\right.
+\end{aligned}
+$$&lt;ol start="10">
+&lt;li>&lt;/li>
+&lt;/ol>
+$$
+\begin{aligned}
+&amp;u_{1}=\left(x^{2} y^{2}+e^{-y}\right) \cos (2 \pi t) \\
+&amp;u_{2}=\left[-\frac{2}{3} x y^{3}+2-\pi \sin (\pi x)\right] \cos (2 \pi t) \\
+&amp;p=-[2-\pi \sin (\pi x)] \cos (2 \pi y) \cos (2 \pi t)
+\end{aligned}
+$$&lt;ol start="11">
+&lt;li>Kovasznay flow &lt;sup id="fnref:3">&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref">3&lt;/a>&lt;/sup>, 用于验证SAV方法的无条件能量稳定&lt;/li>
+&lt;/ol>
+$$
+\left\{\begin{array}{l}
+u=1-e^{\lambda x} \cos (2 \pi y) \\
+v=\frac{\lambda}{2 \pi} e^{\lambda x} \sin (2 \pi y) \\
+p=\frac{1}{2}\left(1-e^{2 \lambda x}\right)
+\end{array}\right.
+$$&lt;h2 id="三维解析解">三维解析解
+&lt;/h2>&lt;ol>
+&lt;li>&lt;/li>
+&lt;/ol>
+$$
+\begin{aligned}
+p(x) &amp;=\cos \left(\pi x_{1}\right) \cos \left(\pi x_{2}\right) \cos \left(\pi x_{3}\right), \\
+u_{1}(x) &amp;=\pi^{2}\left(\sin \left(\pi x_{1}\right)\right)^{2} \sin \left(2 \pi x_{2}\right) \sin \left(2 \pi x_{3}\right), \\
+u_{2}(x) &amp;=-0.5 \pi^{2} \sin \left(2 \pi x_{1}\right)\left(\sin \left(2 \pi x_{2}\right)\right)^{2} \sin \left(\pi x_{3}\right), \\
+u_{3}(x) &amp;=-0.5 \pi^{2} \sin \left(2 \pi x_{1}\right) \sin \left(2 \pi x_{2}\right)\left(\sin \left(\pi x_{3}\right)\right)^{2} .
+\end{aligned}
+$$&lt;ol start="2">
+&lt;li>&lt;/li>
+&lt;/ol>
+$$
+\begin{aligned}
+&amp;\left.\boldsymbol{u}=\left(y^{4}+z^{2}\right) e^{-t},\left(z^{4}+x^{2}\right) e^{-t},\left(x^{4}+y^{2}\right) e^{-t}\right) . \\
+&amp;p=(2 x-1)(2 y-1)(2 z-1) e^{-t},
+\end{aligned}
+$$&lt;ol start="3">
+&lt;li>Beltrami flow&lt;sup id="fnref:4">&lt;a href="#fn:4" class="footnote-ref" role="doc-noteref">4&lt;/a>&lt;/sup>，由 Ethier 和 Steinmann 于1994年提出，计算区域为 [-1,1]x[-1,1]x[-1,1] ，它速度和压强的精确解为&lt;/li>
+&lt;/ol>
+$$
+\begin{aligned}
+&amp;u(x, y, z, t)=-a\left[e^{a x} \sin (a y+d z)+e^{a z} \cos (a x+d y)\right] e^{-d^{2} t} \\
+&amp;v(x, y, z, t)=-a\left[e^{a y} \sin (a z+d x)+e^{a x} \cos (a y+d z)\right] e^{-d^{2} t} \\
+&amp;w(x, y, z, t)=-a\left[e^{a z} \sin (a x+d y)+e^{a y} \cos (a z+d x)\right] e^{-d^{2} t}
+\end{aligned}
+$$$$
+\begin{aligned}
+p(x, y, z, t)=-a^{2} e^{-2 d^{2} t}\left(e^{2 a x}+e^{2 a y}+e^{2 a z}\right)(&amp; \sin (a x+d y) \cos (a z+d x) e^{a(y+z)} \\
+&amp;\left.+\sin (a y+d z) \cos (a x+d y) e^{a(x+z)}+\sin (a z+d x) \cos (a y+d z) e^{a(x+y)}\right)
+\end{aligned}
+$$&lt;h2 id="泊肃叶流wip">泊肃叶流(WIP)
+&lt;/h2>&lt;h2 id="方腔驱动流wip">方腔驱动流(WIP)
+&lt;/h2>&lt;h2 id="圆柱绕流wip">圆柱绕流(WIP)
+&lt;/h2>&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>[Automated Solution of Differential Equations by the Finite Element Method. p. 389.]&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:2">
+&lt;p>[Automated Solution of Differential Equations by the Finite Element Method. Chapter. 21.4.4]&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:3">
+&lt;p>Numerical approximation of incompressible Navier-Stokes equations based on an auxiliary energy variable&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:4">
+&lt;p>[Automated Solution of Differential Equations by the Finite Element Method. Chapter. 21.4.6]&amp;#160;&lt;a href="#fnref:4" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div></description></item><item><title>虚功原理</title><link>https://hugo.pengfeima.cn/p/virtual-work-principle/</link><pubDate>Fri, 27 Sep 2024 14:18:45 +0000</pubDate><guid>https://hugo.pengfeima.cn/p/virtual-work-principle/</guid><description>&lt;h2 id="虚功原理">虚功原理
+&lt;/h2>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/202409281430946.png" alt="" style="width: 40%;" />
+&lt;figcaption>Principle of Virtual Work&lt;/figcaption>
+&lt;/div>
+&lt;ul>
+&lt;li>$\delta \boldsymbol{v}$ 虚速度(virtual velocity)&lt;/li>
+&lt;li>$\boldsymbol{r}$ 残余力(residual force)&lt;/li>
+&lt;li>$\delta \boldsymbol{l}$ 虚速度梯度 the virtual velocity gradient&lt;/li>
+&lt;li>$\boldsymbol{t}$ traction vector&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>虚功(virtual work)&lt;/strong>: $\delta w$, 单位体积单位时间内，虚运动过程中残余力(residual force)的做功为零。&lt;/p>
+$$
+\delta w=\boldsymbol{r}\cdot\delta\boldsymbol{v}=0
+$$&lt;p>由于$\delta \boldsymbol{v}$ 的任意性，上述式子等价于$\boldsymbol{r}=0$&lt;/p>
+&lt;p>物体的静态平衡方程的弱形式为&lt;/p>
+$$
+\delta W=\int_v(\operatorname{div} \boldsymbol{\sigma}+\boldsymbol{f}) \cdot \delta \boldsymbol{v} d v=0
+$$&lt;p>根据 $\text{div}$ 算子的性质&lt;/p>
+$$
+\operatorname{div}(\boldsymbol{\sigma} \delta \boldsymbol{v})=(\operatorname{div} \boldsymbol{\sigma}) \cdot \delta \boldsymbol{v}+\boldsymbol{\sigma}: \boldsymbol{\nabla} \delta \boldsymbol{v}
+$$&lt;p>以及高斯定理, 可以得到&lt;/p>
+$$
+\int_{\partial v} \boldsymbol{n} \cdot \boldsymbol{\sigma} \delta \boldsymbol{v} d a-\int_v \boldsymbol{\sigma}: \boldsymbol{\nabla} \delta \boldsymbol{v} d v+\int_v \boldsymbol{f} \cdot \delta \boldsymbol{v} d v=0
+$$$$
+\boldsymbol{t}(\boldsymbol{n})=\boldsymbol{\sigma} \boldsymbol{n} ; \quad \boldsymbol{\sigma}=\sum_{i, j=1}^3 \sigma_{i j} \boldsymbol{e}_i \otimes \boldsymbol{e}_j
+$$&lt;p>
+可以得到
+&lt;/p>
+$$
+\int_v \boldsymbol{\sigma}: \delta \boldsymbol{l} d v=\int_v \boldsymbol{f} \cdot \delta \boldsymbol{v} d v+\int_{\partial v} \boldsymbol{t} \cdot \delta \boldsymbol{v} d a
+$$&lt;p>
+$\delta \boldsymbol{l}$ 可以拆分成 $\delta \boldsymbol{d}$ 对称虚形变变化率，$\delta \boldsymbol{w}$ 反对称虚旋转张量，考虑到$\boldsymbol{\sigma}$的对称性，上述方程可以写成
+&lt;/p>
+$$
+\delta W=\int_v \boldsymbol{\sigma}: \delta \boldsymbol{d} d v-\int_v \boldsymbol{f} \cdot \delta \boldsymbol{v} d v-\int_{\partial v} \boldsymbol{t} \cdot \delta \boldsymbol{v} d a=0
+$$&lt;p>
+spatial virtual work equation，是一个标量方程，描述了形变物体的平衡状态，有限元离散的基础。&lt;/p>
+&lt;h2 id="功的共轭性">功的共轭性
+&lt;/h2>&lt;p>虚内功(virtual internal work)
+&lt;/p>
+$$
+\begin{equation}
+\delta W_{\mathrm{int}}=\int_v \boldsymbol{\sigma}: \delta \boldsymbol{d} d v
+\end{equation}
+$$&lt;p>
+$\boldsymbol{\sigma}$ 和 $\boldsymbol{d}$ 是共轭(work conjugate)的，关于当前形变体积，它们的内积得到单位当前体积做的功。&lt;/p>
+&lt;p>material coordinate&lt;/p>
+&lt;p>$\boldsymbol{\tau}$ Kirchhoff stress tensor ，与$\boldsymbol{d}$ 是共轭的，关于初始位移，
+&lt;/p>
+$$
+\begin{equation}
+\delta W_{\mathrm{int}}=\int_V \boldsymbol{\tau}: \delta \boldsymbol{d} d V ; \quad \boldsymbol{\tau}=J \boldsymbol{\sigma}
+\end{equation}
+$$&lt;p>P first Piola–Kirchhoff stress tensor, 与形变梯度的变化率共轭
+&lt;/p>
+$$
+\begin{equation}
+\begin{aligned}
+\delta W_{\mathrm{int}} &amp; =\int_V J \boldsymbol{\sigma}: \delta \boldsymbol{l} d V \\
+&amp; =\int_V J \boldsymbol{\sigma}:\left(\delta \dot{\boldsymbol{F}} \boldsymbol{F}^{-1}\right) d V \\
+&amp; =\int_V \operatorname{tr}\left(J \boldsymbol{F}^{-1} \boldsymbol{\sigma} \delta \dot{\boldsymbol{F}}\right) d V \\
+&amp; =\int_V\left(J \boldsymbol{\sigma} \boldsymbol{F}^{-T}\right): \delta \dot{\boldsymbol{F}} d V
+\end{aligned}
+\end{equation}
+$$&lt;p>这两者在虚功的意义下是相等的。&lt;/p>
+$$
+-\frac{\partial \Psi}{\partial \boldsymbol{X}}\cdot \delta\boldsymbol{v}
+$$$$
+F = \nabla\cdot\mathbb{P}?
+$$$$
+\boldsymbol{F}=-\frac{\partial \Psi(\mathbb{F}(\boldsymbol{X}),\boldsymbol{X})}{\partial \boldsymbol{X}}=-\frac{\partial \Psi}{\partial \mathbb{F}}\frac{\partial \mathbb{F}}{\partial \boldsymbol{X}}=-\mathbb{P}\frac{\partial F}{\partial \boldsymbol{X}}
+$$&lt;h2 id="kirchhoff-应力张量">Kirchhoff 应力张量
+&lt;/h2>&lt;p>称 $\sigma$ 和 $\boldsymbol{d}$ 为work conjugate&lt;/p>
+&lt;p>该方程中的σ和d等对被称为与电流变形体积的功共轭，因为它们的乘积给出了单位电流体积的功。&lt;/p>
+&lt;p>hugo new &amp;ndash;kind post-bundle post/virtual-work-principle&lt;/p>
+&lt;h2 id="达朗贝尔原理">达朗贝尔原理
+&lt;/h2>&lt;p>（D&amp;rsquo;Alembert&amp;rsquo;s principle）&lt;/p>
+&lt;h2 id="总势能函数和平衡状态">总势能函数和平衡状态
+&lt;/h2>&lt;p>总势能泛函为:&lt;/p>
+$$
+\Pi(\boldsymbol{\phi})=\int_V \Psi(\boldsymbol{C}) d V-\int_V \boldsymbol{f}_0 \cdot \boldsymbol{\phi} d V-\int_{\partial V} \boldsymbol{t}_0 \cdot \boldsymbol{\phi} d A ,
+$$&lt;p>其方向导数产生虚功原理&lt;/p>
+$$
+\begin{aligned}
+D \Pi(\phi)[\delta \boldsymbol{v}] &amp; =\int_V \frac{\partial \Psi}{\partial \boldsymbol{C}}: D \boldsymbol{C}[\delta \boldsymbol{v}] d V-\int_V \boldsymbol{f}_0 \cdot \delta \boldsymbol{v} d V-\int_{\partial V} \boldsymbol{t}_0 \cdot \delta \boldsymbol{v} d A \\
+&amp; =\int_V \boldsymbol{S}: D \boldsymbol{E}[\delta \boldsymbol{v}] d V-\int_V \boldsymbol{f}_0 \cdot \delta \boldsymbol{v} d V-\int_{\partial V} \boldsymbol{t}_0 \cdot \delta \boldsymbol{v} d A=0
+\end{aligned}
+$$&lt;p>(p. 225.):&lt;/p></description></item><item><title>物质点方法</title><link>https://hugo.pengfeima.cn/p/material-point-method/</link><pubDate>Thu, 26 Sep 2024 15:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/p/material-point-method/</guid><description>&lt;!-- more -->
+&lt;h2 id="更新形变梯度">更新形变梯度
+&lt;/h2>&lt;p>根据速度的欧拉描述和拉格朗日描述，
+&lt;/p>
+$$
+\mathbf{v}(\mathbf{x},t)=\mathbf{V}\left(\chi^{-1}\left(\mathbf{x}, \mathrm{t}\right), \mathrm{t}\right)
+\tag{1}
+$$$$
+\mathbf{v}\left(\chi\left(\mathbf{X}, \mathrm{t}\right),t\right)=\mathbf{V}\left(\mathbf{X}, \mathrm{t}\right)
+\tag{2}
+$$&lt;p>我们可以得到速度与形变梯度的关系:
+&lt;/p>
+$$
+\frac{\partial}{\partial t} \mathbb{F}\left(\mathbf{X}, t\right)=\nabla_{\mathbf{X}}\mathbf{V}\left(\mathbf{X}, t\right)=\nabla_\mathbf{x} \mathbf{v}(\mathbf{x},t)\mathbb{F}\left(\mathbf{X}, t\right) .
+$$&lt;p>假设我们得到了$t_{n+1}$时刻定义在当前构型$B_{t_{n}}$上的速度为$\mathbf{v}\left(\chi\left(\mathbf{X}, \mathrm{t}_{n}\right),t_{n+1}\right)$, (在欧拉网格上求解速度，根据已知的$\chi(\mathbf{X},t_n)$求得), 采用时间离散:
+&lt;/p>
+$$
+\frac{\partial}{\partial t} \mathbb{F}\left(\mathbf{X}, t_{n+1}\right)=\nabla_\mathbf{x} \mathbf{v}(\chi\left(\mathbf{X}, \mathrm{t}_{n}\right),t_{n+1})\mathbb{F}\left(\mathbf{X}, t_{n}\right) .\tag{6}
+$$&lt;p>
+将方程 (6) 代入下面式子，
+&lt;/p>
+$$
+\frac{\partial}{\partial t} \mathbb{F}\left(\mathbf{X}, t^{n+1}\right) \approx \frac{\mathbb{F}^{n+1}-\mathbb{F}^n}{\Delta t}
+$$&lt;p>可以得到
+&lt;/p>
+$$
+F_p^{n+1}=F_p^n+\Delta t \frac{\partial v^{n+1}}{\partial x}\left(x_p^n\right) F_p^n=\left(I+\Delta t \frac{\partial v^{n+1}}{\partial x}\left(x_p^n\right)\right) F_p^n
+$$&lt;p>and of course if we use the grid based interpolation formula for $\boldsymbol{v}^{\mathfrak{n}+1}$, i.e.,
+&lt;/p>
+$$
+\begin{aligned}
+v^{n+1}(x) &amp; =\sum_i v_i^{n+1} N_i(x) \\
+\frac{\partial v^{n+1}}{\partial x}(x) &amp; =\sum_i v_i^{n+1}\left(\frac{\partial N_i}{\partial x}(x)\right)^{\top}
+\end{aligned}
+$$&lt;p>then we have&lt;/p>
+$$
+F_p^{n+1}=\left(I+\Delta t \sum_i v_i^{n+1}\left(\frac{\partial N_i}{\partial x}\left(x_p^n\right)\right)^{\top}\right) F_p^n
+$$&lt;p>as the update rule for ${F_p^{\mathfrak{p}}}^{n+1}$ given the $v_i^{n+1}$ and $F_{\mathfrak{p}}^n$.&lt;/p>
+&lt;h2 id="更新位移">更新位移
+&lt;/h2>&lt;h2 id="更新力">更新力
+&lt;/h2>&lt;p>Symplectic Euler MPM&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>计算$m_i^n$和$\mathbf{v}^n_i$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>计算出力源项$\mathbf{f}_i^n$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>更新速度$\mathbf{v}^{n+1}_i$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>更新形变梯度$\mathbb{F}_p^{n+1}$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>更新速度$\mathbf{v}_p^{n+1}$和$\mathbf{x}_p^{n+1}$&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>拉格朗日点
+&lt;/p>
+$$
+\mathbf{X}_i=\chi^{-1}(\mathbf{x}_i,t)
+$$&lt;p>
+$\mathbf{x}_i^{n+1}$ 为此拉格朗日点下一时刻的坐标。&lt;/p>
+&lt;h2 id="获取网格上的速度">获取网格上的速度
+&lt;/h2>&lt;p>(与浸没边界法类似)&lt;/p>
+&lt;h2 id="更新力-1">更新力
+&lt;/h2>$$
+\begin{equation}
+f_i(\boldsymbol{x})=-\frac{\partial e}{\partial x_i}(\boldsymbol{x})=-\sum_p V_p^0\left(\frac{\partial \Psi_p}{\partial F}\left(F_p(x)\right)\right)\left(F_p^n\right)^{\top} \nabla w_{i p}^n .
+\end{equation}
+$$$$
+\begin{equation}
+f_i^n=f_i\left(x_i^n\right)=-\sum_p V_p^0\left(\frac{\partial \Psi_p}{\partial F}\left(F_p^n\right)\right)\left(F_p^n\right)^{\top} \nabla w_{i p}^n,
+\end{equation}
+$$&lt;h2 id="更新速度">更新速度
+&lt;/h2>&lt;h2 id="更新形变梯度-1">更新形变梯度
+&lt;/h2>$$
+\begin{equation}
+F_p^{n+1}=\left(I+\Delta t \sum_i v_i^{n+1}\left(\nabla w_{i p}^n\right)^{\top}\right) F_p^n
+\end{equation}
+$$&lt;p>如果我们想要给出一个类似的定义，我们可以定义一个张量场 \(\Psi\) 对另一个张量场 \(\mathbb{F}\) 的变化率的散度。在数学上，这可以表示为：&lt;/p>
+$$
+\nabla \cdot (\Psi \cdot \nabla \mathbb{F}
+$$&lt;p>
+这里，\(\nabla \cdot\) 表示散度算子，\(\Psi\) 是一个张量场，\(\nabla \mathbb{F}\) 表示张量场 \(\mathbb{F}\) 的梯度，而 \(\cdot\) 表示张量乘积。&lt;/p>
+&lt;p>然而，这个表达式与原始问题中的表达式仍然不同，因为原始问题中的表达式是：&lt;/p>
+\[
+\nabla \cdot \left( \frac{\partial \Psi}{\partial \mathbb{F}} \right)
+\]&lt;p>这表示张量场 \(\Psi\) 对张量场 \(\mathbb{F}\) 的偏导数的散度。&lt;/p>
+&lt;p>如果我们想要定义一个与原始表达式类似的表达式，我们可以考虑定义张量场 \(\Psi\) 对张量场 \(\mathbb{F}\) 的偏导数的散度，并且乘以张量场 \(\mathbb{F}\) 对空间坐标 \(x\) 的偏导数，可以表示为：&lt;/p>
+\[
+\nabla \cdot \left( \frac{\partial \Psi}{\partial \mathbb{F}} \cdot \frac{\partial \mathbb{F}}{\partial x} \right)
+\]&lt;p>这个表达式表示的是张量场 \(\Psi\) 对张量场 \(\mathbb{F}\) 的偏导数与张量场 \(\mathbb{F}\) 对空间坐标 \(x\) 的偏导数的乘积的散度。这与原始表达式不同，因为它包含了散度算子和乘积。&lt;/p></description></item><item><title>Q准则涡</title><link>https://hugo.pengfeima.cn/p/paraview-plot-q-criterion/</link><pubDate>Tue, 24 Sep 2024 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/p/paraview-plot-q-criterion/</guid><description>&lt;img src="https://hugo.pengfeima.cn/p/paraview-plot-q-criterion/2153815980797591552.jpeg" alt="Featured image of post Q准则涡" />&lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1ft421b7iW/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=5abfb7c63abd04e3e543a6829e7d3578" target="_blank" rel="noopener"
+>https://www.bilibili.com/video/BV1ft421b7iW/?spm_id_from=333.337.search-card.all.click&amp;vd_source=5abfb7c63abd04e3e543a6829e7d3578&lt;/a>&lt;/p></description></item><item><title>流固耦合运动绘图</title><link>https://hugo.pengfeima.cn/p/paraview-plot-deformation/</link><pubDate>Tue, 24 Sep 2024 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/p/paraview-plot-deformation/</guid><description>&lt;img src="https://hugo.pengfeima.cn/p/paraview-plot-deformation/2153815980797591552.jpeg" alt="Featured image of post 流固耦合运动绘图" />&lt;p>浏览量：&lt;span id="ArtalkCount">&lt;/span>
+评论数：&lt;span id="ArtalkPV">&lt;/span>&lt;/p>
+&lt;p>需要画流体的流线图和固体的形变图。
+流线图用 Mask Points 和 Stream Tracer With Custom Source 绘制, 这两个 Filter 的使用可以参考&lt;a class="link" href="https://hugo.pengfeima.cn/p/paraview-plot-streamline/" target="_blank" rel="noopener"
+>画双心室的纤维图&lt;/a>。形变图用 Warp By Vector 绘制。&lt;/p>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409252219613.webp" alt="" style="width: 60%;" />
+&lt;figcaption>导入流体和固体的数据&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409252220375.webp" alt="" style="width: 60%;" />
+&lt;figcaption>计算固体形变&lt;/figcaption>
+&lt;/div>
+&lt;ul>
+&lt;li>WIP：下面这些图的教程&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202409281050653.png"
+loading="lazy"
+alt="image-20240928105008567"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202409281049017.png"
+loading="lazy"
+alt="image-20240928104922924"
+>&lt;/p>
+&lt;p>&lt;img src="https://githubimages.pengfeima.cn/images/202409281047106.png"
+loading="lazy"
+alt="image-20240928104742963"
+>&lt;/p>
+&lt;ul>
+&lt;li>速度等高图
+&lt;img src="https://githubimages.pengfeima.cn/images/202409281100167.png"
+loading="lazy"
+alt="image-20240928110037029"
+>
+&lt;img src="https://githubimages.pengfeima.cn/images/202409281102000.png"
+loading="lazy"
+alt="image-20240928110253889"
+>
+&lt;img src="https://githubimages.pengfeima.cn/images/202409281048332.png"
+loading="lazy"
+alt="image-20240928104852205"
+>&lt;/li>
+&lt;/ul>
+&lt;p>下载数据: &lt;a class="link" href="https://pan.quark.cn/s/461a633eb6b4" target="_blank" rel="noopener"
+>paraview-fsi-plot.001.zip&lt;/a>&lt;/p></description></item><item><title>Paraview 目录</title><link>https://hugo.pengfeima.cn/p/paraview-toc/</link><pubDate>Mon, 23 Sep 2024 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/p/paraview-toc/</guid><description>&lt;img src="https://hugo.pengfeima.cn/p/paraview-toc/2153815987617529856.jpeg" alt="Featured image of post Paraview 目录" />&lt;ul>
+&lt;li>
+&lt;p>paraview 输出 png 格式文件, 背景为透明色，更方便修改&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://hugo.pengfeima.cn/p/paraview-plot-streamline-2d/" >画二维截面的流线图&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://hugo.pengfeima.cn/p/paraview-plot-legend/" >修改图例&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://hugo.pengfeima.cn/p/fsi-demo-1-elastic-shell/" >流固耦合算例(一)&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://hugo.pengfeima.cn/p/fsi-demo-2-turek-hron/" >流固耦合算例(二)&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://hugo.pengfeima.cn/p/fsi-demo-3-soft-disk/" >流固耦合算例(三)&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>画双心室的纤维图</title><link>https://hugo.pengfeima.cn/p/paraview-plot-streamline/</link><pubDate>Mon, 23 Sep 2024 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/p/paraview-plot-streamline/</guid><description>&lt;img src="https://hugo.pengfeima.cn/p/paraview-plot-streamline/2153816028738486272.jpeg" alt="Featured image of post 画双心室的纤维图" />&lt;p>浏览量：&lt;span id="ArtalkPV">加载中&amp;hellip;&lt;/span>&lt;br>
+评论数：&lt;span id="ArtalkCount">加载中&amp;hellip;&lt;/span>&lt;/p>
+&lt;p>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231723270.webp" alt="" style="width: 60%;" />
+&lt;figcaption>打开文件&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231724696.webp" alt="" style="width: 40%;" />
+&lt;figcaption>Filters -&amp;gt; Search -&amp;gt; Mask Points&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231723019.webp" alt="" style="width: 40%;" />
+&lt;figcaption>选择 Mask Points, 修改数量&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231723087.webp" alt="" style="width: 40%;" />
+&lt;figcaption>Filters -&amp;gt; Search -&amp;gt; Stream Tracer With Custom Source&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231723339.webp" alt="" style="width: 50%;" />
+&lt;figcaption>f0 作为输入数据&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231723244.webp" alt="" style="width: 50%;" />
+&lt;figcaption>MaskPoints1 作为采样点&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231826659.webp" alt="" style="width: 40%;" />
+&lt;figcaption>Streamline&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231638875.webp" alt="" style="width: 60%;" />
+&lt;figcaption>修改 Tube1 的宽度&lt;/figcaption>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://githubimages.pengfeima.cn/images/compressed/202409231633231.webp" alt="" style="width: 60%;" />
+&lt;figcaption>减少 Tube1 的数量&lt;/figcaption>
+&lt;/div>
+&lt;/p>
+&lt;p>下载数据: &lt;a class="link" href="https://pan.quark.cn/s/76d0a7540126" target="_blank" rel="noopener"
+>ventricle-mesh.zip&lt;/a>&lt;/p></description></item><item><title>相册</title><link>https://hugo.pengfeima.cn/p/image-gallery/</link><pubDate>Sat, 26 Aug 2023 00:00:01 +0000</pubDate><guid>https://hugo.pengfeima.cn/p/image-gallery/</guid><description>&lt;img src="https://hugo.pengfeima.cn/p/image-gallery/2153815980856311808.jpeg" alt="Featured image of post 相册" />&lt;p>插入图像可以使用三种 shortcodes, 分别是:&lt;/p>
+&lt;ul>
+&lt;li>单幅居中&lt;/li>
+&lt;li>单行多幅等高排列&lt;/li>
+&lt;li>瀑布流的相册&lt;/li>
+&lt;/ul>
+&lt;h2 id="单幅居中">单幅居中
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">{ {&lt;span class="p">&amp;lt;&lt;/span> &lt;span class="nt">myfigure&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;/p/image-gallery/2153815980856311808.jpeg&amp;#34;&lt;/span> &lt;span class="na">title&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;Image 1&amp;#34;&lt;/span> &lt;span class="na">percent&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;60%&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>} }
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;div style="text-align: center;" class="myfigure">
+&lt;img src="https://hugo.pengfeima.cn/p/image-gallery/2153815980856311808.jpeg" alt="" style="width: 60%;" />
+&lt;figcaption>Image 1&lt;/figcaption>
+&lt;/div>
+&lt;h2 id="等高排列">等高排列
+&lt;/h2>&lt;p>Stack 自带语法，参考了 &lt;a class="link" href="https://typlog.com/" target="_blank" rel="noopener"
+>Typlog&lt;/a>, 使用了 &lt;a class="link" href="https://photoswipe.com/" target="_blank" rel="noopener"
+>PhotoSwipe&lt;/a>.
+只支持本地图片，高度固定.&lt;/p>
+&lt;h2 id="渼陂湖">渼陂湖
+&lt;/h2>&lt;p>&lt;img src="https://hugo.pengfeima.cn/p/image-gallery/IMG_20250101_154744.jpg"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/image-gallery/IMG_20250101_154744_hu_13df476ddf6b233a.jpg 480w, https://hugo.pengfeima.cn/p/image-gallery/IMG_20250101_154744_hu_4313ce3e3914f041.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/image-gallery/IMG_20250101_154746_1.jpg"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/image-gallery/IMG_20250101_154746_1_hu_3695a0b2d041a068.jpg 480w, https://hugo.pengfeima.cn/p/image-gallery/IMG_20250101_154746_1_hu_ebc4759954220327.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/image-gallery/IMG_20250101_154746.jpg"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/image-gallery/IMG_20250101_154746_hu_e6bdd747a483eef.jpg 480w, https://hugo.pengfeima.cn/p/image-gallery/IMG_20250101_154746_hu_bce01f9f0fcfcfc2.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>
+&lt;img src="https://hugo.pengfeima.cn/p/image-gallery/IMG_20250101_154747.jpg"
+width="4096"
+height="3072"
+srcset="https://hugo.pengfeima.cn/p/image-gallery/IMG_20250101_154747_hu_ed8c8f484ec3cc1f.jpg 480w, https://hugo.pengfeima.cn/p/image-gallery/IMG_20250101_154747_hu_b7c95eacdb5748db.jpg 1024w"
+loading="lazy"
+alt="凶巴巴"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;h2 id="瀑布流">瀑布流
+&lt;/h2>&lt;p>参考：&lt;a class="link" href="https://www.sulvblog.cn/posts/blog/hugo_gallery/" target="_blank" rel="noopener"
+>Sulv&amp;rsquo;s Blog&lt;/a>&lt;/p>
+&lt;!DOCTYPE html>
+&lt;html lang="en">
+&lt;head>
+&lt;meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+&lt;script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js">&lt;/script>
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nanogallery2@3.0.5/dist/css/nanogallery2.min.css">
+&lt;script src="https://cdn.jsdelivr.net/npm/nanogallery2@3.0.5/dist/jquery.nanogallery2.min.js">&lt;/script>
+&lt;/head>
+&lt;body>
+&lt;div data-nanogallery2='{
+"thumbnailDisplayTransition": "none",
+"thumbnailDisplayTransitionDuration": 500,
+"thumbnailDisplayInterval": 30,
+"galleryDisplayTransition": "none",
+"galleryDisplayTransitionDuration": 500,
+"thumbnailDisplayOutsideScreen": "false",
+"thumbnailHeight": "auto",
+"eventsDebounceDelay": 10,
+"thumbnailGutterWidth": 3,
+"thumbnailGutterHeight": 3,
+"thumbnailL1BorderHorizontal": 0,
+"thumbnailL1BorderVertical": 0,
+"thumbnailLabel": {
+"titleFontSize": "0.6em"
+},
+"thumbnailHoverEffect2": "image_scale_1.00_1.10|label_backgroundColor_rgba(0,0,0,0)_rgba(255,255,255,0)",
+"galleryTheme": {
+"thumbnail": {
+"borderRadius": "3px"
+}
+},
+"thumbnailToolbarImage": {
+"topLeft": "",
+"topRight": "",
+"bottomLeft": "",
+"bottomRight": ""
+},
+"viewerToolbar": {
+"display": true,
+"standard": "label"
+},
+"viewerTools": {
+"topLeft": "pageCounter, playPauseButton",
+"topRight": "downloadButton, rotateLeft, zoomButton, fullscreenButton, closeButton"
+},
+"viewerGalleryTWidth": 40,
+"viewerGalleryTHeight": 40
+}'>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202409232146523.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202409232146523.webp">壁纸&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152242589.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152242589.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152242666.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152242666.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152024439.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152024439.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152024719.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152024719.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152024726.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152024726.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152024839.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152024839.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152242612.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152242612.webp">&lt;/a>
+&lt;a href="https://www.sulvblog.cn/image/17_IMG_20220430_202228.png" data-ngThumb="https://www.sulvblog.cn/image/17_IMG_20220430_202228.png">&lt;/a>
+&lt;a href="https://www.sulvblog.cn/image/19_IMG_20220430_200901.png" data-ngThumb="https://www.sulvblog.cn/image/19_IMG_20220430_200901.png">&lt;/a>
+&lt;a href="https://www.sulvblog.cn/image/16_IMG_20220430_202353.png" data-ngThumb="https://www.sulvblog.cn/image/16_IMG_20220430_202353.png">香克斯&lt;/a>
+&lt;a href="https://www.sulvblog.cn/image/17_IMG_20220430_202228.png" data-ngThumb="https://www.sulvblog.cn/image/17_IMG_20220430_202228.png">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202409231723244.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202409231723244.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152025509.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152025509.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152024158.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152024158.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152242094.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152242094.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152242450.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152242450.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152242688.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152242688.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152242398.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152242398.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152242234.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152242234.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152242455.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152242455.webp">&lt;/a>
+&lt;a href="https://www.sulvblog.cn/image/19_IMG_20220430_200901.png" data-ngThumb="https://www.sulvblog.cn/image/19_IMG_20220430_200901.png">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202409231826659.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202409231826659.webp">香克斯&lt;/a>
+&lt;a href="https://www.sulvblog.cn/image/17_IMG_20220430_202228.png" data-ngThumb="https://www.sulvblog.cn/image/17_IMG_20220430_202228.png">&lt;/a>
+&lt;a href="https://www.sulvblog.cn/image/19_IMG_20220430_200901.png" data-ngThumb="https://www.sulvblog.cn/image/19_IMG_20220430_200901.png">&lt;/a>
+&lt;a href="https://www.sulvblog.cn/image/16_IMG_20220430_202353.png" data-ngThumb="https://www.sulvblog.cn/image/16_IMG_20220430_202353.png">香克斯&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152024102.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152024102.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152024355.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152024355.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152243274.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152243274.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152242382.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152242382.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152242599.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152242599.webp">&lt;/a>
+&lt;a href="https://www.sulvblog.cn/image/17_IMG_20220430_202228.png" data-ngThumb="https://www.sulvblog.cn/image/17_IMG_20220430_202228.png">&lt;/a>
+&lt;a href="https://www.sulvblog.cn/image/19_IMG_20220430_200901.png" data-ngThumb="https://www.sulvblog.cn/image/19_IMG_20220430_200901.png">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202409231633231.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202409231633231.webp">香克斯&lt;/a>
+&lt;a href="https://www.sulvblog.cn/image/17_IMG_20220430_202228.png" data-ngThumb="https://www.sulvblog.cn/image/17_IMG_20220430_202228.png">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152024001.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152024001.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152024132.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152024132.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152024062.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152024062.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152024391.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152024391.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152024029.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152024029.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152243681.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152243681.webp">&lt;/a>
+&lt;a href="https://githubimages.pengfeima.cn/images/compressed/202306152242384.webp" data-ngThumb="https://githubimages.pengfeima.cn/images/compressed/202306152242384.webp">&lt;/a>
+&lt;/div>
+&lt;/body>
+&lt;/html></description></item><item><title>秦PLUS日常使用油电消耗统计</title><link>https://hugo.pengfeima.cn/p/aaaaa/</link><pubDate>Fri, 18 Aug 2023 08:49:21 +0000</pubDate><guid>https://hugo.pengfeima.cn/p/aaaaa/</guid><description>&lt;img src="https://hugo.pengfeima.cn/p/aaaaa/WechatIMG415.jpg" alt="Featured image of post 秦PLUS日常使用油电消耗统计" />&lt;!-- more -->
+&lt;div>
+&lt;canvas id="myChart">&lt;/canvas>
+&lt;/div>
+&lt;h2 id="购车经验">&lt;strong>购车经验&lt;/strong>
+&lt;/h2>&lt;p>我购买的秦PLUS为 &lt;strong>2023款 冠军版 DM-i 120KM领先型&lt;/strong>，裸车价格125800元，西安造字台附近的比亚迪新景腾飞4S店购买，价格无优惠。&lt;/p>
+&lt;p>销售通过易车APP获取我的电话，于6月30号上午给我打电话。销售告诉我，这个月月底冲业绩，今天购车可送我八次保养，免上牌费，送底盘装甲，可当天提车。下午我和WX就去他们店里看车，结果销售说上牌费不能免。我想提车，不想再到处跑，折腾购车相关的事情，没有去其他4S店看车，就付钱提车了。&lt;/p>
+&lt;p>以后可能还会买车，需要注意的点：&lt;/p>
+&lt;ol>
+&lt;li>贴膜。原厂送的膜质量很差，如果想换膜，可以在买车前跟销售谈换膜的价格，别贴膜的时候被忽悠到交钱了。我去贴膜的时候被告知，换成&lt;strong>康得新膜&lt;/strong>或者&lt;strong>龙膜&lt;/strong>要一千多，我没有掏钱，只贴了原厂送的膜。&lt;/li>
+&lt;li>保险。4S店里卖保险的人介绍保险的时候，将出行险和座位险混为一谈，声称能保62万。事实上，62万中的60万属于车主的出行险，价格715元，只保车主不保乘客。销售还推荐了一个不知名的险种，能够放大赔偿金额，没必要购买。&lt;/li>
+&lt;li>延保。花三千多延长保修到8年，与机械部件不同，电子元器件的故障率随着使用年限增长而降低，有问题的部件会在保修期内损坏坏，保修期内没坏的大概率能使用到汽车报废。&lt;/li>
+&lt;li>价格。现在汽车价格公开透明，但8月份是汽车销售淡季，汽车的资金占用成本和库存成本很高，降价是必然的。我买的这款车并不缺现车，我提的车为三月份生产，六月底卖出，期间存放了三个多月。如果在8月18日购车，会有3000元购车优惠，950元交强险优惠。&lt;/li>
+&lt;/ol>
+&lt;p>总之，一定要有耐心，一定要把各个事项问清楚，慎重交款，交款之前主动权还是在自己这边的，交款之后再谈会很被动。交钱后发现保险和销售说的不一样，可以退保。&lt;/p>
+&lt;p>我决定购买这辆车时，已接受了它的缺点：&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>底盘硬&lt;/strong>，走烂路不舒服&lt;/li>
+&lt;li>在易车十万里长测中能看到，保险杠连接处会&lt;strong>生锈&lt;/strong>&lt;/li>
+&lt;li>长城举报比亚迪没有使用&lt;strong>高压油箱&lt;/strong>，蒸发不达标&lt;/li>
+&lt;li>&lt;strong>EV受限&lt;/strong>，不能长期亏电行驶&lt;/li>
+&lt;/ol>
+&lt;p>以后有钱了要买安全系数高的车，非承载车身，吨位大，新，铝合金/热处理钢，防撞梁高度高，抗翻滚能力高。&lt;/p>
+&lt;h3 id="赠品">&lt;strong>赠品&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>八次保养(约¥200/次)&lt;/li>
+&lt;li>贴膜(约¥1000)&lt;/li>
+&lt;li>底盘装甲(约¥1000)
+赠品总价值约为 ¥3600。贴膜的时候原厂贴膜可以换成&lt;strong>康得新膜&lt;/strong>或者&lt;strong>龙膜&lt;/strong>，抵掉原厂送的贴膜，需要加价一千多。&lt;/li>
+&lt;/ul>
+&lt;h3 id="其他消费">&lt;strong>其他消费&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>上牌费(¥500)&lt;/li>
+&lt;li>行车记录仪(¥303)&lt;/li>
+&lt;li>后备箱垫(¥50&lt;strong>还没买&lt;/strong>)&lt;/li>
+&lt;li>放电枪(¥333)&lt;/li>
+&lt;li>抱枕(¥80)
+总共 ¥1783&lt;/li>
+&lt;/ul>
+&lt;h3 id="保险">&lt;strong>保险&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>交强险 950&lt;/li>
+&lt;li>车辆损失险 2600&lt;/li>
+&lt;li>第三方200万 950&lt;/li>
+&lt;li>乘客2万 55&lt;/li>
+&lt;li>司机2万 22&lt;/li>
+&lt;li>出行险 715
+总共 ¥ 5361，以后可以免去或减少出行险的保额。&lt;/li>
+&lt;/ul>
+&lt;h3 id="轮胎型号">&lt;strong>轮胎型号&lt;/strong>
+&lt;/h3>&lt;p>原厂轮胎为&lt;strong>佳通 215/55 R17 94V F22&lt;/strong>，换过一个轮胎，总共¥480。
+补胎: 蘑菇钉，60元，忘了叫他给轮胎做动平衡。&lt;/p>
+&lt;h2 id="购物清单">&lt;strong>购物清单&lt;/strong>
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>车载吸尘器(¥199)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>无线洗车机机(¥369)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>玻璃水&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>户外桌椅(¥104)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>天幕帐篷(¥105)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>防潮垫&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>吊床(¥39)&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>Archives</title><link>https://hugo.pengfeima.cn/archives/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/archives/</guid><description/></item><item><title/><link>https://hugo.pengfeima.cn/draft/a/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/draft/a/</guid><description>&lt;p>在管道浏览器中选择两个数据集，然后应用可编程过滤器。&lt;/p>
+&lt;p>两个输入定义在一个 inputs 数组中。此数组中元素的顺序由在Pipeline Browser 中选择数据源的顺序决定 。因此，inputs[0] 是选择的第一个数据源，inputs[1]是第二个。&lt;/p>
+&lt;p>&lt;a class="link" href="https://blog.csdn.net/haimianjie2012/article/details/122718221" target="_blank" rel="noopener"
+>https://blog.csdn.net/haimianjie2012/article/details/122718221&lt;/a>&lt;/p>
+&lt;p>inputs[0].PointData[&amp;lsquo;Normals&amp;rsquo;]
+inputs[0].CellData[&amp;lsquo;Result&amp;rsquo;]&lt;/p>
+&lt;h1 id="code-for-script">Code for ‘Script’
+&lt;/h1>&lt;h1 id="inputs-is-set-to-an-array-with-data-objects-produced-by-inputs-to">‘inputs’ is set to an array with data objects produced by inputs to
+&lt;/h1>&lt;h1 id="this-filter">this filter.
+&lt;/h1>&lt;h1 id="get-the-first-input">Get the first input.
+&lt;/h1>&lt;p>#input0 = inputs[0]
+print(len(inputs))&lt;/p>
+&lt;h1 id="compute-a-value">compute a value.
+&lt;/h1>&lt;p>dataArray = sum(inputs[0].CellData[&amp;lsquo;Result&amp;rsquo;])&lt;/p>
+&lt;h1 id="output-is-a-variable-set-to-the-output-dataset">‘output’ is a variable set to the output dataset.
+&lt;/h1>&lt;p>output.FieldData.append(len(inputs), &amp;lsquo;V_sum&amp;rsquo;)
+output.CellData.append(dataArray, &amp;lsquo;V_sum&amp;rsquo;)&lt;/p>
+&lt;p>更改 paraview 中的 axis
+paraview 5.11.2 版本中可以更改坐标轴整体的大小和文字的颜色，但是无法更改坐标轴的粗细和颜色。
+paraview 5.12.0可以更改坐标轴颜色，隐藏其中一个坐标轴等等&lt;/p>
+&lt;p>&lt;a class="link" href="https://discourse.paraview.org/t/change-axis-size-and-color/3355" target="_blank" rel="noopener"
+>https://discourse.paraview.org/t/change-axis-size-and-color/3355&lt;/a>
+&lt;a class="link" href="https://discourse.paraview.org/t/improvements-to-orientation-axis/12687" target="_blank" rel="noopener"
+>https://discourse.paraview.org/t/improvements-to-orientation-axis/12687&lt;/a>&lt;/p>
+&lt;p>paraview可以用group datasets把两个数据集合并在一起&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/312a992cb8c0d45cc11068dd2d2a0155.jpg"
+loading="lazy"
+alt="alt text"
+>&lt;/p>
+&lt;p>paraview 中的一些名词:&lt;/p>
+&lt;p>Tabs: 菜单&lt;/p>
+&lt;p>Colormap controls: 调色&lt;/p>
+&lt;p>Views: 视图&lt;/p>
+&lt;p>Pipeline: 流程&lt;/p>
+&lt;p>Properties: 属性&lt;/p>
+&lt;p>Selection: 选择&lt;/p>
+&lt;p>Window splitting: 多窗口&lt;/p>
+&lt;p>renderview area: 渲染结果&lt;/p>
+&lt;p>Data Legend: 数据图例&lt;/p>
+&lt;p>Filter: 滤镜&lt;/p></description></item><item><title>Search</title><link>https://hugo.pengfeima.cn/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/search/</guid><description/></item><item><title>关于我</title><link>https://hugo.pengfeima.cn/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/about/</guid><description>&lt;p>&lt;a class="link" href="https://hugo.pengfeima.cn/CV/" >简历&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://hugo.pengfeima.cn/cdn/appwite/" >注册&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://hugo.pengfeima.cn/p/pay-for-help/" >赠人玫瑰，手留余香&lt;/a>&lt;/p>
+&lt;!-- &lt;iframe src="https://wangxuan.mapengfei.cn/memory" width="100%" height="800" frameborder="0">&lt;/iframe> -->
+&lt;!-- &lt;iframe src="https://wangxuan.mapengfei.cn/web" width="100%" height="500" frameborder="0">&lt;/iframe> -->
+&lt;!-- &lt;blockquote>
+&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p>&lt;span class="cite">&lt;span>― &lt;/span>&lt;span>某人, &lt;/span>&lt;a href="https://hugo.pengfeima.cn/CV/">&lt;cite>简历&lt;/cite>&lt;/a>&lt;/span>&lt;/blockquote> --></description></item><item><title>链接</title><link>https://hugo.pengfeima.cn/%E9%93%BE%E6%8E%A5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/%E9%93%BE%E6%8E%A5/</guid><description>&lt;iframe src="https://wangxuan.mapengfei.cn/web/" width="100%" height="800" frameborder="0">&lt;/iframe>
+&lt;!-- &lt;style>
+.font-local-title {
+font-family: 'Times New Roman', Times, serif; font-size: 25px !important;text-align: center;font-weight: bold;
+}
+.container1 img {
+/* 强制图片样式 */
+max-width: 100% !important;
+height: 80 !important;
+}
+&lt;/style>
+&lt;div class="wrapper1">
+&lt;a href="https://github.com/npuheart/npuheart/issues" target="_blank">
+&lt;div class="container1">
+&lt;img src="https://githubimages.pengfeima.cn/images/202501040210730.png" height="80" alt="Centered Image" />
+&lt;p class="title">规划&lt;/p>
+&lt;/div>
+&lt;/a>
+&lt;a href="https://github.com/npuheart/npuheart/discussions" target="_blank">
+&lt;div class="container1">
+&lt;img src="https://githubimages.pengfeima.cn/images/202501040210730.png" height="80" alt="Centered Image" />
+&lt;p class="title">讨论&lt;/p>
+&lt;/div>
+&lt;/a>
+&lt;/div> -->
+&lt;!-- To use this feature, add `links` section to frontmatter.
+This page's frontmatter:
+```yaml
+links:
+- title: GitHub
+description: GitHub is the world's largest software development platform.
+website: https://github.com
+image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+- title: TypeScript
+description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
+website: https://www.typescriptlang.org
+image: ts-logo-128.jpg
+```
+`image` field accepts both local and external images. --></description></item></channel></rss>

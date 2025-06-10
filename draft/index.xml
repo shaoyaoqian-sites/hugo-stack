@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Drafts on</title><link>https://hugo.pengfeima.cn/draft/</link><description>Recent content in Drafts on</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://hugo.pengfeima.cn/draft/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://hugo.pengfeima.cn/draft/a/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/draft/a/</guid><description>&lt;p>在管道浏览器中选择两个数据集，然后应用可编程过滤器。&lt;/p>
+&lt;p>两个输入定义在一个 inputs 数组中。此数组中元素的顺序由在Pipeline Browser 中选择数据源的顺序决定 。因此，inputs[0] 是选择的第一个数据源，inputs[1]是第二个。&lt;/p>
+&lt;p>&lt;a class="link" href="https://blog.csdn.net/haimianjie2012/article/details/122718221" target="_blank" rel="noopener"
+>https://blog.csdn.net/haimianjie2012/article/details/122718221&lt;/a>&lt;/p>
+&lt;p>inputs[0].PointData[&amp;lsquo;Normals&amp;rsquo;]
+inputs[0].CellData[&amp;lsquo;Result&amp;rsquo;]&lt;/p>
+&lt;h1 id="code-for-script">Code for ‘Script’
+&lt;/h1>&lt;h1 id="inputs-is-set-to-an-array-with-data-objects-produced-by-inputs-to">‘inputs’ is set to an array with data objects produced by inputs to
+&lt;/h1>&lt;h1 id="this-filter">this filter.
+&lt;/h1>&lt;h1 id="get-the-first-input">Get the first input.
+&lt;/h1>&lt;p>#input0 = inputs[0]
+print(len(inputs))&lt;/p>
+&lt;h1 id="compute-a-value">compute a value.
+&lt;/h1>&lt;p>dataArray = sum(inputs[0].CellData[&amp;lsquo;Result&amp;rsquo;])&lt;/p>
+&lt;h1 id="output-is-a-variable-set-to-the-output-dataset">‘output’ is a variable set to the output dataset.
+&lt;/h1>&lt;p>output.FieldData.append(len(inputs), &amp;lsquo;V_sum&amp;rsquo;)
+output.CellData.append(dataArray, &amp;lsquo;V_sum&amp;rsquo;)&lt;/p>
+&lt;p>更改 paraview 中的 axis
+paraview 5.11.2 版本中可以更改坐标轴整体的大小和文字的颜色，但是无法更改坐标轴的粗细和颜色。
+paraview 5.12.0可以更改坐标轴颜色，隐藏其中一个坐标轴等等&lt;/p>
+&lt;p>&lt;a class="link" href="https://discourse.paraview.org/t/change-axis-size-and-color/3355" target="_blank" rel="noopener"
+>https://discourse.paraview.org/t/change-axis-size-and-color/3355&lt;/a>
+&lt;a class="link" href="https://discourse.paraview.org/t/improvements-to-orientation-axis/12687" target="_blank" rel="noopener"
+>https://discourse.paraview.org/t/improvements-to-orientation-axis/12687&lt;/a>&lt;/p>
+&lt;p>paraview可以用group datasets把两个数据集合并在一起&lt;/p>
+&lt;p>&lt;img src="https://hugo.pengfeima.cn/312a992cb8c0d45cc11068dd2d2a0155.jpg"
+loading="lazy"
+alt="alt text"
+>&lt;/p>
+&lt;p>paraview 中的一些名词:&lt;/p>
+&lt;p>Tabs: 菜单&lt;/p>
+&lt;p>Colormap controls: 调色&lt;/p>
+&lt;p>Views: 视图&lt;/p>
+&lt;p>Pipeline: 流程&lt;/p>
+&lt;p>Properties: 属性&lt;/p>
+&lt;p>Selection: 选择&lt;/p>
+&lt;p>Window splitting: 多窗口&lt;/p>
+&lt;p>renderview area: 渲染结果&lt;/p>
+&lt;p>Data Legend: 数据图例&lt;/p>
+&lt;p>Filter: 滤镜&lt;/p></description></item></channel></rss>
