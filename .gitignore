@@ -7,3 +7,4 @@ static/config/ssh_config
 *.DS_Store
 content/post/galleries/zoo-sibao/videos-raw
 content/post/galleries/zoo-sibao/images-raw
+static/config/install_0003.sh
