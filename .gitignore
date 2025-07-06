@@ -8,3 +8,4 @@ static/config/ssh_config
 content/post/galleries/zoo-sibao/videos-raw
 content/post/galleries/zoo-sibao/images-raw
 static/config/install_0003.sh
+static/config/clash.yml
