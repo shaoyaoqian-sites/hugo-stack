@@ -1,5 +1,5 @@
 ---
-title: "timeline"
+title: "Timeline"
 date: 2025-09-29T02:21:47+08:00
 lastmod: 2025-09-29T02:21:47+08:00
 math: true
@@ -73,7 +73,6 @@ toc: true
 内容部分
 {{< /encrypt >}}
 
-<br>
 {{< timeline >}}
   {{< timelineitem
       title="王璇"
@@ -135,7 +134,7 @@ toc: true
       start="2025-10-02 07:56:00"
       end="2025-10-02 08:21:00"
       href=""
-      note="马鹏飞 12车 03B号 ¥18"
+      note="马鹏飞 12车 03B号 ¥18, 王璇 12车 04F号 ¥18"
       target="_self"
   >}}
   {{< timelineitem
@@ -143,7 +142,7 @@ toc: true
       start="2025-10-02 08:38:00"
       end="2025-10-02 08:54:00"
       href=""
-      note="王璇 07车 13A号 ¥29.5"
+      note="王璇 07车 13A号 ¥29.5, 马鹏飞 07车 13C号 ¥22"
       target="_self"
   >}}
   {{< timelineitem

@@ -59,9 +59,10 @@ def json_to_timeline():
 if __name__ == "__main__":
     print("Generating timeline...")
     a = json_to_timeline()
-    
-    # 写入输出文件
-    with open("a.txt", 'w', encoding='utf-8') as f:
+    with open("index.md.header", 'r', encoding='utf-8') as header_file:
+        header_content = header_file.read()
+    a.insert(0, header_content)
+    with open("index.md", 'w', encoding='utf-8') as f:
         f.write('\n'.join(a))
 
-    print(f"✅ Timeline 已生成到: a.txt")
+    print(f"✅ Timeline 已生成到: index.md")
