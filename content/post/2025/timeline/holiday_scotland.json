@@ -1,0 +1,112 @@
+[
+    {
+        "title": "New Year's Day",
+        "start": "2025-01-01",
+        "end": "2025-01-01",
+        "source": "GOV.UK bank holidays (Scotland)"
+    },
+    {
+        "title": "2nd January",
+        "start": "2025-01-02",
+        "end": "2025-01-02",
+        "source": "GOV.UK bank holidays (Scotland)"
+    },
+    {
+        "title": "Good Friday",
+        "start": "2025-04-18",
+        "end": "2025-04-18",
+        "source": "GOV.UK bank holidays (Scotland)"
+    },
+    {
+        "title": "Early May bank holiday",
+        "start": "2025-05-05",
+        "end": "2025-05-05",
+        "source": "GOV.UK bank holidays (Scotland)"
+    },
+    {
+        "title": "Spring bank holiday",
+        "start": "2025-05-26",
+        "end": "2025-05-26",
+        "source": "GOV.UK bank holidays (Scotland)"
+    },
+    {
+        "title": "Summer bank holiday",
+        "start": "2025-08-04",
+        "end": "2025-08-04",
+        "source": "GOV.UK bank holidays (Scotland)"
+    },
+    {
+        "title": "St Andrew’s Day (substitute day)",
+        "start": "2025-12-01",
+        "end": "2025-12-01",
+        "source": "GOV.UK bank holidays (Scotland)"
+    },
+    {
+        "title": "Christmas Day",
+        "start": "2025-12-25",
+        "end": "2025-12-25",
+        "source": "GOV.UK bank holidays (Scotland)"
+    },
+    {
+        "title": "Boxing Day",
+        "start": "2025-12-26",
+        "end": "2025-12-26",
+        "source": "GOV.UK bank holidays (Scotland)"
+    },
+    {
+        "title": "New Year's Day",
+        "start": "2026-01-01",
+        "end": "2026-01-01",
+        "source": "GOV.UK bank holidays (Scotland)"
+      },
+      {
+        "title": "2nd January",
+        "start": "2026-01-02",
+        "end": "2026-01-02",
+        "source": "GOV.UK bank holidays (Scotland)"
+      },
+      {
+        "title": "Good Friday",
+        "start": "2026-04-03",
+        "end": "2026-04-03",
+        "source": "GOV.UK bank holidays (Scotland)"
+      },
+      {
+        "title": "Early May bank holiday",
+        "start": "2026-05-04",
+        "end": "2026-05-04",
+        "source": "GOV.UK bank holidays (Scotland)"
+      },
+      {
+        "title": "Spring bank holiday",
+        "start": "2026-05-25",
+        "end": "2026-05-25",
+        "source": "GOV.UK bank holidays (Scotland)"
+      },
+      {
+        "title": "Summer bank holiday",
+        "start": "2026-08-03",
+        "end": "2026-08-03",
+        "source": "GOV.UK bank holidays (Scotland)"
+      },
+      {
+        "title": "St Andrew’s Day",
+        "start": "2026-11-30",
+        "end": "2026-11-30",
+        "source": "GOV.UK bank holidays (Scotland)"
+      },
+      {
+        "title": "Christmas Day",
+        "start": "2026-12-25",
+        "end": "2026-12-25",
+        "source": "GOV.UK bank holidays (Scotland)"
+      },
+      {
+        "title": "Boxing Day (substitute day)",
+        "start": "2026-12-28",
+        "end": "2026-12-28",
+        "notes": "26th is Saturday",
+        "source": "GOV.UK bank holidays (Scotland)"
+      }
+
+]

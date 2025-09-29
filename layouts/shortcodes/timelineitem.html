@@ -1,0 +1,121 @@
+{{- /* 参数：
+    title   : 标题（必填）
+    start   : 开始时间（必填，如 "2026-04-02 12:00"）
+    end     : 结束时间（可选）
+    href    : 链接（可选，默认空）
+    target  : 链接目标（可选，默认 "_self"）
+    sub     : 自定义副标题（可选，若提供则覆盖自动计算）
+    badge   : 自定义角标（可选，若提供则覆盖自动计算）
+*/ -}}
+
+{{- $title  := .Get "title" | default "" -}}
+{{- $href   := .Get "href"  | default "" -}}
+{{- $noteRaw := .Get "note" | default "" -}}
+{{- $target := .Get "target" | default "_self" -}}
+
+{{- $startRaw := .Get "start" -}}
+{{- $start := time $startRaw -}}
+{{- $now   := now -}}
+
+{{- $startTimeSpecific := false -}}
+{{- if in $startRaw ":" -}}
+  {{- $startTimeSpecific = true -}}
+{{- end -}}
+
+{{- $endRaw := .Get "end" -}}
+{{- $end := "" -}}
+{{- if ne $endRaw "" -}}
+  {{- $end = time $endRaw -}}
+  {{- if and $startTimeSpecific (not (in $endRaw ":")) -}}
+    {{- /* 若开始时间有时分，结束时间无时分，洗面这句话会报错 */ -}}
+    {{- $end = time (printf "%s 报错" $endRaw) -}}
+  {{- end -}}
+  {{- if eq $endRaw $startRaw -}}
+    {{- /* 结束时间等于开始时间则忽略 */ -}}
+    {{- $end = "" -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* 计算与当前的天数差（整数天） */ -}}
+{{- $daysTo := div (sub ($start.Unix) ($now.Unix)) 86400 -}}
+{{- $absDaysTo := cond (lt $daysTo 0) (mul -1 $daysTo) $daysTo -}}
+
+{{- /* 计算“X 天后/前”角标 */ -}}
+{{- $autoBadge := "" -}}
+{{- if eq $daysTo 0 -}}
+  {{- $autoBadge = "今天" -}}
+{{- else if gt $daysTo 0 -}}
+  {{- $autoBadge = printf "%d 天后" $absDaysTo -}}
+{{- else -}}
+  {{- $autoBadge = printf "%d 天前" $absDaysTo -}}
+{{- end -}}
+{{- $badge := .Get "badge" | default $autoBadge -}}
+
+{{- /* 计算副标题：
+      1) 若有 end，则显示 “共 N 天 · M 个月后/前”
+      2) 若无 end，则显示 “M 个月后/前”
+      月份以 30 天为近似（floor）
+*/ -}}
+{{- $months := math.Floor (div (float $absDaysTo) 30.0) -}}
+{{- $monthWord := "" -}}
+{{- if le $months 1 -}}
+  {{- $monthWord = "本月" -}}
+{{- else if gt $daysTo 0 -}}
+  {{- $monthWord = printf "%d 个月后" (int $months) -}}
+{{- else -}}
+  {{- $monthWord = printf "%d 个月前" (int $months) -}}
+{{- end -}}
+
+{{- $spanText := "" -}}
+{{- if $end -}}
+  {{- $spanDays := div (sub ($end.Unix) ($start.Unix)) 86400 -}}
+  {{- if lt $spanDays 0 -}}
+    {{- $spanText = "" -}} {{/* 结束早于开始则忽略 */}}
+  {{- else if eq $spanDays 0 -}}
+    {{- $spanText = "共 0 天" -}}
+  {{- else -}}
+    {{- $spanText = printf "共 %d 天" $spanDays -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $autoSub := "" -}}
+{{- if and $end (ne $spanText "") -}}
+  {{- if eq $monthWord "本月" -}}
+    {{- $autoSub = printf "%s · %s" $spanText $monthWord -}}
+  {{- else -}}
+    {{- $autoSub = printf "%s · %s" $spanText $monthWord -}}
+  {{- end -}}
+{{- else -}}
+  {{- $autoSub = $monthWord -}}
+{{- end -}}
+{{- $sub := .Get "sub" | default $autoSub -}}
+
+{{- /* 日期展示：单点 或 起止两行 */ -}}
+{{- $dateBlock := "" -}}
+{{- if $end -}}
+  {{- $dateBlock = printf "起：%s <br>止：%s" (time.Format "2006年01月02日" $start) (time.Format "2006年01月02日" $end) -}}
+  {{- if $startTimeSpecific -}}
+    {{- $dateBlock = printf "起：%s <br>止：%s" (time.Format "2006年01月02日 15:04" $start) (time.Format "2006年01月02日 15:04" $end) -}}
+  {{- end -}}
+{{- else -}}
+  {{- $dateBlock = time.Format "2006年01月02日" $start -}}
+  {{- if $startTimeSpecific -}}
+  {{- $dateBlock = time.Format "2006年01月02日 15:04" $start -}}
+  {{- end -}}
+{{- end -}}
+
+<div class="timeline-item">
+  <a href="{{ $href }}" target="{{ $target }}" style="color: inherit; text-decoration: none;">
+    <div class="timeline-content">
+      <div class="timeline-header">
+        <div class="date">{{ $dateBlock | safeHTML }}</div>
+        <div class="badge">{{ $badge }}</div>
+      </div>
+      <div class="timeline-title">{{ $title }}</div>
+      <div class="timeline-note">{{ $noteRaw }}</div>
+      {{- if ne $sub "" -}}
+        <div class="timeline-sub">{{ $sub }}</div>
+      {{- end -}}
+    </div>
+  </a>
+</div>
