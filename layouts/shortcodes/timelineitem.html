@@ -107,11 +107,11 @@
 <div class="timeline-item">
   <a href="{{ $href }}" target="{{ $target }}" style="color: inherit; text-decoration: none;">
     <div class="timeline-content">
+      <div class="timeline-title">{{ $title }}</div>
       <div class="timeline-header">
         <div class="date">{{ $dateBlock | safeHTML }}</div>
         <div class="badge">{{ $badge }}</div>
       </div>
-      <div class="timeline-title">{{ $title }}</div>
       <div class="timeline-note">{{ $noteRaw }}</div>
       {{- if ne $sub "" -}}
         <div class="timeline-sub">{{ $sub }}</div>
