@@ -13,13 +13,6 @@ tags:
 toc: true
 ---
 <style>
-body {
-  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-  background-color: #f9fbfd;
-  color: #333;
-  margin: 40px;
-}
-
 .timeline {
     max-width: 400px;
     min-width: 300px;
@@ -36,8 +29,6 @@ body {
     transform: translateY(-2px) scale(1.03);
     box-shadow: 0 6px 20px rgba(43,124,255,0.12);
 }
-
-
 .timeline-content {
   background-color: #fff;
   border-radius: 12px;
@@ -45,24 +36,20 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   position: relative;
 }
-
 .timeline-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 6px;
 }
-
 .timeline-header .date {
   font-size: 12px;
   color: #555;
 }
-
 .timeline-note {
   font-size: 12px;
   color: #555;
 }
-
 .timeline-header .badge {
   background-color: #e8f1ff;
   color: #2b7cff;
@@ -71,13 +58,11 @@ body {
   font-size: 13px;
   font-weight: 500;
 }
-
 .timeline-title {
   font-size: 17px;
   font-weight: bold;
   margin: 4px 0 2px;
 }
-
 .timeline-sub {
   font-size: 12px;
   color: #888;
