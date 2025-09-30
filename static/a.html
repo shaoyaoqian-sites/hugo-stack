@@ -106,7 +106,7 @@
     .item:before {
       content: "";
       position: absolute;
-      left: -22px;
+      left: -27px;
       top: 18px;
       width: 10px;
       height: 10px;
@@ -169,6 +169,12 @@
       color: var(--far)
     }
 
+    .past {
+      background: rgba(148, 163, 184, .18);
+      color: var(--far)
+    }
+
+
     .details {
       grid-column: 1/-1;
       color: var(--muted);
@@ -211,82 +217,15 @@
   <div class="wrap">
     <h1>时间线</h1>
     <div class="toolbar">
-      <div class="chip active" data-filter="all">全部</div>
-      <div class="chip" data-filter="trip">行程</div>
-      <div class="chip" data-filter="holiday">节假日</div>
+      <div class="chip active" data-filter="">全部</div>
+      <div class="chip" data-filter="near">近一周</div>
+      <div class="chip" data-filter="past">过去</div>
+      <div class="chip" data-filter="future">未来</div>
+      <div class="chip" data-filter="mid">近一个月</div>
     </div>
 
     <section class="timeline" id="timeline">
-      <!-- 2025 Oct group -->
-      <div class="month">2025 · 10 月</div>
-
-      <article class="item" data-type="trip" data-start="2025-10-02T08:38:00" data-end="2025-10-02T08:54:00">
-        <div>
-          <div class="type"><span>🚄</span><span class="title">西安北 → 滑南北 · G3154</span></div>
-          <div class="meta">
-            <span class="pill">起：2025-10-02 08:38</span>
-            <span class="pill">止：2025-10-02 08:54</span>
-            <span class="pill" data-duration>—</span>
-            <span class="pill">王旗 07车 13A</span>
-            <span class="pill">¥29.5</span>
-          </div>
-        </div>
-        <div class="right">
-          <span class="badge far" data-countdown>—</span>
-        </div>
-        <div class="details">备注：短途出行。可点击展开更多（演示）。</div>
-        <div class="actions">
-          <button class="btn">查看票信息</button>
-          <button class="btn primary">添加提醒</button>
-        </div>
-      </article>
-
-      <article class="item" data-type="trip" data-start="2025-10-04T14:41:00" data-end="2025-10-04T23:31:00">
-        <div>
-          <div class="type"><span>🚄</span><span class="title">西安北 → 横店 · G2028</span></div>
-          <div class="meta">
-            <span class="pill">起：2025-10-04 14:41</span>
-            <span class="pill">止：2025-10-04 23:31</span>
-            <span class="pill" data-duration>—</span>
-            <span class="pill">马鹏飞 03车 15F</span>
-            <span class="pill">¥566</span>
-          </div>
-        </div>
-        <div class="right">
-          <span class="badge mid" data-countdown>—</span>
-        </div>
-      </article>
-
-      <!-- 2026 Jan group -->
-      <div class="month">2026 · 1 月</div>
-      <article class="item" data-type="holiday" data-start="2026-01-01T00:00:00" data-end="2026-01-01T23:59:59">
-        <div>
-          <div class="type"><span>🎉</span><span class="title">元旦</span></div>
-          <div class="meta">
-            <span class="pill">2026-01-01</span>
-            <span class="pill" data-duration>1 天</span>
-          </div>
-        </div>
-        <div class="right">
-          <span class="badge far" data-countdown>—</span>
-        </div>
-      </article>
-
-      <!-- 2026 Feb group -->
-      <div class="month">2026 · 2 月</div>
-      <article class="item" data-type="holiday" data-start="2026-02-17T00:00:00" data-end="2026-02-22T23:59:59">
-        <div>
-          <div class="type"><span>🎊</span><span class="title">春节</span></div>
-          <div class="meta">
-            <span class="pill">起：2026-02-17</span>
-            <span class="pill">止：2026-02-22</span>
-            <span class="pill" data-duration>—</span>
-          </div>
-        </div>
-        <div class="right">
-          <span class="badge far" data-countdown>—</span>
-        </div>
-      </article>
+      <!-- JS 动态生成内容 -->
     </section>
   </div>
 
@@ -306,6 +245,66 @@
       return `${m} 分`;
     }
 
+    async function loadTimeline() {
+      const res = await fetch('http://localhost:1313/cdn/other/json/timeline.json');
+      const data = await res.json();
+      // 按开始时间升序排序
+      data.sort((a, b) => new Date(a.start) - new Date(b.start));
+      const timeline = document.getElementById('timeline');
+      timeline.innerHTML = '';
+      let lastMonth = '';
+      data.forEach(item => {
+      // const start = new Date(item.start);
+      // const end = new Date(item.end);
+      // 判断 item.start 是否有时区，如果没有就减去 8 小时
+      let start = new Date(item.start);
+      if (!/([Zz]|[+-]\d{2}:?\d{2})$/.test(item.start)) {
+        start = new Date(start.getTime() - 8 * 3600000);
+      }
+      let end = new Date(item.end);
+      if (!/([Zz]|[+-]\d{2}:?\d{2})$/.test(item.end)) {
+        end = new Date(end.getTime() - 8 * 3600000);
+      }
+
+        const monthLabel = `${start.getFullYear()} · ${start.getMonth() + 1} 月`;
+        if (monthLabel !== lastMonth) {
+          timeline.insertAdjacentHTML('beforeend', `<div class="month">${monthLabel}</div>`);
+          lastMonth = monthLabel;
+        }
+
+        // 持续时间
+        const dur = end - start;
+        let dur_short = true;
+        if (isNaN(dur) || dur < 10000) {
+        } else {
+            dur_short = false;
+        }
+        let metaHtml = '';
+        metaHtml = `
+          ${dur_short ? `<span class="pill">${fmt(start)}</span>` : `<span class="pill">起：${fmt(start)}</span><span class="pill">止：${fmt(end)}</span>`}
+          <span class="pill" data-duration>—</span>
+        `;
+        timeline.insertAdjacentHTML('beforeend', `
+        <article class="item" data-type="${item.type}" data-start="${item.start}" data-end="${item.end}">
+          <div>
+            <div class="type"><span>${item.icon || ''}</span><span class="title">${item.title}</span></div>
+            <div class="meta">${metaHtml}</div>
+          </div>
+          <div class="right">
+            <span class="badge far" data-countdown>—</span>
+          </div>
+          ${item.details ? `<div class="details">${item.details}</div>` : ''}
+          ${item.actions ? `<div class="actions">${item.actions.map(a => `<button class="btn${a.primary ? ' primary' : ''}">${a.text}</button>`).join('')}</div>` : ''}
+          ${item.note ? `<div class="details">${item.note}</div>` : ''}
+        </article>
+      `);
+      });
+    }
+
+
+
+
+    loadTimeline().then(paint);
     // 初始化每个 item 的“持续时间”和“倒计时”
     function paint() {
       const now = new Date();
@@ -317,18 +316,37 @@
 
         // 持续时间
         const dur = end - start;
-        durationEl.textContent = humanDuration(Math.max(0, dur));
+        if (isNaN(dur) || dur < 10000) {
+          durationEl.textContent = '-10';
+          durationEl.style.display = 'none';
+        } else {
+            if (dur >= msDay) {
+            durationEl.textContent = `${Math.round(dur / msDay)} 天`;
+            } else {
+            durationEl.textContent = humanDuration(Math.max(0, dur));
+            }
+        }
 
         // 倒计时
         const diff = start - now;
         const days = Math.ceil(diff / msDay);
         let label = days > 0 ? `${days} 天后` : (diff > -msDay ? '今天' : `${Math.abs(Math.floor(diff / msDay))} 天前`);
         cdEl.textContent = label;
-
-        cdEl.classList.remove('near', 'mid', 'far');
-        if (days <= 7) cdEl.classList.add('near');
-        else if (days <= 30) cdEl.classList.add('mid');
-        else cdEl.classList.add('far');
+        it.removeAttribute('data-tenses');
+        cdEl.classList.remove('near', 'mid', 'far', 'past');
+        if (days <= 7 && days > 0) {
+            cdEl.classList.add('near');
+          it.setAttribute('data-tenses', 'near');
+        } else if (days <= 30 && days > 7) {
+            cdEl.classList.add('mid');
+          it.setAttribute('data-tenses', 'mid');
+        } else if (days > 30) {
+            cdEl.classList.add('far');
+          it.setAttribute('data-tenses', 'far');
+        } else if (diff <= 0) {
+            cdEl.classList.add('past');
+          it.setAttribute('data-tenses', 'past');
+        }
       });
     }
 
@@ -339,7 +357,12 @@
         chip.classList.add('active');
         const f = chip.dataset.filter;
         document.querySelectorAll('.item').forEach(it => {
-          it.style.display = (f === 'all' || it.dataset.type === f) ? '' : 'none';
+            // 过滤逻辑
+            if (f === '') {
+            it.style.display = '';
+            } else {
+            it.style.display = it.getAttribute('data-tenses') === f ? '' : 'none';
+            }
         });
       });
     });
