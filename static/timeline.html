@@ -246,7 +246,7 @@
     }
 
     async function loadTimeline() {
-      const res = await fetch('https://pengfeima.cn/cdn/other/json/timeline.json');
+      const res = await fetch('https://www.pengfeima.cn/cdn/other/json/timeline.json');
       const data = await res.json();
       // 按开始时间升序排序
       data.sort((a, b) => new Date(a.start) - new Date(b.start));
