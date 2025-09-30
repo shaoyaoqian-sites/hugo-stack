@@ -246,7 +246,7 @@
     }
 
     async function loadTimeline() {
-      const res = await fetch('http://localhost:1313/cdn/other/json/timeline.json');
+      const res = await fetch('https://pengfeima.cn/cdn/other/json/timeline.json');
       const data = await res.json();
       // 按开始时间升序排序
       data.sort((a, b) => new Date(a.start) - new Date(b.start));
@@ -254,9 +254,8 @@
       timeline.innerHTML = '';
       let lastMonth = '';
       data.forEach(item => {
-      // const start = new Date(item.start);
-      // const end = new Date(item.end);
-      // 判断 item.start 是否有时区，如果没有就减去 8 小时
+
+        // 判断 item.start 是否有时区，如果没有就减去 8 小时，得到北京时间
       let start = new Date(item.start);
       if (!/([Zz]|[+-]\d{2}:?\d{2})$/.test(item.start)) {
         start = new Date(start.getTime() - 8 * 3600000);

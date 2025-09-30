@@ -1,0 +1,686 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{ydnt/global//global/global/global}
+    \entry{ma2025afsi}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=702f97385b5822a308782fdfc3eaf3f5}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Pengfei},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=27fb245da036bfc508272165d5fb56be}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dc340e90e108aefd6b9b7f9e468716a1}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xuan},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=961919f4f1d5603650aa2b096fc5206e}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5a960cda1e59840e7044953ca8bb6697}
+      \strng{fullhash}{8eeefabdbe66b8de19cdd94c44042534}
+      \strng{fullhashraw}{8eeefabdbe66b8de19cdd94c44042534}
+      \strng{bibnamehash}{8eeefabdbe66b8de19cdd94c44042534}
+      \strng{authorbibnamehash}{8eeefabdbe66b8de19cdd94c44042534}
+      \strng{authornamehash}{5a960cda1e59840e7044953ca8bb6697}
+      \strng{authorfullhash}{8eeefabdbe66b8de19cdd94c44042534}
+      \strng{authorfullhashraw}{8eeefabdbe66b8de19cdd94c44042534}
+      \field{extraname}{1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2509.00014}
+      \field{title}{AFSI: Automated Fluid-Structure Interaction Solver Development for Nonlinear Solid Mechanics}
+      \field{year}{2025}
+      \true{nocite}
+    \endentry
+    \entry{MA2025118353}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=702f97385b5822a308782fdfc3eaf3f5}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Pengfei},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=27fb245da036bfc508272165d5fb56be}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dc340e90e108aefd6b9b7f9e468716a1}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xuan},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=961919f4f1d5603650aa2b096fc5206e}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5a960cda1e59840e7044953ca8bb6697}
+      \strng{fullhash}{8eeefabdbe66b8de19cdd94c44042534}
+      \strng{fullhashraw}{8eeefabdbe66b8de19cdd94c44042534}
+      \strng{bibnamehash}{8eeefabdbe66b8de19cdd94c44042534}
+      \strng{authorbibnamehash}{8eeefabdbe66b8de19cdd94c44042534}
+      \strng{authornamehash}{5a960cda1e59840e7044953ca8bb6697}
+      \strng{authorfullhash}{8eeefabdbe66b8de19cdd94c44042534}
+      \strng{authorfullhashraw}{8eeefabdbe66b8de19cdd94c44042534}
+      \field{extraname}{2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0045-7825}
+      \field{journaltitle}{Computer Methods in Applied Mechanics and Engineering}
+      \field{title}{Fully {GPU}-accelerated, matrix-free immersed boundary method for complex fiber-reinforced hyperelastic cardiac models}
+      \field{volume}{447}
+      \field{year}{2025}
+      \true{nocite}
+      \field{pages}{118353}
+      \range{pages}{1}
+    \endentry
+    \entry{wang2025efficient}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=dc340e90e108aefd6b9b7f9e468716a1}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xuan},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=27fb245da036bfc508272165d5fb56be}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=702f97385b5822a308782fdfc3eaf3f5}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Pengfei},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=961919f4f1d5603650aa2b096fc5206e}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{5064098b131de07d26539f77fe8e6ed7}
+      \strng{fullhash}{09d30047e0bfbe8f1313e38f93d26ca4}
+      \strng{fullhashraw}{09d30047e0bfbe8f1313e38f93d26ca4}
+      \strng{bibnamehash}{09d30047e0bfbe8f1313e38f93d26ca4}
+      \strng{authorbibnamehash}{09d30047e0bfbe8f1313e38f93d26ca4}
+      \strng{authornamehash}{5064098b131de07d26539f77fe8e6ed7}
+      \strng{authorfullhash}{09d30047e0bfbe8f1313e38f93d26ca4}
+      \strng{authorfullhashraw}{09d30047e0bfbe8f1313e38f93d26ca4}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal for Numerical Methods in Biomedical Engineering}
+      \field{number}{4}
+      \field{title}{An Efficient Staggered Scheme for Solving the Poromechanics Problem of Quasi-Static Cardiac Perfusion}
+      \field{volume}{41}
+      \field{year}{2025}
+      \true{nocite}
+      \field{pages}{e70030}
+      \range{pages}{-1}
+    \endentry
+    \entry{chen2024immersed}{article}{}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=212a96a35243f462ec294f3c17f29879}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Qixing},
+           giveni={Q\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=27fb245da036bfc508272165d5fb56be}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c4c21e29115282d8ca35626667f4a950}{%
+           family={Jing},
+           familyi={J\bibinitperiod},
+           given={Feifei},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=702f97385b5822a308782fdfc3eaf3f5}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Pengfei},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=289f6c634d1b1fba326ecd0facb1089f}{%
+           family={Luo},
+           familyi={L\bibinitperiod},
+           given={Xiaoyu},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=961919f4f1d5603650aa2b096fc5206e}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{42e8d0eaa2d366502b98b98bd478e889}
+      \strng{fullhash}{e4ee3656c4293dafed84d182e4f447d2}
+      \strng{fullhashraw}{e4ee3656c4293dafed84d182e4f447d2}
+      \strng{bibnamehash}{e4ee3656c4293dafed84d182e4f447d2}
+      \strng{authorbibnamehash}{e4ee3656c4293dafed84d182e4f447d2}
+      \strng{authornamehash}{42e8d0eaa2d366502b98b98bd478e889}
+      \strng{authorfullhash}{e4ee3656c4293dafed84d182e4f447d2}
+      \strng{authorfullhashraw}{e4ee3656c4293dafed84d182e4f447d2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Scientific Computing}
+      \field{number}{2}
+      \field{title}{On the Immersed Boundary Method with Time-Filter-SAV for Solving Fluid--Structure Interaction Problem}
+      \field{volume}{100}
+      \field{year}{2024}
+      \true{nocite}
+      \field{pages}{45}
+      \range{pages}{1}
+    \endentry
+    \entry{liu2024variable}{article}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=b5b17d38979a1e4b881464bcd316166c}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Youqiong},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=27fb245da036bfc508272165d5fb56be}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=64d75ef0702b1f0b5ed313ad4aaf9602}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Yaping},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=702f97385b5822a308782fdfc3eaf3f5}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Pengfei},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7c0d05a48bf5dd961c62e6c32a55c741}{%
+           family={Zhong},
+           familyi={Z\bibinitperiod},
+           given={Qian},
+           giveni={Q\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{b168faf6e5124539fce7f6c9ee09064a}
+      \strng{fullhash}{2fd872eb3c05e04bf4ac4cb9bfda16a3}
+      \strng{fullhashraw}{2fd872eb3c05e04bf4ac4cb9bfda16a3}
+      \strng{bibnamehash}{2fd872eb3c05e04bf4ac4cb9bfda16a3}
+      \strng{authorbibnamehash}{2fd872eb3c05e04bf4ac4cb9bfda16a3}
+      \strng{authornamehash}{b168faf6e5124539fce7f6c9ee09064a}
+      \strng{authorfullhash}{2fd872eb3c05e04bf4ac4cb9bfda16a3}
+      \strng{authorfullhashraw}{2fd872eb3c05e04bf4ac4cb9bfda16a3}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Computers \& Mathematics with Applications}
+      \field{title}{Variable separated physics-informed neural networks based on adaptive weighted loss functions for blood flow model}
+      \field{volume}{153}
+      \field{year}{2024}
+      \true{nocite}
+      \field{pages}{108\bibrangedash 122}
+      \range{pages}{15}
+    \endentry
+    \entry{ma2024unconditionally}{article}{}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=702f97385b5822a308782fdfc3eaf3f5}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Pengfei},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=27fb245da036bfc508272165d5fb56be}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dc340e90e108aefd6b9b7f9e468716a1}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xuan},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0b53928dc40cc06be69a9fe40f853822}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Yongheng},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=289f6c634d1b1fba326ecd0facb1089f}{%
+           family={Luo},
+           familyi={L\bibinitperiod},
+           given={Xiaoyu},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=961919f4f1d5603650aa2b096fc5206e}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {AIP Publishing}%
+      }
+      \strng{namehash}{5a960cda1e59840e7044953ca8bb6697}
+      \strng{fullhash}{6416ac1885abfe3e6ee63506fa9ba438}
+      \strng{fullhashraw}{6416ac1885abfe3e6ee63506fa9ba438}
+      \strng{bibnamehash}{6416ac1885abfe3e6ee63506fa9ba438}
+      \strng{authorbibnamehash}{6416ac1885abfe3e6ee63506fa9ba438}
+      \strng{authornamehash}{5a960cda1e59840e7044953ca8bb6697}
+      \strng{authorfullhash}{6416ac1885abfe3e6ee63506fa9ba438}
+      \strng{authorfullhashraw}{6416ac1885abfe3e6ee63506fa9ba438}
+      \field{extraname}{3}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Physics of Fluids}
+      \field{number}{8}
+      \field{title}{An unconditionally stable scheme for the immersed boundary method with application in cardiac mechanics}
+      \field{volume}{36}
+      \field{year}{2024}
+      \true{nocite}
+    \endentry
+    \entry{cai2022fluid}{article}{}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=27fb245da036bfc508272165d5fb56be}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=61fce142b6cc7f51a3522f957baa7f25}{%
+           family={Hao},
+           familyi={H\bibinitperiod},
+           given={Yu},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=702f97385b5822a308782fdfc3eaf3f5}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Pengfei},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=df5883bc1b077b86226282971d1d8d39}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Guangyu},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=289f6c634d1b1fba326ecd0facb1089f}{%
+           family={Luo},
+           familyi={L\bibinitperiod},
+           given={Xiaoyu},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=961919f4f1d5603650aa2b096fc5206e}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {American Institute of Mathematical Sciences}%
+      }
+      \strng{namehash}{ce9caf4b3aed7c3355f4957038815537}
+      \strng{fullhash}{a1f2993f1983f4bec7df8cdc968abc05}
+      \strng{fullhashraw}{a1f2993f1983f4bec7df8cdc968abc05}
+      \strng{bibnamehash}{a1f2993f1983f4bec7df8cdc968abc05}
+      \strng{authorbibnamehash}{a1f2993f1983f4bec7df8cdc968abc05}
+      \strng{authornamehash}{ce9caf4b3aed7c3355f4957038815537}
+      \strng{authorfullhash}{a1f2993f1983f4bec7df8cdc968abc05}
+      \strng{authorfullhashraw}{a1f2993f1983f4bec7df8cdc968abc05}
+      \field{extraname}{1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematical Biosciences and Engineering}
+      \field{number}{12}
+      \field{title}{Fluid-structure interaction simulation of calcified aortic valve stenosis}
+      \field{volume}{19}
+      \field{year}{2022}
+      \true{nocite}
+      \field{pages}{13172\bibrangedash 13192}
+      \range{pages}{21}
+    \endentry
+    \entry{cai2022estimation}{article}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=27fb245da036bfc508272165d5fb56be}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5990527ecd3e2d7976410bfac0c92040}{%
+           family={Jiao},
+           familyi={J\bibinitperiod},
+           given={Jie},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=702f97385b5822a308782fdfc3eaf3f5}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Pengfei},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d7467a131b11015fe148a1b11b649675}{%
+           family={Xie},
+           familyi={X\bibinitperiod},
+           given={Wenxian},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0b53928dc40cc06be69a9fe40f853822}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Yongheng},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ce9caf4b3aed7c3355f4957038815537}
+      \strng{fullhash}{5ac0ff03555f12520fb721610c4b42d2}
+      \strng{fullhashraw}{5ac0ff03555f12520fb721610c4b42d2}
+      \strng{bibnamehash}{5ac0ff03555f12520fb721610c4b42d2}
+      \strng{authorbibnamehash}{5ac0ff03555f12520fb721610c4b42d2}
+      \strng{authornamehash}{ce9caf4b3aed7c3355f4957038815537}
+      \strng{authorfullhash}{5ac0ff03555f12520fb721610c4b42d2}
+      \strng{authorfullhashraw}{5ac0ff03555f12520fb721610c4b42d2}
+      \field{extraname}{2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematical Biosciences and Engineering}
+      \field{number}{7}
+      \field{title}{Estimation of left ventricular parameters based on deep learning method}
+      \field{volume}{19}
+      \field{year}{2022}
+      \true{nocite}
+      \field{pages}{6638\bibrangedash 6658}
+      \range{pages}{21}
+    \endentry
+    \entry{Lim:thesis:2013}{thesis}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=0bcf893fe776f3abb3b72e9c58a1e8f5}{%
+           family={Lim},
+           familyi={L\bibinitperiod},
+           given={Lian\bibnamedelima Tze},
+           giveni={L\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{2}{%
+        {Faculty of Computing}%
+        {Informatics, Multimedia University}%
+      }
+      \list{location}{1}{%
+        {Cyberjaya, Malaysia}%
+      }
+      \strng{namehash}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \strng{fullhash}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \strng{fullhashraw}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \strng{bibnamehash}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \strng{authorbibnamehash}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \strng{authornamehash}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \strng{authorfullhash}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \strng{authorfullhashraw}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \field{extraname}{1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Low-Cost Multilingual Lexicon Construction for Under-Resourced Languages}
+      \field{type}{phdthesis}
+      \field{year}{2013}
+      \true{nocite}
+    \endentry
+    \entry{Bahari:Lim:2009}{book}{}{}
+      \name{editor}{2}{}{%
+        {{un=0,uniquepart=base,hash=1ebd921273132bf279c7ddb76d2e1cab}{%
+           family={Belaton},
+           familyi={B\bibinitperiod},
+           given={Bahari},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0bcf893fe776f3abb3b72e9c58a1e8f5}{%
+           family={Lim},
+           familyi={L\bibinitperiod},
+           given={Lian\bibnamedelima Tze},
+           giveni={L\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Penang, Malaysia}%
+      }
+      \list{publisher}{1}{%
+        {Platform for Information \& Communication Technology Research, Universiti Sains Malaysia}%
+      }
+      \strng{namehash}{ebac3b693ffc111cda79d92a20aa97f4}
+      \strng{fullhash}{ebac3b693ffc111cda79d92a20aa97f4}
+      \strng{fullhashraw}{ebac3b693ffc111cda79d92a20aa97f4}
+      \strng{bibnamehash}{ebac3b693ffc111cda79d92a20aa97f4}
+      \strng{editorbibnamehash}{ebac3b693ffc111cda79d92a20aa97f4}
+      \strng{editornamehash}{ebac3b693ffc111cda79d92a20aa97f4}
+      \strng{editorfullhash}{ebac3b693ffc111cda79d92a20aa97f4}
+      \strng{editorfullhashraw}{ebac3b693ffc111cda79d92a20aa97f4}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{editor}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-983-3986-58-3}
+      \field{title}{Grid Computing Cluster: The Development and Integration of Grid Services and Applications}
+      \field{year}{2009}
+      \true{nocite}
+      \keyw{own}
+    \endentry
+    \entry{Tang:etal:Blexisma2:2009}{incollection}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=2ad08b48ab1f3f317937f12c116b1a91}{%
+           family={Tang},
+           familyi={T\bibinitperiod},
+           given={Enya\bibnamedelima Kong},
+           giveni={E\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0bcf893fe776f3abb3b72e9c58a1e8f5}{%
+           family={Lim},
+           familyi={L\bibinitperiod},
+           given={Lian\bibnamedelima Tze},
+           giveni={L\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=674ca2e06bf1dec0435c242bc919ec3a}{%
+           family={Ye},
+           familyi={Y\bibinitperiod},
+           given={Hong\bibnamedelima Hoe},
+           giveni={H\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ac7eded7d1fe2f257edf8c96dfebd2de}{%
+           family={Schwab},
+           familyi={S\bibinitperiod},
+           given={Didier},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=1ebd921273132bf279c7ddb76d2e1cab}{%
+           family={Belaton},
+           familyi={B\bibinitperiod},
+           given={Bahari},
+           giveni={B\bibinitperiod}}}%
+        {{hash=0bcf893fe776f3abb3b72e9c58a1e8f5}{%
+           family={Lim},
+           familyi={L\bibinitperiod},
+           given={Lian\bibnamedelima Tze},
+           giveni={L\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Penang, Malaysia}%
+      }
+      \list{publisher}{1}{%
+        {Platform for Information \& Communication Technology Research, Universiti Sains Malaysia}%
+      }
+      \strng{namehash}{e409cba602b671d9cba92167f40884bc}
+      \strng{fullhash}{97ebfa3468db8a09399b5b701429e55d}
+      \strng{fullhashraw}{97ebfa3468db8a09399b5b701429e55d}
+      \strng{bibnamehash}{97ebfa3468db8a09399b5b701429e55d}
+      \strng{authorbibnamehash}{97ebfa3468db8a09399b5b701429e55d}
+      \strng{authornamehash}{e409cba602b671d9cba92167f40884bc}
+      \strng{authorfullhash}{97ebfa3468db8a09399b5b701429e55d}
+      \strng{authorfullhashraw}{97ebfa3468db8a09399b5b701429e55d}
+      \strng{editorbibnamehash}{ebac3b693ffc111cda79d92a20aa97f4}
+      \strng{editornamehash}{ebac3b693ffc111cda79d92a20aa97f4}
+      \strng{editorfullhash}{ebac3b693ffc111cda79d92a20aa97f4}
+      \strng{editorfullhashraw}{ebac3b693ffc111cda79d92a20aa97f4}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Grid Computing Cluster: The Development and Integration of Grid Applications and Services}
+      \field{title}{Grid-enabled {B}lexisma2}
+      \field{year}{2009}
+      \true{nocite}
+      \field{pages}{23\bibrangedash 26}
+      \range{pages}{4}
+      \keyw{own}
+    \endentry
+    \entry{lim:2006:thesis}{thesis}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=0bcf893fe776f3abb3b72e9c58a1e8f5}{%
+           family={Lim},
+           familyi={L\bibinitperiod},
+           given={Lian\bibnamedelima Tze},
+           giveni={L\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {School of Computer Sciences, Universiti Sains Malaysia}%
+      }
+      \list{location}{1}{%
+        {Penang, Malaysia}%
+      }
+      \strng{namehash}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \strng{fullhash}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \strng{fullhashraw}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \strng{bibnamehash}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \strng{authorbibnamehash}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \strng{authornamehash}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \strng{authorfullhash}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \strng{authorfullhashraw}{0bcf893fe776f3abb3b72e9c58a1e8f5}
+      \field{extraname}{2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the {R}egional {C}omputer {S}cience {P}ostgraduate {C}olloquium ({R}e\textsc{cspc}'06)}
+      \field{title}{Improving Translation Selection with Conceptual Vectors}
+      \field{type}{MSc thesis}
+      \field{year}{2006}
+      \true{nocite}
+      \keyw{own}
+    \endentry
+    \entry{lim:hussein:2006}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=0bcf893fe776f3abb3b72e9c58a1e8f5}{%
+           family={Lim},
+           familyi={L\bibinitperiod},
+           given={Lian\bibnamedelima Tze},
+           giveni={L\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b6704fd35189de9fbe23546a3c78f347}{%
+           family={Hussein},
+           familyi={H\bibinitperiod},
+           given={Nur},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Bangkok, Thailand}%
+      }
+      \strng{namehash}{4a299fe389a89eb2a79e79a91088d57e}
+      \strng{fullhash}{4a299fe389a89eb2a79e79a91088d57e}
+      \strng{fullhashraw}{4a299fe389a89eb2a79e79a91088d57e}
+      \strng{bibnamehash}{4a299fe389a89eb2a79e79a91088d57e}
+      \strng{authorbibnamehash}{4a299fe389a89eb2a79e79a91088d57e}
+      \strng{authornamehash}{4a299fe389a89eb2a79e79a91088d57e}
+      \strng{authorfullhash}{4a299fe389a89eb2a79e79a91088d57e}
+      \strng{authorfullhashraw}{4a299fe389a89eb2a79e79a91088d57e}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the {Language, Artificial Intelligence and Computer Science for Natural Language Processing (\textsc{laics-nlp}) Summer School Workshop}}
+      \field{note}{Best Paper Award}
+      \field{title}{Fast Prototyping of a {Malay WordNet} System}
+      \field{year}{2006}
+      \true{nocite}
+      \field{pages}{13\bibrangedash 16}
+      \range{pages}{4}
+      \keyw{own}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
