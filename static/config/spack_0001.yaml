@@ -12,6 +12,7 @@ spack:
   - openmpi@4.0.6 +cuda
   - python@3.10.10 +optimizations
   - py-matplotlib
+  - suite-sparse@5.13.0
   - py-cython@0.29.36
   # NPUHeart
   - muparser # 2.3.4
@@ -19,7 +20,7 @@ spack:
   - nlohmann-json@3.11.2
   - py-pip
   - spdlog
-  - pugixml
+  - pugixml@1.13
   view: true
   concretizer:
     unify: true
