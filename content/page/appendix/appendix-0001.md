@@ -7,7 +7,6 @@ image:
 hidden: true
 math: true
 license: 
-hidden: false
 comments: true
 ---
 
