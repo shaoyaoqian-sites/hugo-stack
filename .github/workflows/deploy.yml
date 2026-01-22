@@ -37,7 +37,7 @@ jobs:
             - name: Setup Hugo
               uses: peaceiris/actions-hugo@v2
               with:
-                  hugo-version: "latest"
+                  hugo-version: "v0.149.0"
                   extended: true
 
             - name: Build
@@ -49,7 +49,7 @@ jobs:
               run: hugo --minify --gc
             
             - name: Build
-              continue-on-error: true
+              continue-on-error: false
               run: hugo --minify --gc
             
             - name: Deploy 🚀
