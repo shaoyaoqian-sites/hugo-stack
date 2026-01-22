@@ -8,7 +8,6 @@ image:
 hidden: true
 math: true
 license: 
-hidden: false
 comments: true
 ---
 这里放心脏的计算结果，不管计算方法，把所有结果放在一起。
