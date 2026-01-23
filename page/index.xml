@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on</title><link>https://hugo.pengfeima.cn/page/</link><description>Recent content in Pages on</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 27 May 2025 11:21:27 +0800</lastBuildDate><atom:link href="https://hugo.pengfeima.cn/page/index.xml" rel="self" type="application/rss+xml"/><item><title>许可协议</title><link>https://hugo.pengfeima.cn/license-strict/</link><pubDate>Tue, 27 May 2025 11:21:27 +0800</pubDate><guid>https://hugo.pengfeima.cn/license-strict/</guid><description>&lt;p&gt;&lt;strong&gt;版权所有 © 2025 马鹏飞、王璇&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;作者：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;马鹏飞（&lt;a class="link" href="mailto:mapengfei@mail.nwpu.edu.cn" &gt;mapengfei@mail.nwpu.edu.cn&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;王璇（&lt;a class="link" href="mailto:wangxuan2022@mail.nwpu.edu.cn" &gt;wangxuan2022@mail.nwpu.edu.cn&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本软件仅供&lt;strong&gt;内部使用&lt;/strong&gt;与&lt;strong&gt;学术研究&lt;/strong&gt;之目的，特此声明如下使用限制：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;禁止公开讨论&lt;/strong&gt;
+严禁在任何公开场合（包括但不限于论坛、讲座、社交平台等）讨论、展示或发布本软件的全部或部分代码及其实现细节。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;禁止修改&lt;/strong&gt;
+本软件可用于研究用途，但禁止对其进行任何形式的修改、二次开发或派生版本制作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;禁止逆向工程&lt;/strong&gt;
+严禁对本软件进行逆向工程，包括但不限于反编译、反汇编或其他任何形式的还原操作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;禁止未经授权的分发&lt;/strong&gt;
+未经作者明确的书面许可，禁止以任何形式（无论原始版本或修改后版本）对本软件进行复制、传播或发布。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;仅限授权范围内使用&lt;/strong&gt;
+本软件仅限作者明确授权的个人或单位使用，未经授权者不得使用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如有违反上述任一条款，作者保留依法追究相关法律责任的权利。如需获取授权或有相关疑问，请通过上述联系方式与作者联系。&lt;/p&gt;</description></item><item><title>个人简历</title><link>https://hugo.pengfeima.cn/cv/</link><pubDate>Tue, 19 Nov 2024 14:33:22 +0800</pubDate><guid>https://hugo.pengfeima.cn/cv/</guid><description>&lt;p&gt;电话: 15991859247
+邮箱: &lt;a class="link" href="mailto:job@pengfeima.cn" &gt;job@pengfeima.cn&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="教育背景"&gt;教育背景
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;2019.9-2025.7 &lt;strong&gt;博士研究生，数学&lt;/strong&gt;，西北工业大学&lt;/li&gt;
+&lt;li&gt;2018.9-2019.7 &lt;strong&gt;硕士研究生，计算数学&lt;/strong&gt;，西北工业大学&lt;/li&gt;
+&lt;li&gt;2014.9-2018.7 &lt;strong&gt;本科，信息与计算科学&lt;/strong&gt;，西北工业大学&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="研究方向"&gt;研究方向
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;计算力学&lt;/strong&gt;：流固耦合、纤维增强材料、多孔弹性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="科研经历"&gt;科研经历
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;研究项目&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;国家自然科学基金面上项目（12271440），心肌灌注跨尺度多场耦合建模与计算（2023.1-2026.12）&lt;/li&gt;
+&lt;li&gt;国家自然科学基金面上项目（11871399），受损心脏电力耦合问题高效数值模拟方法及其应用研究（2019.1-2022.12）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;软件开发&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ibfenics&lt;/strong&gt;：基于 Python3 和 C++ 混合编程的流固耦合软件，基于开源有限元软件 FEniCS 开发，使用 CMake 进行项目管理。(作者)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;npuheart&lt;/strong&gt;：异构并行流固耦合软件，初期使用 MPI+CUDA，后期采用 KOKKOS 生成 CUDA 代码。目前支持 CPU 多核和单块 GPU 异构计算。(作者)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;porosolver&lt;/strong&gt;：心脏灌注问题的求解软件。(负责数学建模和编程计算。)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="代表论文"&gt;代表论文
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Pengfei Ma, Li Cai, Xuan Wang, Yongheng Wang, Xiaoyu Luo, Hao Gao. An unconditionally stable scheme for the immersed boundary method with application in cardiac mechanics, Physics of Fluids, 2024, 36: 081914&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="专业技能"&gt;专业技能
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;编程语言&lt;/strong&gt;：C++，Python3，CMake&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数值方法&lt;/strong&gt;：有限元法（FEM），有限差分法（FDM），浸没边界法（IBM）（从零实现并进行并行加速）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;并行计算&lt;/strong&gt;：MPI，CUDA，KOKKOS&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;其他&lt;/strong&gt;：linux系统&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- 擅长搭建各种开发环境 --&gt;</description></item><item><title>Archives</title><link>https://hugo.pengfeima.cn/archives/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/archives/</guid><description/></item><item><title>Search</title><link>https://hugo.pengfeima.cn/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/search/</guid><description/></item><item><title>关于我</title><link>https://hugo.pengfeima.cn/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/about/</guid><description>&lt;p&gt;&lt;a class="link" href="https://hugo.pengfeima.cn/CV/" &gt;简历&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://hugo.pengfeima.cn/cdn/appwite/" &gt;注册&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://hugo.pengfeima.cn/p/pay-for-help/" &gt;赠人玫瑰，手留余香&lt;/a&gt;&lt;/p&gt;
+&lt;!-- &lt;iframe src="https://wangxuan.mapengfei.cn/memory" width="100%" height="800" frameborder="0"&gt;&lt;/iframe&gt; --&gt;
+&lt;!-- &lt;iframe src="https://wangxuan.mapengfei.cn/web" width="100%" height="500" frameborder="0"&gt;&lt;/iframe&gt; --&gt;
+&lt;!-- &lt;blockquote&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;&lt;span class="cite"&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;某人, &lt;/span&gt;&lt;a href="https://hugo.pengfeima.cn/CV/"&gt;&lt;cite&gt;简历&lt;/cite&gt;&lt;/a&gt;&lt;/span&gt;&lt;/blockquote&gt; --&gt;</description></item><item><title>链接</title><link>https://hugo.pengfeima.cn/%E9%93%BE%E6%8E%A5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.pengfeima.cn/%E9%93%BE%E6%8E%A5/</guid><description>&lt;iframe src="https://wangxuan.mapengfei.cn/web/" width="100%" height="800" frameborder="0"&gt;&lt;/iframe&gt;
+&lt;!-- &lt;style&gt;
+.font-local-title {
+font-family: 'Times New Roman', Times, serif; font-size: 25px !important;text-align: center;font-weight: bold;
+}
+.container1 img {
+/* 强制图片样式 */
+max-width: 100% !important;
+height: 80 !important;
+}
+&lt;/style&gt;
+&lt;div class="wrapper1"&gt;
+&lt;a href="https://github.com/npuheart/npuheart/issues" target="_blank"&gt;
+&lt;div class="container1"&gt;
+&lt;img src="https://githubimages.pengfeima.cn/images/202501040210730.png" height="80" alt="Centered Image" /&gt;
+&lt;p class="title"&gt;规划&lt;/p&gt;
+&lt;/div&gt;
+&lt;/a&gt;
+&lt;a href="https://github.com/npuheart/npuheart/discussions" target="_blank"&gt;
+&lt;div class="container1"&gt;
+&lt;img src="https://githubimages.pengfeima.cn/images/202501040210730.png" height="80" alt="Centered Image" /&gt;
+&lt;p class="title"&gt;讨论&lt;/p&gt;
+&lt;/div&gt;
+&lt;/a&gt;
+&lt;/div&gt; --&gt;
+&lt;!-- To use this feature, add `links` section to frontmatter.
+This page's frontmatter:
+```yaml
+links:
+- title: GitHub
+description: GitHub is the world's largest software development platform.
+website: https://github.com
+image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+- title: TypeScript
+description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
+website: https://www.typescriptlang.org
+image: ts-logo-128.jpg
+```
+`image` field accepts both local and external images. --&gt;</description></item></channel></rss>
